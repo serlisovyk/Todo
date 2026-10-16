@@ -1,3 +1,5 @@
+import './app.css'
+
 export function App() {
-  return <div>Todo</div>
+  return <main className="app">Todo</main>
 }
