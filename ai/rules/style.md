@@ -43,8 +43,8 @@ removed as a listener. One style per class.
   exports only — a top-level folder (`components/`, `utils/`) and every folder inside it
   (`components/todo-item/`). It appears with the folder's first file, never as an empty
   placeholder. `components/index.js` re-exports each component folder (`./todo-item`), and the
-  folder's `index.js` re-exports its file (`./todo-item.jsx`). `styles/` has no barrel: CSS is
-  imported by path.
+  folder's `index.js` re-exports its file (`./todo-item.jsx`). `styles/` has no `index.js`: a new
+  global stylesheet is added to `styles/style.css`, the one stylesheet `main.jsx` imports.
 - `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
   and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
   is imported directly (`./todo-item.jsx`), never through its own `index.js`.
@@ -69,12 +69,19 @@ removed as a listener. One style per class.
   component's name (`.todo-item`, `.todo-item-title`); a state is an attribute the markup already
   has (`[aria-expanded='true']`, `:checked`) or an `is-*` class.
 - States and children nest inside their rule (`&:hover`, `&:focus-visible`); a media query sits
-  inside the selector it changes, as a range: `@media (width <= 480px)`.
+  inside the selector it changes, as a strict range without `=`: `@media (width < 480px)`,
+  `@media (width > 768px)`.
 - `:hover` only inside `@media (hover: hover)`, so a tap leaves no hover look.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
   values and a contrast check in both themes.
-- Spacing, radii, font sizes and durations come from the token scales; no other literal for them.
+- Colour tokens are named by role, never by hue: `--color-surface`, `--color-text-muted`,
+  `--color-category-work`. A field or a checkbox is outlined with `--color-border-control`;
+  `--color-border` is for decorative dividers only.
+- Spacing (`--space-*`), radii (`--radius-*`), font sizes and weights (`--font-size-*`,
+  `--font-weight-*`), line heights, durations (`--duration-*`, `--ease-out`) and sizes
+  (`--touch-target`, `--content-max-width`) come from the token scales; no other literal for them.
+- Text uses the two weight tokens only (400 and 500) and inherits the font from `body`.
 - Every `@keyframes` lives in `styles/animations.css`; `prefers-reduced-motion` turns motion off.
 - One `:focus-visible` rule in the base styles draws the ring for every control; never
   `outline: none` without a replacement. A `transition` names its properties, never `all`.

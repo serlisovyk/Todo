@@ -1,6 +1,6 @@
 # Plain CSS per component with design tokens, palette "Ink and indigo"
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: accepted
 
 ## Context
 

@@ -62,7 +62,9 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 
 - [Filters in a panel and in the URL; search highlights matches](2026-10-16-filters-and-search.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
+- [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
 - [`lucide-react` icons, self-hosted Inter, an own toast](2026-10-16-ui-dependencies.md)
+- [Inter loads from `public/` with a preload, Arial as the fallback](2026-10-16-inter-font-loading.md)
 - [Theme: light, dark or system, set before the first paint](2026-10-16-theme-three-states.md)
 - [List animations are a progressive enhancement](2026-10-16-list-animations.md)
 - [Accessibility and SEO: WCAG 2.2 AA, Lighthouse 100](2026-10-16-accessibility-and-seo.md)
