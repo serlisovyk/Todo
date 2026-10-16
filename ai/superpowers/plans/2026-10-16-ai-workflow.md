@@ -37,8 +37,11 @@ workspace «Стандарт проекта», written for React. Record every d
   planning (Context + hooks on `useState`, flat folders, kebab-case files
   with role suffixes, barrels, `@/`).
 - The code does not exist yet: rules and the `feature` skill state the agreed pattern; the map
-  marks the layout the Фундамент tasks create. Commands that MY-145 and MY-146 add are listed
-  where the workflow needs them, with the task that brings them.
+  marks the layout the Фундамент tasks create. The docs list only the checks that exist now
+  (`pnpm lint`, `pnpm build`); the prompts point to "Verification" in `AGENTS.md` instead of a
+  list of their own, so MY-145 and MY-146 add their commands in one place plus the Linear
+  template. (Changed while writing: the first idea was to list the future commands with the
+  task that brings them, which would put history into current docs.)
 - Commits: plan; entry points; map and workflow; rules; decisions; skills; prompts and the
   Linear template.
 
