@@ -53,6 +53,21 @@ export default defineConfig([
         'error',
         { selector: 'ExportDefaultDeclaration', message: 'Use named exports.' },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              regex: '^\\.\\.(/|$)',
+              message: 'Import across folders through @/.',
+            },
+            {
+              regex: '^\\.(/index(\\.js)?)?/?$',
+              message: 'Import the sibling file, not its own barrel.',
+            },
+          ],
+        },
+      ],
     },
   },
   {
