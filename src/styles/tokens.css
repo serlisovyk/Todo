@@ -24,7 +24,7 @@
   --color-priority-medium: #b45309;
   --color-priority-low: var(--color-text-muted);
 
-  --font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --font-family: 'Inter', Arial, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.8125rem;
   --font-size-md: 0.875rem;

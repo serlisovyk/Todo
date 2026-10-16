@@ -10,5 +10,11 @@
     "path": "dist/assets/*.css",
     "limit": "8 kB",
     "gzip": true
+  },
+  {
+    "name": "Font",
+    "path": "dist/fonts/*.woff2",
+    "limit": "50 kB",
+    "brotli": false
   }
 ]
