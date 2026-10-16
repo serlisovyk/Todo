@@ -40,9 +40,9 @@ removed as a listener. One style per class.
 - Names in code: components and classes PascalCase, hooks `use<Name>`, functions camelCase verbs,
   constants `UPPER_SNAKE_CASE`.
 - Every folder has an `index.js` that re-exports its public names, named exports only.
-- Imports across folders go through the alias and the folder's barrel: `import { TodoItem } from
-  '@/components'`. Inside one folder a sibling is imported directly (`./todo-item.jsx`), never
-  through its own `index.js`. No `../` imports.
+- Imports across folders go through the alias and the folder's barrel:
+  `import { TodoItem } from '@/components'`. Inside one folder a sibling is imported directly
+  (`./todo-item.jsx`), never through its own `index.js`. No `../` imports.
 
 ## JSX and text
 

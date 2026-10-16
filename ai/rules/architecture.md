@@ -8,15 +8,15 @@ lives; `ai/rules/react.md` covers components, state and hooks.
 Data flows one way: constants → storage → context → hooks → components. Each folder has one job
 (decision `structure-and-naming`):
 
-| Layer         | Owns                                                       | Must not                                   |
-| ------------- | ---------------------------------------------------------- | ------------------------------------------ |
-| `constants/`  | shared values: storage keys, categories, priorities, limits | import from another layer                  |
-| `utils/`      | pure functions: filter, sort, validate, highlight          | use React, the DOM or storage              |
-| `storage/`    | persistence behind `TodoRepository`                        | know about React or the UI                 |
-| `context/`    | app state in `useState`, its actions, the repository       | render UI beyond its provider              |
-| `hooks/`      | access to a context; wrappers over browser APIs            | keep data that must survive a reload       |
-| `components/` | markup, local UI state, its own stylesheet                 | import `storage/`, touch `localStorage`    |
-| `main.jsx`    | `createRoot`, the providers around `App`                   | hold logic                                 |
+| Layer         | Owns                                                        | Must not                                |
+| ------------- | ----------------------------------------------------------- | --------------------------------------- |
+| `constants/`  | shared values: storage keys, categories, priorities, limits | import from another layer               |
+| `utils/`      | pure functions: filter, sort, validate, highlight           | use React, the DOM or storage           |
+| `storage/`    | persistence behind `TodoRepository`                         | know about React or the UI              |
+| `context/`    | app state in `useState`, its actions, the repository        | render UI beyond its provider           |
+| `hooks/`      | access to a context; wrappers over browser APIs             | keep data that must survive a reload    |
+| `components/` | markup, local UI state, its own stylesheet                  | import `storage/`, touch `localStorage` |
+| `main.jsx`    | `createRoot`, the providers around `App`                    | hold logic                              |
 
 ## Storage
 

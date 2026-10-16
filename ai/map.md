@@ -23,15 +23,15 @@ Today `src/` is the Vite scaffold: `main.jsx` mounts `App` in `StrictMode`, `App
 The agreed layout (decision `structure-and-naming`). A folder appears with its first file and has an
 `index.js` of named exports; code imports across folders through `@/`:
 
-| Folder        | Holds                                                 | Example                       |
-| ------------- | ----------------------------------------------------- | ----------------------------- |
-| `components/` | a folder per component: its `.jsx` and its `.css`     | `todo-item/todo-item.jsx`     |
-| `context/`    | providers that own app state and talk to storage      | `todos.context.jsx`           |
-| `hooks/`      | `use-*` hooks: context access, browser APIs           | `use-todos.js`                |
-| `storage/`    | `TodoRepository` and its implementations              | `local-storage.repository.js` |
-| `utils/`      | pure functions: filtering, sorting, validation        | `todos.utils.js`              |
-| `constants/`  | shared values: storage keys, categories, priorities   | `categories.constants.js`     |
-| `styles/`     | tokens, base styles, every `@keyframes`               | `tokens.css`                  |
+| Folder        | Holds                                               | Example                       |
+| ------------- | --------------------------------------------------- | ----------------------------- |
+| `components/` | a folder per component: its `.jsx` and its `.css`   | `todo-item/todo-item.jsx`     |
+| `context/`    | providers that own app state and talk to storage    | `todos.context.jsx`           |
+| `hooks/`      | `use-*` hooks: context access, browser APIs         | `use-todos.js`                |
+| `storage/`    | `TodoRepository` and its implementations            | `local-storage.repository.js` |
+| `utils/`      | pure functions: filtering, sorting, validation      | `todos.utils.js`              |
+| `constants/`  | shared values: storage keys, categories, priorities | `categories.constants.js`     |
+| `styles/`     | tokens, base styles, every `@keyframes`             | `tokens.css`                  |
 
 `main.jsx` stays the entry point and the only `createRoot`.
 
@@ -40,10 +40,10 @@ The agreed layout (decision `structure-and-naming`). A folder appears with its f
 Agreed, not built yet. Every access goes through `storage/` (decision `repository-storage`); the theme
 script in `<head>` is the one reader outside it (decision `theme-three-states`).
 
-| Key          | Holds                                    | Written by                                   |
-| ------------ | ---------------------------------------- | -------------------------------------------- |
-| `todo:data`  | `{ version, todos }` with localStorage   | `LocalStorageRepository`                     |
-| `todo:theme` | `light`, `dark` or `system`              | the theme context (the head script reads it) |
+| Key          | Holds                                  | Written by                                   |
+| ------------ | -------------------------------------- | -------------------------------------------- |
+| `todo:data`  | `{ version, todos }` with localStorage | `LocalStorageRepository`                     |
+| `todo:theme` | `light`, `dark` or `system`            | the theme context (the head script reads it) |
 
 With `VITE_STORAGE=indexeddb` the tasks live in the IndexedDB database `todo`, store `todos`, keyed by `id`.
 
