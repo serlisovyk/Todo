@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "Todo app built with React, Vite, localStorage, and IndexedDB.",
+  "description": "Todo app built with React and Vite.",
   "author": "Serhii Lisovyk",
   "type": "module",
   "scripts": {
