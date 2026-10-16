@@ -39,11 +39,20 @@ removed as a listener. One style per class.
 - A hook is `use-<name>.js`.
 - Names in code: components and classes PascalCase, hooks `use<Name>`, functions camelCase verbs,
   constants `UPPER_SNAKE_CASE`.
-- Every folder has an `index.js` that re-exports its public names, named exports only.
-- ESLint checks the kebab-case file and folder names and reports a default export in `src/`.
-- Imports across folders go through the alias and the folder's barrel:
-  `import { TodoItem } from '@/components'`. Inside one folder a sibling is imported directly
-  (`./todo-item.jsx`), never through its own `index.js`. No `../` imports.
+- Every folder of JavaScript modules has an `index.js` that re-exports its public names, named
+  exports only — a top-level folder (`components/`, `utils/`) and every folder inside it
+  (`components/todo-item/`). It appears with the folder's first file, never as an empty
+  placeholder. `components/index.js` re-exports each component folder (`./todo-item`), and the
+  folder's `index.js` re-exports its file (`./todo-item.jsx`). `styles/` has no barrel: CSS is
+  imported by path.
+- `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
+  and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
+  is imported directly (`./todo-item.jsx`), never through its own `index.js`.
+- One component uses another through that component's folder barrel
+  (`import { TodoItem } from '@/components/todo-item'`), never through `@/components`, which
+  re-exports the importer itself and would form a cycle.
+- ESLint checks the kebab-case file and folder names and reports, in `src/`, a default export, a
+  `../` import and a module importing its own folder's barrel.
 
 ## JSX and text
 

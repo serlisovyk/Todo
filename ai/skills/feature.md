@@ -26,9 +26,12 @@ a filter, a toast, an animation, the stored format.
      UI first, writes through the repository, and rolls back with an error toast on failure.
    - **Hook** — what components call (`useTodos()`). A browser API (the URL, `matchMedia`, a
      document key listener) gets its own `use-*` hook that cleans up after itself.
-   - **Component** — a folder in `components/` with its `.jsx` and `.css`, re-exported from
-     `components/index.js`. It reads through the hook, renders, and reports actions through
-     `on<Action>` props or the hook's actions.
+   - **Component** — a folder in `components/` with its `.jsx`, its `index.js` and its `.css`
+     once it has rules; `components/index.js` re-exports the folder. It reads through the hook,
+     renders, and reports actions through `on<Action>` props or the hook's actions. Another
+     component imports it from `@/components/<name>`.
+   - **Files** — a new folder gets its `index.js` with its first file; every new public name is
+     re-exported there, and other folders import it through `@/<folder>`.
    - **Styles** — colours and sizes from the tokens, keyframes in `animations.css`, reduced
      motion handled.
 3. Providers are wired in one place, around `App`; nothing else calls `createRoot`.
