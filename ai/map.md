@@ -11,7 +11,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `jsconfig.json` — the `@/` alias for editors only.
 - `eslint.config.js` — flat config: React Hooks, React Refresh, `jsx-a11y`, file names, named exports,
   imports, storage access; also enforces `ai/rules/`.
-- `.prettierrc` — the workspace Prettier config; `.prettierignore` — `node_modules`, the lockfile, `dist`.
+- `.prettierrc` — the workspace Prettier config; `.prettierignore` — `node_modules`, the lockfile, `dist`, `.claude`.
 - `.lintstagedrc.json` + `.husky/pre-commit` — ESLint and Prettier on staged files before each commit.
 - `.size-limit.json` — the gzip budgets for the built JavaScript and CSS.
 - `.github/workflows/ci.yml` — CI on every push: lint, format check, build, size.
