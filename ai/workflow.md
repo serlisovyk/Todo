@@ -60,8 +60,8 @@ you change.
 
 - Follow the plan; commit in logical units, not one giant snapshot. Inspect `git status`
   and `git diff` before each commit.
-- Every commit goes through the pre-commit hook once the repo has one. Never bypass it with
-  `--no-verify`; fix what it reports.
+- Every commit goes through the pre-commit hook (lint-staged: ESLint and Prettier on the staged
+  files). Never bypass it with `--no-verify`; fix what it reports.
 - Conventional Commit messages in English (`feat:`, `fix:`, `refactor:`, `docs:`, `style:`,
   `build:`, `ci:`, `chore:`) — specific, never `update` or `changes`.
 - Use the matching skill instead of improvising a pattern that already exists.
@@ -125,12 +125,12 @@ git switch my-<n>-<slug>
 git rebase main            # re-run the checks if the rebase brought in new commits
 git switch main
 git merge --ff-only my-<n>-<slug>
-pnpm lint && pnpm format:check && pnpm build    # every check listed in AGENTS.md
+pnpm lint && pnpm format:check && pnpm build && pnpm size
 git push origin main
 git branch -d my-<n>-<slug>
 ```
 
-- Once CI exists, check that it is green on `main` after the push; a red `main` is fixed
+- After the push, check that CI is green on `main` (GitHub Actions); a red `main` is fixed
   right away with a follow-up commit.
 - History stays linear: rebase onto `main`, then fast-forward. Never force-push `main`.
 - If the branch was pushed (for a preview), delete it on the remote too

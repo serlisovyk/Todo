@@ -41,7 +41,8 @@ Why: decisions `react-and-javascript` and `state-in-context-and-hooks`. Layers a
 ## Accessibility in components
 
 - Real elements: `<button>` for actions, `<input type="checkbox">`, radio groups, `<select>`,
-  `<form>`, `<ul>` for the list. A `div` with `onClick` is a bug.
+  `<form>`, `<ul>` for the list. A `div` with `onClick` is a bug; `eslint-plugin-jsx-a11y` reports
+  it along with missing labels and alt texts.
 - Every control has an accessible name: a visible or visually hidden `<label>`; an icon-only button
   has `aria-label`.
 - After an action, focus lands somewhere meaningful: after adding — the input; after deleting —

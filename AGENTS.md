@@ -91,8 +91,12 @@ If a change materially reshapes a pattern, update the matching skill in the same
   with design tokens.
 - Sources: `src/`; `index.html` at the repo root (Vite's entry); output in `dist/`.
 - Formatting: Prettier (`.prettierrc`, the workspace config); `pnpm format` applies it.
-- Linting: ESLint 10 flat config (`eslint.config.js`) with the React Hooks and React Refresh
-  plugins.
+- Linting: ESLint 10 flat config (`eslint.config.js`): React Hooks, React Refresh, `jsx-a11y`,
+  and the rules that enforce `ai/rules/` (kebab-case file names, named exports, storage only in
+  `src/storage/`); `eslint-config-prettier` last.
+- Pre-commit: Husky + lint-staged run ESLint and Prettier on the staged files.
+- CI: GitHub Actions runs lint, format check, build and size on every push — a post-push signal;
+  a red `main` is fixed right away.
 
 ## Language
 
@@ -108,6 +112,7 @@ Run before handing over any change:
 pnpm lint
 pnpm format:check
 pnpm build
+pnpm size
 ```
 
 Then exercise the change in the browser (`pnpm dev`): desktop with keyboard and mouse,

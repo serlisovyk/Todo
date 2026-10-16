@@ -69,7 +69,7 @@ Copy into the issue, one line per check under "Verification" in `AGENTS.md`, plu
 
 - [ ] `pnpm lint`
 - [ ] `pnpm format:check`
-- [ ] `pnpm build`
+- [ ] `pnpm build` + `pnpm size`
 - [ ] Прогнано руками в `pnpm dev`: десктоп (клавиатура, мышь), 320px, обе темы
 
 The project has no automated tests — verification is the checks and using the app in the browser.

@@ -20,9 +20,9 @@ Data flows one way: constants → storage → context → hooks → components. 
 
 ## Storage
 
-- Every read and write of `localStorage` and `indexedDB` lives in `storage/`. The one exception is
-  the theme script in `<head>`, which reads the saved theme before React starts (decision
-  `theme-three-states`).
+- Every read and write of `localStorage` and `indexedDB` lives in `storage/`; ESLint reports any
+  other use in `src/`. The one exception is the theme script in `<head>`, which reads the saved
+  theme before React starts (decision `theme-three-states`).
 - `TodoRepository` is the contract: `list()`, `create(input)`, `update(id, patch)`,
   `remove(ids)`, `subscribe(onExternalChange)`, all asynchronous. An implementation extends it
   (decision `repository-storage`).
