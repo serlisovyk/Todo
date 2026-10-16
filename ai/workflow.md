@@ -125,7 +125,7 @@ git switch my-<n>-<slug>
 git rebase main            # re-run the checks if the rebase brought in new commits
 git switch main
 git merge --ff-only my-<n>-<slug>
-pnpm lint && pnpm build    # every check listed in AGENTS.md
+pnpm lint && pnpm format:check && pnpm build    # every check listed in AGENTS.md
 git push origin main
 git branch -d my-<n>-<slug>
 ```

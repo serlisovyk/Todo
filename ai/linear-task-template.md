@@ -68,6 +68,7 @@ Keep the relevant lines, delete the rest. Copy them into the issue as-is:
 Copy into the issue, one line per check under "Verification" in `AGENTS.md`, plus the manual line:
 
 - [ ] `pnpm lint`
+- [ ] `pnpm format:check`
 - [ ] `pnpm build`
 - [ ] Прогнано руками в `pnpm dev`: десктоп (клавиатура, мышь), 320px, обе темы
 

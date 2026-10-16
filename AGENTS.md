@@ -90,6 +90,7 @@ If a change materially reshapes a pattern, update the matching skill in the same
   `@rolldown/plugin-babel`), Vite 8, JavaScript ESM (`.js`, `.jsx`), plain CSS per component
   with design tokens.
 - Sources: `src/`; `index.html` at the repo root (Vite's entry); output in `dist/`.
+- Formatting: Prettier (`.prettierrc`, the workspace config); `pnpm format` applies it.
 - Linting: ESLint 10 flat config (`eslint.config.js`) with the React Hooks and React Refresh
   plugins.
 
@@ -105,6 +106,7 @@ Run before handing over any change:
 
 ```bash
 pnpm lint
+pnpm format:check
 pnpm build
 ```
 
