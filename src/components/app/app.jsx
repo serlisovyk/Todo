@@ -2,6 +2,7 @@ import { AppHeader } from '@/components/app-header'
 import { FilterAnnouncer } from '@/components/filter-announcer'
 import { SearchField } from '@/components/search-field'
 import { StatusSwitch } from '@/components/status-switch'
+import { TodoBackup } from '@/components/todo-backup'
 import { TodoFooter } from '@/components/todo-footer'
 import { TodoForm } from '@/components/todo-form'
 import { TodoList } from '@/components/todo-list'
@@ -23,6 +24,7 @@ export function App() {
             <FilterAnnouncer />
             <TodoList />
             <TodoFooter />
+            <TodoBackup />
           </main>
         </TodosProvider>
       </ThemeProvider>

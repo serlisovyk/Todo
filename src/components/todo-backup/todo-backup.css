@@ -1,0 +1,12 @@
+.todo-backup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: var(--space-1);
+  padding-inline: var(--space-6) var(--space-4);
+
+  @media (width < 480px) {
+    padding-inline: var(--space-4) var(--space-2);
+  }
+}
