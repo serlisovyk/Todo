@@ -33,11 +33,14 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `components/app/` — `App`, the root component: the `TodosProvider` around the page shell (`<main>`
   at the content width); `app.jsx`, `app.css`, barrel `index.js`. `components/index.js` re-exports
   every component.
+- `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the empty
+  text, the rows in `sortTodos` order) and one row (checkbox, title, category, priority).
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
   `todos.constants.js` (categories, priorities, limits, the `useTodos` error message); barrel
   `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator; the pure
-  list transforms the context applies), `validation.utils.js` (general checks); barrel `index.js`.
+  list transforms the context applies; `sortTodos`: the order the list shows),
+  `validation.utils.js` (general checks); barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (the barrel's only export:
   it picks the implementation by `VITE_STORAGE` and also asks for persistent storage).
@@ -47,6 +50,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `styles/style.css` — the one stylesheet entry: imports the files below in order.
 - `styles/tokens.css` — every colour for both themes and the scales (spacing, radii, type,
   durations, focus ring).
+- `styles/colors.css` — `[data-category]` and `[data-priority]` set `--category-color` and
+  `--priority-color` from the colour tokens.
 - `styles/base.css` — the Inter face, box sizing, `body`, the focus ring, `.sr-only`.
 
 The layout (decisions `structure-and-naming`, `context-folders`). A folder appears with its first file; a folder of

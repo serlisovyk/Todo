@@ -26,6 +26,8 @@ style standard plus this project's naming (decision `structure-and-naming`).
   A guard is its own paragraph: the `if`, together with a `const` made only for it
   (`const hasRemoved = …` + `if (!hasRemoved) return`). When the checked value is used further on
   (`const current = …` + `if (!current) throw …`), a blank line separates the `if` from it.
+- Destructuring the props or the main object is its own paragraph; the hooks come after it.
+- Destructure in `map` callbacks (`({ id, label }) =>`), not a repeated `option.id`.
 - Parameter names say what they are (`todoId`, `isCompleted`), not a bare `x` or `data`.
 
 ## Classes
@@ -83,6 +85,7 @@ is both added and removed as a listener. One style per class.
   inside the selector it changes, as a strict range without `=`: `@media (width < 480px)`,
   `@media (width > 768px)`.
 - `:hover` only inside `@media (hover: hover)`, so a tap leaves no hover look.
+- A divider between rows is a `border-bottom` on `&:not(:last-child)`, not `& + &`.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
   values and a contrast check in both themes.
