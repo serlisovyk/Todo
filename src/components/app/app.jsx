@@ -1,5 +1,6 @@
 import { AppHeader } from '@/components/app-header'
 import { StatusSwitch } from '@/components/status-switch'
+import { TodoFooter } from '@/components/todo-footer'
 import { TodoForm } from '@/components/todo-form'
 import { TodoList } from '@/components/todo-list'
 import { ToastRegion } from '@/components/toast-region'
@@ -17,6 +18,7 @@ export function App() {
             <TodoForm />
             <StatusSwitch />
             <TodoList />
+            <TodoFooter />
           </main>
         </TodosProvider>
       </ThemeProvider>

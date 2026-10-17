@@ -1,8 +1,21 @@
-import { CATEGORIES, PRIORITIES, TITLE_MAX_LENGTH } from '@/constants'
+import {
+  CATEGORIES,
+  PLURAL_LOCALE,
+  PRIORITIES,
+  TASK_NOUNS,
+  TITLE_MAX_LENGTH,
+} from '@/constants'
 import { isIsoDate, isPlainObject } from './validation.utils.js'
 
 function isKnownId(options, value) {
   return options.some((option) => option.id === value)
+}
+
+function formatTaskCount(count) {
+  const pluralForm = new Intl.PluralRules(PLURAL_LOCALE).select(count)
+  const noun = TASK_NOUNS[pluralForm]
+
+  return `${count} ${noun}`
 }
 
 export function getTodoCheckboxId(todoId) {
@@ -86,6 +99,12 @@ export function appendMissingTodos(todos, restoredTodos) {
   return appended
 }
 
+export function countActiveTodos(todos) {
+  const active = todos.filter((todo) => !todo.completed)
+
+  return active.length
+}
+
 export function setAllCompleted(todos, isCompleted) {
   const updated = todos.map((todo) => ({ ...todo, completed: isCompleted }))
 
@@ -105,4 +124,16 @@ export function sortTodos(todos) {
   const sorted = todos.toSorted(compareTodos)
 
   return sorted
+}
+
+export function getTasksLeftMessage(count) {
+  const taskCount = formatTaskCount(count)
+
+  return `${taskCount} left`
+}
+
+export function getTasksClearedMessage(count) {
+  const taskCount = formatTaskCount(count)
+
+  return `${taskCount} cleared`
 }

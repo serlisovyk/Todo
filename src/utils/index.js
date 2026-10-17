@@ -8,6 +8,9 @@ export {
 export { isTheme, resolveTheme } from './theme.utils.js'
 export {
   appendMissingTodos,
+  countActiveTodos,
+  getTasksClearedMessage,
+  getTasksLeftMessage,
   getTodoCheckboxId,
   isValidTitle,
   patchTodo,

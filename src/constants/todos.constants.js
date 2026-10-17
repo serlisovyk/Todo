@@ -25,6 +25,9 @@ export const TODO_ADDED_MESSAGE = 'Task added'
 export const TODO_DELETED_MESSAGE = 'Task deleted'
 export const UNDO_LABEL = 'Undo'
 
+export const PLURAL_LOCALE = 'en'
+export const TASK_NOUNS = { one: 'task', other: 'tasks' }
+
 export const INITIAL_FORM_RESULT = { attempt: 0 }
 
 export const MISSING_TODOS_PROVIDER_MESSAGE =
