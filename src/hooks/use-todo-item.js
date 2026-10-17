@@ -27,12 +27,6 @@ export function useTodoItem(todo) {
 
   const startEditing = () => setIsEditing(true)
 
-  const stopEditing = ({ shouldFocusEditButton }) => {
-    flushSync(() => setIsEditing(false))
-
-    if (shouldFocusEditButton) editButtonRef.current.focus()
-  }
-
   const findFocusTarget = () => {
     const row = rowRef.current
     const neighbor = row.nextElementSibling ?? row.previousElementSibling
@@ -42,6 +36,21 @@ export function useTodoItem(todo) {
     const focusTarget = checkbox ?? statusInput
 
     return focusTarget
+  }
+
+  const stopEditing = ({ shouldFocusEditButton, savedFields }) => {
+    const editedTodo = { ...todo, ...savedFields }
+
+    const isHiddenAfterEdit = !matchesFilters(editedTodo, filters)
+    const fallbackTarget = findFocusTarget()
+
+    flushSync(() => setIsEditing(false))
+
+    if (!shouldFocusEditButton) return
+
+    const focusTarget = isHiddenAfterEdit ? fallbackTarget : editButtonRef.current
+
+    focusTarget.focus()
   }
 
   const handleToggle = () => {

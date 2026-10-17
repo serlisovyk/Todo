@@ -45,16 +45,21 @@ export function useTodoEdit(todo, onClose) {
     const isChanged = isTitleChanged || isCategoryChanged || isPriorityChanged
 
     const canSave = isValidTitle(title) && isChanged
-    if (!canSave) return
+    if (!canSave) return {}
 
-    updateTodo(id, { title: trimmedTitle, category, priority })
+    const savedFields = { title: trimmedTitle, category, priority }
+
+    updateTodo(id, savedFields)
+
+    return savedFields
   }
 
   const handleTitleChange = (event) => setTitle(event.target.value)
 
   const saveAction = () => {
-    saveChanges()
-    onClose({ shouldFocusEditButton: true })
+    const savedFields = saveChanges()
+
+    onClose({ shouldFocusEditButton: true, savedFields })
   }
 
   const handleCancel = () => onClose({ shouldFocusEditButton: true })
