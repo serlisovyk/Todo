@@ -5,6 +5,10 @@ function isKnownId(options, value) {
   return options.some((option) => option.id === value)
 }
 
+export function getTodoCheckboxId(todoId) {
+  return `todo-checkbox-${todoId}`
+}
+
 export function isValidTitle(title) {
   if (typeof title !== 'string') return false
 

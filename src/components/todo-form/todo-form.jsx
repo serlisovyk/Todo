@@ -1,8 +1,12 @@
-import { useId } from 'react'
 import { Flag, Plus } from 'lucide-react'
 import { PillSelect } from '@/components/pill-select'
 import { useTodoForm } from '@/hooks'
-import { CATEGORIES, PRIORITIES, TITLE_MAX_LENGTH } from '@/constants'
+import {
+  CATEGORIES,
+  PRIORITIES,
+  TITLE_INPUT_ID,
+  TITLE_MAX_LENGTH,
+} from '@/constants'
 import './todo-form.css'
 
 export function TodoForm() {
@@ -21,20 +25,18 @@ export function TodoForm() {
     preventReset,
   } = useTodoForm()
 
-  const titleId = useId()
-
-  const errorId = `${titleId}-error`
+  const errorId = `${TITLE_INPUT_ID}-error`
 
   return (
     <form className="todo-form" action={submitAction} onReset={preventReset}>
       <div className="todo-form-field">
-        <label className="sr-only" htmlFor={titleId}>
+        <label className="sr-only" htmlFor={TITLE_INPUT_ID}>
           Task title
         </label>
 
         <input
           ref={titleInputRef}
-          id={titleId}
+          id={TITLE_INPUT_ID}
           className="todo-form-title"
           type="text"
           name="title"

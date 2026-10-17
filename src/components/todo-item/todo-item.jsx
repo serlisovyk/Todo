@@ -1,13 +1,14 @@
 import { useId } from 'react'
-import { Check, Flag } from 'lucide-react'
-import { useTodos } from '@/context'
+import { Check, Flag, Trash2 } from 'lucide-react'
+import { useTodoItem } from '@/hooks'
+import { getTodoCheckboxId } from '@/utils'
 import { CATEGORIES, PRIORITIES } from '@/constants'
 import './todo-item.css'
 
 export function TodoItem({ todo }) {
   const { id, title, completed, category: categoryId, priority: priorityId } = todo
 
-  const { toggleTodo } = useTodos()
+  const { rowRef, handleToggle, handleDelete } = useTodoItem(todo)
 
   const metaId = useId()
 
@@ -15,30 +16,44 @@ export function TodoItem({ todo }) {
   const priority = PRIORITIES.find((candidate) => candidate.id === priorityId)
 
   return (
-    <li className="todo-item">
-      <label className="todo-item-label">
-        <input
-          type="checkbox"
-          className="todo-item-checkbox"
-          checked={completed}
-          aria-describedby={metaId}
-          onChange={() => toggleTodo(id)}
-        />
+    <li ref={rowRef} className="todo-item">
+      <div className="todo-item-body">
+        <label className="todo-item-label">
+          <input
+            id={getTodoCheckboxId(id)}
+            type="checkbox"
+            className="todo-item-checkbox"
+            checked={completed}
+            aria-describedby={metaId}
+            onChange={handleToggle}
+          />
 
-        <Check className="todo-item-check" aria-hidden="true" />
+          <Check className="todo-item-check" aria-hidden="true" />
 
-        <span className="todo-item-title">{title}</span>
-      </label>
+          <span className="todo-item-title">{title}</span>
+        </label>
 
-      <div className="todo-item-meta" id={metaId}>
-        <span className="todo-item-category" data-category={categoryId}>
-          {category.label}
-        </span>
+        <div className="todo-item-meta" id={metaId}>
+          <span className="todo-item-category" data-category={categoryId}>
+            {category.label}
+          </span>
 
-        <span className="todo-item-priority" data-priority={priorityId}>
-          <Flag className="todo-item-flag" aria-hidden="true" />
-          {priority.label}
-        </span>
+          <span className="todo-item-priority" data-priority={priorityId}>
+            <Flag className="todo-item-flag" aria-hidden="true" />
+            {priority.label}
+          </span>
+        </div>
+      </div>
+
+      <div className="todo-item-actions">
+        <button
+          type="button"
+          className="todo-item-action todo-item-delete"
+          aria-label={`Delete ${title}`}
+          onClick={handleDelete}
+        >
+          <Trash2 className="todo-item-action-icon" aria-hidden="true" />
+        </button>
       </div>
     </li>
   )

@@ -1,5 +1,6 @@
 export {
   appendMissingTodos,
+  getTodoCheckboxId,
   isValidTitle,
   patchTodo,
   replaceTodos,

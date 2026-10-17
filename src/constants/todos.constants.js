@@ -16,9 +16,13 @@ export const DEFAULT_CATEGORY = 'work'
 export const DEFAULT_PRIORITY = 'medium'
 
 export const TITLE_MAX_LENGTH = 200
+export const TITLE_INPUT_ID = 'todo-title'
+export const TODO_CHECKBOX_SELECTOR = 'input[type="checkbox"]'
 
 export const EMPTY_TITLE_MESSAGE = 'Enter a task title.'
 export const TODO_ADDED_MESSAGE = 'Task added'
+export const TODO_DELETED_MESSAGE = 'Task deleted'
+export const UNDO_LABEL = 'Undo'
 
 export const INITIAL_FORM_RESULT = { attempt: 0 }
 

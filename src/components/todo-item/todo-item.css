@@ -2,6 +2,10 @@
   --todo-item-checkbox-size: var(--space-6);
   --todo-item-gap: var(--space-3);
 
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-2);
   padding-inline: var(--space-6);
 
   &:not(:last-child) {
@@ -17,6 +21,11 @@
       background-color: var(--color-surface-hover);
     }
   }
+}
+
+.todo-item-body {
+  flex: 1 1 calc(var(--touch-target) * 3);
+  min-width: 0;
 }
 
 .todo-item-label {
@@ -106,4 +115,43 @@
   width: var(--space-4);
   height: var(--space-4);
   color: var(--priority-color);
+}
+
+.todo-item-actions {
+  display: flex;
+  flex: none;
+  margin-inline-start: auto;
+}
+
+.todo-item-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.todo-item-delete {
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-danger);
+    }
+  }
+}
+
+.todo-item-action-icon {
+  width: var(--space-5);
+  height: var(--space-5);
 }
