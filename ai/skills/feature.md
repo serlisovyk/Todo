@@ -17,12 +17,17 @@ a filter, a toast, an animation, the stored format.
    - **Constants** — every new shared value (a storage key, a list of options, a limit, a
      duration JS needs) in the matching `*.constants.js`, re-exported from `constants/index.js`.
    - **Utils** — the logic as pure functions in a `*.utils.js`: filtering, sorting, validating,
-     splitting text. No React, no DOM, no storage.
+     splitting text, the list change an action applies. No React, no DOM, no storage.
    - **Storage** — only when the stored data or the repository changes: `ai/skills/storage.md`.
-   - **Context** — the state and its action: `useState` in the provider; the action changes the
-     UI first, writes through the repository, and rolls back with an error toast on failure.
-   - **Hook** — what components call (`useTodos()`). A browser API (the URL, `matchMedia`, a
-     document key listener) gets its own `use-*` hook that cleans up after itself.
+   - **Context** — a folder `context/<name>/` with the object (`<name>.context.js`), the provider
+     (`<name>.provider.jsx`) and the hook. The state is `useState` in the provider; the action
+     changes the UI first, writes through the repository, and on failure rolls back and sets
+     `error` for the toast to show. It never throws or rejects; a caller that needs a result gets
+     an empty one on failure (`null`, `[]`).
+   - **Hook** — what components call (`useTodos()`: the tasks, `isLoading`, `error` and the
+     actions), `use-<name>.js` in the context's folder. The folder's barrel exports only the
+     provider and the hook, so the object stays internal. A browser API (the URL, `matchMedia`, a
+     document key listener) gets its own `use-*` hook in `hooks/` that cleans up after itself.
    - **Component** — a folder in `components/` with its `.jsx`, its `index.js` and its `.css`
      once it has rules; `components/index.js` re-exports the folder. It reads through the hook,
      renders, and reports actions through `on<Action>` props or the hook's actions. Another
@@ -31,7 +36,7 @@ a filter, a toast, an animation, the stored format.
      re-exported there, and other folders import it through `@/<folder>`.
    - **Styles** — colours and sizes from the tokens, keyframes in `animations.css`, reduced
      motion handled.
-3. Providers are wired in one place, around `App`; nothing else calls `createRoot`.
+3. Providers are wired in one place, inside `App`; nothing else calls `createRoot`.
 4. Verify per `ai/rules/definition-of-done.md`: use the feature on desktop and at 320px, in both
    themes, and reload for anything stored.
 

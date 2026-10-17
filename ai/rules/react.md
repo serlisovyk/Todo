@@ -1,7 +1,7 @@
 # React Rules
 
-Why: decisions `react-and-javascript` and `state-in-context-and-hooks`. Layers and storage:
-`ai/rules/architecture.md`.
+Why: decisions `react-and-javascript`, `state-in-context-and-hooks` and `context-folders`. Layers
+and storage: `ai/rules/architecture.md`.
 
 ## Components
 
@@ -18,6 +18,9 @@ Why: decisions `react-and-javascript` and `state-in-context-and-hooks`. Layers a
 
 - App state is `useState` inside a provider in `context/`, exposed through a `use-*` hook. Local
   UI state (a title being edited, an open panel) stays in the component.
+- A context is a folder `context/<name>/` with its object (`<name>.context.js`), its provider
+  (`<name>.provider.jsx`) and its hook; the barrel exports only the provider and the hook. The
+  object has its own file because `react-refresh` rejects a component file that also exports it.
 - No `useReducer`, no state-management library, no server-state library.
 - Derive instead of storing: the visible list, the counter, "has completed tasks" are computed
   during render from the tasks and the filters, never kept as their own state.
@@ -34,7 +37,8 @@ Why: decisions `react-and-javascript` and `state-in-context-and-hooks`. Layers a
 
 ## Hooks
 
-- A hook lives in `hooks/use-<name>.js` and exports `use<Name>`.
+- A hook lives in `use-<name>.js` and exports `use<Name>`: next to its context for a hook over a
+  context, in `hooks/` for any other.
 - A hook over a context throws a clear error when it is used outside its provider.
 - The Rules of Hooks hold; `eslint-plugin-react-hooks` checks them.
 

@@ -29,27 +29,31 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 
 - `main.jsx` — the entry point and the only `createRoot`: imports `App` and `styles/style.css`,
   renders `App` in `StrictMode`.
-- `components/app/` — `App`, the root component and page shell (`<main>` at the content width):
-  `app.jsx`, `app.css` and its barrel `index.js`; `components/index.js` re-exports every component.
+- `components/app/` — `App`, the root component: the `TodosProvider` around the page shell (`<main>`
+  at the content width); `app.jsx`, `app.css`, barrel `index.js`. `components/index.js` re-exports
+  every component.
 - `constants/` — `storage.constants.js` (key, version, storage error messages), `todos.constants.js`
-  (categories, priorities, limits); barrel `index.js`.
-- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator),
-  `validation.utils.js` (general checks); barrel `index.js`.
+  (categories, priorities, limits, the `useTodos` error message); barrel `index.js`.
+- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator; the pure
+  list transforms the context applies), `validation.utils.js` (general checks); barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract), `LocalStorageRepository`, `createRepository` (the
   barrel's only export; it also asks for persistent storage).
+- `context/todos/` — `TodosProvider` and `useTodos` (the only public names; `TodosContext` stays
+  inside): the tasks, `isLoading`, `error` and the actions over the repository.
+  `context/index.js` re-exports each context folder.
 - `styles/style.css` — the one stylesheet entry: imports the files below in order.
 - `styles/tokens.css` — every colour for both themes and the scales (spacing, radii, type,
   durations, focus ring).
 - `styles/base.css` — the Inter face, box sizing, `body`, the focus ring, `.sr-only`.
 
-The layout (decision `structure-and-naming`). A folder appears with its first file; a folder of
+The layout (decisions `structure-and-naming`, `context-folders`). A folder appears with its first file; a folder of
 JavaScript modules has an `index.js` of named exports; code imports across folders through `@/`:
 
 | Folder        | Holds                                               | Example                       |
 | ------------- | --------------------------------------------------- | ----------------------------- |
 | `components/` | a folder per component: `.jsx`, `index.js`, `.css`  | `todo-item/todo-item.jsx`     |
-| `context/`    | providers that own app state and talk to storage    | `todos.context.jsx`           |
-| `hooks/`      | `use-*` hooks: context access, browser APIs         | `use-todos.js`                |
+| `context/`    | a folder per context: object, provider and its hook | `todos/todos.provider.jsx`    |
+| `hooks/`      | `use-*` hooks not tied to a context: browser APIs   | `use-filters.js`              |
 | `storage/`    | `TodoRepository` and its implementations            | `local-storage.repository.js` |
 | `utils/`      | pure functions: filtering, sorting, validation      | `todos.utils.js`              |
 | `constants/`  | shared values: storage keys, categories, priorities | `todos.constants.js`          |

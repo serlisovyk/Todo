@@ -37,18 +37,21 @@ function that is both added and removed as a listener. One style per class.
 
 ## Files, names and imports
 
-- Files and folders are kebab-case. A file that is not a component carries its role as a suffix:
-  `categories.constants.js`, `todos.utils.js`, `todos.context.jsx`, `local-storage.repository.js`.
+- Files and folders are kebab-case. A file that is not a component, or is a provider, carries
+  its role as a suffix: `categories.constants.js`, `todos.utils.js`, `todos.context.js`,
+  `todos.provider.jsx`, `local-storage.repository.js`.
 - A component has no suffix: `components/theme-toggle/theme-toggle.jsx` + `theme-toggle.css`.
-- A hook is `use-<name>.js`.
+- A hook is `use-<name>.js`; one over a context sits in that context's folder.
 - Names in code: components and classes PascalCase, hooks `use<Name>`, functions camelCase verbs,
   constants `UPPER_SNAKE_CASE`.
 - Every folder of JavaScript modules has an `index.js` that re-exports its public names, named
   exports only — a top-level folder (`components/`, `utils/`) and every folder inside it
   (`components/todo-item/`). It appears with the folder's first file, never as an empty
   placeholder. `components/index.js` re-exports each component folder (`./todo-item`), and the
-  folder's `index.js` re-exports its file (`./todo-item.jsx`). `styles/` has no `index.js`: a new
-  global stylesheet is added to `styles/style.css`, the one stylesheet `main.jsx` imports.
+  folder's `index.js` re-exports its file (`./todo-item.jsx`); `context/index.js` re-exports each
+  context folder (`./todos`), which exports only its provider and its hook. `styles/` has no
+  `index.js`: a new global stylesheet is added to `styles/style.css`, the one stylesheet
+  `main.jsx` imports.
 - `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
   and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
   is imported directly (`./todo-item.jsx`), never through its own `index.js`.

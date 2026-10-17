@@ -53,6 +53,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 ### Code structure, state and storage
 
 - [Flat folders by role, kebab-case files with role suffixes, barrels and `@/`](2026-10-16-structure-and-naming.md)
+- [A context is a folder: object, provider and hook; only the last two are public](2026-10-17-context-folders.md)
 - [App state in Context and custom hooks on `useState`](2026-10-16-state-in-context-and-hooks.md)
 - [Storage behind a `TodoRepository` base class, with `restore` for Undo](2026-10-17-repository-storage-restore.md)
 - [A task has a title, a fixed category and a priority; no due date](2026-10-16-todo-model.md)

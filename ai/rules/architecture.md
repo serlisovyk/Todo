@@ -6,17 +6,17 @@ lives; `ai/rules/react.md` covers components, state and hooks.
 ## Layers
 
 Data flows one way: constants → storage → context → hooks → components. Each folder has one job
-(decision `structure-and-naming`):
+(decisions `structure-and-naming`, `context-folders`):
 
 | Layer         | Owns                                                        | Must not                                |
 | ------------- | ----------------------------------------------------------- | --------------------------------------- |
 | `constants/`  | shared values: storage keys, categories, priorities, limits | import from another layer               |
 | `utils/`      | pure functions: filter, sort, validate, highlight           | use React, the DOM or storage           |
 | `storage/`    | persistence behind `TodoRepository`                         | know about React or the UI              |
-| `context/`    | app state in `useState`, its actions, the repository        | render UI beyond its provider           |
-| `hooks/`      | access to a context; wrappers over browser APIs             | keep data that must survive a reload    |
-| `components/` | markup, local UI state, its own stylesheet                  | import `storage/`, touch `localStorage` |
-| `main.jsx`    | `createRoot`, the providers around `App`                    | hold logic                              |
+| `context/`    | app state, its actions, its hook, the repository            | render UI beyond its provider           |
+| `hooks/`      | wrappers over browser APIs; hooks not tied to a context     | keep data that must survive a reload    |
+| `components/` | markup, local UI state, styles; `App` wires the providers   | import `storage/`, touch `localStorage` |
+| `main.jsx`    | `createRoot` and `StrictMode` around `App`                  | hold logic, wire providers              |
 
 ## Storage
 
@@ -31,16 +31,17 @@ Data flows one way: constants → storage → context → hooks → components. 
   else knows which one runs.
 - Stored data is checked when read: a broken task costs only itself, unreadable or unknown data
   never stops the app, and nothing is written until something changes.
-- A failed write is reported to the context, which rolls the change back and shows it; it never
-  crashes the app.
+- A failed write rejects with a readable `Error` and never crashes the app; the context handles it
+  (State).
 
 ## State
 
 - App state lives in providers in `context/`: the tasks, the theme, the toast. Filter state is the
   URL query, read and written through `use-filters` (decision `filters-and-search`).
-- A component reads state and actions through the matching hook (`useTodos()`), never by
-  importing a context object.
-- A context changes the UI first, then writes through the repository, and rolls back on failure.
+- A component reads state and actions through the context's hook (`useTodos()`). A context
+  folder exports only its provider and its hook, so the context object stays internal.
+- A context changes the UI first, then writes through the repository; on failure it rolls the change
+  back and puts the message in `error`. An action never throws or rejects to its caller.
 - A change from another tab arrives through `subscribe` and reloads the list.
 
 ## Boundaries
