@@ -41,6 +41,78 @@
   color: var(--color-text-muted);
 }
 
-.pill-select-mark {
+.pill-select-mark,
+.pill-select-sizer {
   display: none;
+}
+
+@supports (appearance: base-select) {
+  .pill-select-control {
+    appearance: base-select;
+    align-items: center;
+
+    &::picker-icon {
+      display: none;
+    }
+
+    &::picker(select) {
+      appearance: base-select;
+      margin-block: var(--space-1);
+      padding: var(--space-1);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      box-shadow: 0 var(--space-2) var(--space-6) var(--color-shadow);
+      transition: opacity var(--duration-base) var(--ease-out);
+
+      @starting-style {
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      min-height: var(--touch-target);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+
+      &::checkmark {
+        order: 1;
+        margin-inline-start: auto;
+        color: var(--color-accent);
+      }
+
+      &:focus {
+        background-color: var(--color-surface-hover);
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--color-surface-hover);
+        }
+      }
+    }
+  }
+
+  .pill-select-mark {
+    display: flex;
+  }
+
+  .pill-select-sizer {
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    padding-inline: var(--space-10);
+    border-inline: 1px solid transparent;
+    overflow: hidden;
+    visibility: hidden;
+  }
 }

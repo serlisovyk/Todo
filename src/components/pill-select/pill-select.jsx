@@ -25,6 +25,12 @@ export function PillSelect(props) {
       </select>
 
       <ChevronDown className="pill-select-chevron" />
+
+      <span className="pill-select-sizer" aria-hidden="true">
+        {options.map(({ id, label }) => (
+          <span key={id}>{label}</span>
+        ))}
+      </span>
     </label>
   )
 }
