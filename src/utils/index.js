@@ -1,4 +1,10 @@
 export { toMilliseconds } from './css.utils.js'
+export {
+  buildFiltersSearch,
+  filterTodos,
+  matchesFilters,
+  parseFilters,
+} from './filters.utils.js'
 export { isTheme, resolveTheme } from './theme.utils.js'
 export {
   appendMissingTodos,

@@ -1,0 +1,17 @@
+export const STATUS_ALL = 'all'
+export const STATUS_ACTIVE = 'active'
+export const STATUS_COMPLETED = 'completed'
+
+export const STATUSES = [
+  { id: STATUS_ALL, label: 'All' },
+  { id: STATUS_ACTIVE, label: 'Active' },
+  { id: STATUS_COMPLETED, label: 'Completed' },
+]
+
+export const DEFAULT_STATUS = STATUS_ALL
+
+export const STATUS_PARAM = 'status'
+export const FILTERS_CHANGE_EVENT = 'todo:filters'
+
+export const STATUS_INPUT_NAME = 'status'
+export const CHECKED_STATUS_SELECTOR = `input[name="${STATUS_INPUT_NAME}"]:checked`
