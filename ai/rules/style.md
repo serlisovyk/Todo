@@ -50,8 +50,9 @@ is both added and removed as a listener. One style per class.
 - Files and folders are kebab-case. A file that is not a component, or is a provider, carries
   its role as a suffix: `categories.constants.js`, `todos.utils.js`, `todos.context.js`,
   `todos.provider.jsx`, `local-storage.repository.js`.
-- A component has no suffix: `components/theme-toggle/theme-toggle.jsx` + `theme-toggle.css`.
-- A hook is `use-<name>.js`; one over a context sits in that context's folder.
+- A component has no suffix: `components/theme-switch/theme-switch.jsx` + `theme-switch.css`.
+- A hook is `use-<name>.js`; one over a context, or used only by its provider, sits in that
+  context's folder.
 - Names in code: components and classes PascalCase, hooks `use<Name>`, functions camelCase verbs,
   constants `UPPER_SNAKE_CASE`. A ref is named after the element it points to (`titleInputRef`).
 - Every folder of JavaScript modules has an `index.js` that re-exports its public names, named
@@ -97,7 +98,8 @@ is both added and removed as a listener. One style per class.
 - A divider between rows is a `border-bottom` on `&:not(:last-child)`, not `& + &`.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
-  values and a contrast check in both themes.
+  values and a contrast check in both themes. Inside `@media (forced-colors: active)` the system
+  colour keywords (`Highlight`, `HighlightText`) are used instead: that mode keeps only those.
 - Colour tokens are named by role, never by hue: `--color-surface`, `--color-text-muted`,
   `--color-category-work`, `--color-danger` (an error message and an invalid field). A field or a
   checkbox is outlined with `--color-border-control`; `--color-border` is for decorative dividers
@@ -109,6 +111,7 @@ is both added and removed as a listener. One style per class.
   `--font-weight-*`), line heights, durations (`--duration-*`, `--ease-out`) and sizes
   (`--touch-target`, `--content-max-width`) come from the token scales; no other literal for them.
 - Text uses the two weight tokens only (400 and 500) and inherits the font from `body`.
-- Every `@keyframes` lives in `styles/animations.css`; `prefers-reduced-motion` turns motion off.
+- Every `@keyframes` and every `::view-transition-*` rule lives in `styles/animations.css`;
+  `prefers-reduced-motion` turns motion off.
 - One `:focus-visible` rule in the base styles draws the ring for every control; never
   `outline: none` without a replacement. A `transition` names its properties, never `all`.

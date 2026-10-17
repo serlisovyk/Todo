@@ -35,25 +35,30 @@ and storage: `ai/rules/architecture.md`.
 
 ## Effects and events
 
-- An effect only synchronizes with something outside React: the repository's `subscribe`,
-  `matchMedia`, the URL, a document key listener. It returns its cleanup.
+- An effect only synchronizes with something outside React: the repository's `subscribe`, the
+  document (`data-theme`, a meta tag), the URL, a document key listener. It returns its cleanup. A
+  browser value that only feeds the render (`matchMedia`) is read with `useSyncExternalStore`, not
+  copied into state by an effect.
 - Work that follows a user action runs in the event handler or the form action, not in an effect
   that watches state. A change the focus depends on (a button that comes back, a row that returns)
   is committed with `flushSync` in the handler or the action, and only then focused.
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.
-- Nothing reads `localStorage`, `indexedDB` or the URL during render.
+- Nothing reads `localStorage`, `indexedDB` or the URL during render. The one exception is a
+  provider's lazy `useState` initializer that restores a saved choice the first paint shows (the
+  theme), read once through its repository.
 
 ## Hooks
 
 - A hook lives in `use-<name>.js` and exports `use<Name>`: next to its context for a hook over a
-  context, in `hooks/` for any other.
+  context, in `hooks/` for any other. A hook only one provider uses sits in that provider's folder
+  and stays out of the barrel.
 - A hook over a context throws a clear error when it is used outside its provider.
 - The Rules of Hooks hold; `eslint-plugin-react-hooks` checks them.
 - Each kind of hook call is its own paragraph: context (`useTodos`), refs and ids (`useRef`,
-  `useId`), state (the `useState` block), action state (`useActionState`). Values derived from a
-  hook's result form the next paragraph.
+  `useId`), browser hooks (`useMediaQuery`), state (the `useState` block), action state
+  (`useActionState`). Values derived from a hook's result form the next paragraph.
 
 ## Accessibility in components
 

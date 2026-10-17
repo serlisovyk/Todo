@@ -21,8 +21,9 @@ Data flows one way: constants → storage → context → hooks → components. 
 ## Storage
 
 - Every read and write of `localStorage` and `indexedDB` lives in `storage/`; ESLint reports any
-  other use in `src/`. The one exception is the theme script in `<head>`, which reads the saved
-  theme before React starts (decision `theme-three-states`).
+  other use. The one exception is the theme script `public/theme.js`, a classic blocking `<script>`
+  in `<head>` that sets `data-theme` before React starts (decision `theme-head-script`). Its key
+  and values are literals that must equal `THEME_STORAGE_KEY` and the theme constants.
 - `TodoRepository` is the contract: `list()`, `create(input)`, `update(id, patch)`,
   `remove(ids)`, `restore(todos)`, `subscribe(onExternalChange)`, all asynchronous. `restore` writes
   removed tasks back unchanged, for Undo. An implementation extends the class (decision
@@ -30,6 +31,9 @@ Data flows one way: constants → storage → context → hooks → components. 
   implementations share: checking a task, building a new one, applying a patch (`requireValidTodo`,
   `buildTodo`, `applyPatch`); an implementation calls them and never repeats that logic (decision
   `shared-repository-helpers`).
+- `ThemeRepository` stores `todo:theme` and is not a `TodoRepository`: it holds one value, with
+  synchronous `read()` and `save(theme)`. A missing, unknown or unreadable value reads as `system`;
+  a refused `save` throws a readable `Error`, which the theme context shows as a toast.
 - `createRepository()` picks the implementation from `import.meta.env.VITE_STORAGE`; nothing
   else knows which one runs.
 - Stored data is checked when read: a broken task costs only itself, unreadable or unknown data
@@ -46,15 +50,17 @@ Data flows one way: constants → storage → context → hooks → components. 
 - A component reads state and actions through the context's hook (`useTodos()`). A context
   folder exports only its provider and its hook, so the context object stays internal.
 - A context changes the UI first, then writes through the repository; on failure it rolls the change
-  back and shows the message as a toast (decision `errors-as-toasts`). An action never throws or
-  rejects to its caller. A context uses another through its folder (`@/context/toast`), not through
+  back and shows the message as a toast (decision `errors-as-toasts`); the theme keeps its change,
+  since a choice that is not remembered is still the choice. An action never throws or rejects to
+  its caller. A context uses another through its folder (`@/context/toast`), not through
   `@/context`, which re-exports the importer.
 - A change from another tab arrives through `subscribe` and reloads the list.
 
 ## Boundaries
 
 - No inline `style` attribute. A value that JS hands to CSS is a data attribute a stylesheet maps to
-  a custom property: `data-category` and `data-priority` in `styles/colors.css`.
+  a custom property: `data-category` and `data-priority` in `styles/colors.css`. A number known only
+  at runtime, such as the centre of the theme circle, goes through the Web Animations API.
 - No app state on `window`, no global event bus, no singletons.
 - No router: the only "route" state is the filter query string.
 - Do not rename existing CSS classes only for cosmetic reasons; class names are part of the

@@ -70,5 +70,6 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [Native `<select>`s for fixed pickers, the colour drawn beside them](2026-10-17-native-selects.md)
 - [Inter loads from `public/` with a preload, Arial as the fallback](2026-10-16-inter-font-loading.md)
 - [Theme: light, dark or system, set before the first paint](2026-10-16-theme-three-states.md)
+- [The theme head script is the one storage read outside `storage/`](2026-10-17-theme-head-script.md)
 - [List animations are a progressive enhancement](2026-10-16-list-animations.md)
 - [Accessibility and SEO: WCAG 2.2 AA, Lighthouse 100](2026-10-16-accessibility-and-seo.md)

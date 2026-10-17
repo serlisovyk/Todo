@@ -14,6 +14,11 @@ What must hold is in `ai/rules/architecture.md` (Storage); why it is shaped so i
 `repository-storage-restore`. A feature that only reads and writes tasks through the repository does not
 need this skill: see `feature`.
 
+`ThemeRepository` is not one of these: it holds one value, `todo:theme`, with synchronous `read()` and
+`save(theme)`, no list and no `subscribe`. A store of another single value copies its shape: a class
+in `storage/` that imports its key and messages from `constants/`, whose `read` never throws and
+falls back to a default, and whose `save` throws the readable message when the browser refuses.
+
 ## A repository implementation
 
 1. A class in `storage/` that extends `TodoRepository` (imported from its file, never through the
@@ -44,8 +49,8 @@ need this skill: see `feature`.
      and the stored data stays as it was. The error messages are in `storage.constants.js`: reuse
      them, so every implementation says the same.
 2. `createRepository()` picks the implementation by `import.meta.env.VITE_STORAGE` against a mode
-   constant, and localStorage stays the default. Only `createRepository` is exported from the
-   folder.
+   constant, and localStorage stays the default. The folder exports `createRepository` and
+   `ThemeRepository`, and a new implementation is exported by neither.
 3. Contexts and components do not change. The map's Storage section gets the new storage, and
    `.env.sample` and the README line say which values `VITE_STORAGE` takes.
 

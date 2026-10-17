@@ -28,7 +28,8 @@ a filter, a toast, an animation, the stored format.
      `use-<name>.js` in the context's folder. The folder's barrel exports only the
      provider and the hook, so the object stays internal. A browser API (the URL, `matchMedia`, a
      document key listener) gets its own `use-*` hook in `hooks/` that cleans up after itself, and
-     so does a component's own logic (a form's fields, submit and focus): `use-<component>.js`.
+     so does a component's own logic (a form's fields, submit and focus): `use-<component>.js`. A
+     hook only one provider uses sits in that provider's folder instead.
    - **Component** — a folder in `components/` with its `.jsx`, its `index.js` and its `.css`
      once it has rules; `components/index.js` re-exports the folder. It reads through the hook,
      renders, and reports actions through `on<Action>` props or the hook's actions. Another
@@ -69,7 +70,8 @@ always visible (a touch screen has no hover).
 **An animation** — `@starting-style` for an element that enters; a View Transition
 (`document.startViewTransition` + `flushSync`) for a reorder or a removal, feature-detected and
 skipped under reduced motion. It never blocks, queues or drops the next action (decision
-`list-animations`).
+`list-animations`). `useCircleTransition` in `context/theme/` shows the shape: the feature check,
+the reduced-motion check and `flushSync` in one place.
 
 ## Avoid
 
