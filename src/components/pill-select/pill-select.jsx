@@ -2,13 +2,13 @@ import { ChevronDown } from 'lucide-react'
 import './pill-select.css'
 
 export function PillSelect(props) {
-  const { labelText, name, options, value, onChange, children } = props
+  const { labelText, name, options, value, onChange, renderMark } = props
 
   return (
     <label className="pill-select">
       <span className="sr-only">{labelText}</span>
 
-      <span className="pill-select-indicator">{children}</span>
+      <span className="pill-select-indicator">{renderMark(value)}</span>
 
       <select
         className="pill-select-control"
@@ -18,6 +18,7 @@ export function PillSelect(props) {
       >
         {options.map(({ id, label }) => (
           <option key={id} value={id}>
+            <span className="pill-select-mark">{renderMark(id)}</span>
             {label}
           </option>
         ))}

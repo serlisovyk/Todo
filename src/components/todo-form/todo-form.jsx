@@ -62,9 +62,10 @@ export function TodoForm() {
         options={CATEGORIES}
         value={category}
         onChange={setCategory}
-      >
-        <span className="todo-form-dot" data-category={category} />
-      </PillSelect>
+        renderMark={(categoryId) => (
+          <span className="todo-form-dot" data-category={categoryId} />
+        )}
+      />
 
       <PillSelect
         labelText="Priority"
@@ -72,9 +73,10 @@ export function TodoForm() {
         options={PRIORITIES}
         value={priority}
         onChange={setPriority}
-      >
-        <Flag className="todo-form-flag" data-priority={priority} />
-      </PillSelect>
+        renderMark={(priorityId) => (
+          <Flag className="todo-form-flag" data-priority={priorityId} />
+        )}
+      />
 
       <button className="todo-form-submit" type="submit">
         <Plus className="todo-form-submit-icon" />

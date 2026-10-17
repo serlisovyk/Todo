@@ -42,18 +42,20 @@ export function TodoEditForm({ todo, onClose }) {
         options={CATEGORIES}
         value={category}
         onChange={setCategory}
-      >
-        <span className="todo-edit-form-dot" data-category={category} />
-      </PillSelect>
+        renderMark={(categoryId) => (
+          <span className="todo-edit-form-dot" data-category={categoryId} />
+        )}
+      />
 
       <PillSelect
         labelText="Priority"
         options={PRIORITIES}
         value={priority}
         onChange={setPriority}
-      >
-        <Flag className="todo-edit-form-flag" data-priority={priority} />
-      </PillSelect>
+        renderMark={(priorityId) => (
+          <Flag className="todo-edit-form-flag" data-priority={priorityId} />
+        )}
+      />
     </form>
   )
 }

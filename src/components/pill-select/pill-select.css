@@ -40,3 +40,7 @@
   height: var(--space-4);
   color: var(--color-text-muted);
 }
+
+.pill-select-mark {
+  display: none;
+}
