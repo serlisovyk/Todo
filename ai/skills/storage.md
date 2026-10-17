@@ -19,25 +19,36 @@ need this skill: see `feature`.
 1. A class in `storage/` that extends `TodoRepository` (imported from its file, never through the
    barrel) and implements all six operations. The signatures are in `architecture.md`; every
    operation returns a promise and none throws synchronously, except `subscribe`.
+   - Checking a task, building a new one and applying a patch are ordinary methods of the base
+     class (`requireValidTodo`, `buildTodo`, `applyPatch`): call them, never rewrite them
+     (decision `shared-repository-helpers`).
    - `list()` reads the data afresh on every call, keeps no copy in memory, and runs every record
-     through `sanitizeTodos`. A failed read, unreadable data or an unknown version is an empty
-     list, never an exception. Nothing is written at start, and a read never writes.
-   - `create(input)` builds the whole task (`id`, `completed: false`, both timestamps), passes it
-     through `sanitizeTodo`, writes it and resolves to it.
-   - `update(id, patch)` merges the patch, keeps `id` and `createdAt`, sets `updatedAt`, validates,
-     writes and resolves to the updated task. An unknown `id` rejects.
+     through `sanitizeTodos`. Unreadable data, an unknown version or a broken record is an empty
+     list or a skipped record, never an exception, and a broken record is left as it is. A store
+     that cannot be opened at all rejects with a readable `Error` whose `cause` is the original;
+     the context turns that into its `error`. Nothing is written at start, and a read never
+     writes.
+   - `create(input)` writes the task `buildTodo` returns and resolves to it.
+   - `update(id, patch)` writes the task `applyPatch` returns for the stored one and resolves to
+     it. An unknown `id` rejects. A store with transactions reads and writes in one, so two tabs
+     cannot overwrite each other.
    - `remove(ids)` ignores ids that are not stored and writes only when it removed something.
    - `restore(todos)` writes tasks back exactly as given (same `id`, `createdAt`, every field),
-     each through `sanitizeTodo`: an invalid one rejects and nothing is written. It skips ids that
-     are already stored, writes only when something was missing, and resolves to nothing.
+     each through `requireValidTodo` before anything is written: an invalid one rejects the whole
+     call. It skips ids that are already stored, writes only when something was missing, and
+     resolves to nothing.
    - `subscribe(onExternalChange)` calls it with no arguments when another tab changes the data,
-     and returns the function that stops the listening. A tab's own writes do not call it.
-   - A write the browser refuses rejects with a readable `Error` whose `cause` is the original.
-     The error messages are in `storage.constants.js`: reuse them, so every implementation says
-     the same.
-2. `createRepository()` returns the localStorage implementation by default; the new one is picked
-   there by `import.meta.env.VITE_STORAGE`. Only `createRepository` is exported from the folder.
-3. Contexts and components do not change. The map's Storage section gets the new storage.
+     and returns the function that stops the listening. A tab's own writes do not call it: a
+     `BroadcastChannel` never delivers to the instance that posted, so one channel per repository
+     both posts and listens.
+   - A write the browser refuses rejects with a readable `Error` whose `cause` is the original,
+     and the stored data stays as it was. The error messages are in `storage.constants.js`: reuse
+     them, so every implementation says the same.
+2. `createRepository()` picks the implementation by `import.meta.env.VITE_STORAGE` against a mode
+   constant, and localStorage stays the default. Only `createRepository` is exported from the
+   folder.
+3. Contexts and components do not change. The map's Storage section gets the new storage, and
+   `.env.sample` and the README line say which values `VITE_STORAGE` takes.
 
 ## A change to the stored format
 
@@ -52,8 +63,10 @@ need this skill: see `feature`.
      import reuses it. The reader applies the steps from the stored version up to the current one
      before validating; a version above the current one still reads as an empty list.
   3. Change `sanitizeTodo` to the new shape.
-  4. Update every implementation (an IndexedDB schema changes through `onupgradeneeded`) and the
-     export, which shares the format version (decision `export-and-import`).
+  4. Update every implementation (an IndexedDB schema changes in the `upgrade` callback of
+     `openDB`, and its connection then closes itself on `blocking`, or a newer tab's upgrade
+     waits for it) and the export, which shares the format version (decision
+     `export-and-import`).
   5. A durable change to the model is a new dated record in `ai/decisions/`.
 
 ## Verify
@@ -65,7 +78,12 @@ that puts the repository on `window`), then remove it and check `git status`:
   its `id` and `createdAt`;
 - `todo:data` broken by hand: bad JSON, a non-object, another `version`, one broken task among
   good ones. The app starts with the right list and the key is not rewritten until a change;
-- a change in a second tab reaches the first through `subscribe`;
-- a refused write: stub `Storage.prototype.setItem` to throw a `QuotaExceededError`; the promise
-  rejects with the readable `Error` and the stored data stays as it was;
+- a change in a second tab reaches the first through `subscribe`, and the tab's own write does not
+  call its own callback;
+- a refused write: stub `Storage.prototype.setItem` to throw a `QuotaExceededError` (IndexedDB:
+  stub `IDBObjectStore.prototype.add` to abort its transaction); the promise rejects with the
+  readable `Error` and the stored data stays as it was, with no unhandled rejection;
+- IndexedDB: a broken record among good ones is skipped and stays in the database; a store that
+  cannot be opened (stub `IDBFactory.prototype.open` to throw) rejects `list()` and every write
+  with the readable `Error`;
 - after a format change, data written in the previous format is still read.

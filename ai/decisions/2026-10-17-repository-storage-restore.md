@@ -1,6 +1,6 @@
 # Storage behind a `TodoRepository` base class, with `restore` for Undo
 
-Date: 2026-10-17 · Status: accepted (not implemented)
+Date: 2026-10-17 · Status: accepted
 
 ## Context
 

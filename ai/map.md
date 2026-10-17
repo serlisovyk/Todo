@@ -10,6 +10,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `public/` — files served as they are under a stable URL: `fonts/inter.woff2` (Inter, Latin).
 - `vite.config.js` — the React plugin, the React Compiler through `@rolldown/plugin-babel`, the `@/` alias.
 - `jsconfig.json` — the `@/` alias for editors only.
+- `.env.sample` — the one environment variable, `VITE_STORAGE`: `localstorage` (the default) or `indexeddb`.
 - `eslint.config.js` — flat config: React Hooks, React Refresh, `jsx-a11y`, file names, named exports,
   imports, storage access; also enforces `ai/rules/`.
 - `.prettierrc` — the workspace Prettier config; `.prettierignore` — `node_modules`, the lockfile, `dist`, `.claude`.
@@ -32,12 +33,14 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `components/app/` — `App`, the root component: the `TodosProvider` around the page shell (`<main>`
   at the content width); `app.jsx`, `app.css`, barrel `index.js`. `components/index.js` re-exports
   every component.
-- `constants/` — `storage.constants.js` (key, version, storage error messages), `todos.constants.js`
-  (categories, priorities, limits, the `useTodos` error message); barrel `index.js`.
+- `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
+  `todos.constants.js` (categories, priorities, limits, the `useTodos` error message); barrel
+  `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator; the pure
   list transforms the context applies), `validation.utils.js` (general checks); barrel `index.js`.
-- `storage/` — `TodoRepository` (the contract), `LocalStorageRepository`, `createRepository` (the
-  barrel's only export; it also asks for persistent storage).
+- `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
+  `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (the barrel's only export:
+  it picks the implementation by `VITE_STORAGE` and also asks for persistent storage).
 - `context/todos/` — `TodosProvider` and `useTodos` (the only public names; `TodosContext` stays
   inside): the tasks, `isLoading`, `error` and the actions over the repository.
   `context/index.js` re-exports each context folder.
@@ -64,15 +67,15 @@ JavaScript modules has an `index.js` of named exports; code imports across folde
 ## Storage
 
 Every access goes through `storage/` (decision `repository-storage-restore`); the theme script in `<head>` is
-the one reader outside it (decision `theme-three-states`). `todo:theme` and IndexedDB are agreed, not
-built yet.
+the one reader outside it (decision `theme-three-states`). `todo:theme` is agreed, not built yet.
 
 | Key          | Holds                                  | Written by                                   |
 | ------------ | -------------------------------------- | -------------------------------------------- |
 | `todo:data`  | `{ version, todos }` with localStorage | `LocalStorageRepository`                     |
 | `todo:theme` | `light`, `dark` or `system`            | the theme context (the head script reads it) |
 
-With `VITE_STORAGE=indexeddb` the tasks live in the IndexedDB database `todo`, store `todos`, keyed by `id`.
+With `VITE_STORAGE=indexeddb` the tasks live in the IndexedDB database `todo`, store `todos`, keyed by `id`;
+other tabs hear about a write on `BroadcastChannel('todo')`.
 
 ## Where is the recipe
 

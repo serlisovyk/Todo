@@ -34,6 +34,8 @@ Data flows one way: constants → storage → context → hooks → components. 
   else knows which one runs.
 - Stored data is checked when read: a broken task costs only itself, unreadable or unknown data
   never stops the app, and nothing is written until something changes.
+- A store that cannot be opened at all (a blocked IndexedDB) rejects `list()` with a readable
+  `Error`; the context shows it and starts with an empty list, so the app still starts.
 - A failed write rejects with a readable `Error` and never crashes the app; the context handles it
   (State).
 
