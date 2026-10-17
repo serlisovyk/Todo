@@ -35,3 +35,9 @@
   height: var(--space-4);
   color: var(--priority-color);
 }
+
+.todo-edit-form-actions {
+  display: flex;
+  flex: none;
+  margin-inline-start: auto;
+}

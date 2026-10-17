@@ -1,5 +1,6 @@
 import { useId } from 'react'
-import { Flag } from 'lucide-react'
+import { Check, Flag, X } from 'lucide-react'
+import { IconButton } from '@/components/icon-button'
 import { PillSelect } from '@/components/pill-select'
 import { useTodoEdit } from '@/hooks'
 import { CATEGORIES, PRIORITIES, TITLE_MAX_LENGTH } from '@/constants'
@@ -15,6 +16,8 @@ export function TodoEditForm({ todo, onClose }) {
     setPriority,
     handleTitleChange,
     saveAction,
+    handleCancel,
+    keepFocus,
     handleBlur,
   } = useTodoEdit(todo, onClose)
 
@@ -56,6 +59,22 @@ export function TodoEditForm({ todo, onClose }) {
           <Flag className="todo-edit-form-flag" data-priority={priorityId} />
         )}
       />
+
+      <div className="todo-edit-form-actions">
+        <IconButton
+          Icon={Check}
+          type="submit"
+          labelText="Save"
+          onMouseDown={keepFocus}
+        />
+
+        <IconButton
+          Icon={X}
+          labelText="Cancel"
+          onMouseDown={keepFocus}
+          onClick={handleCancel}
+        />
+      </div>
     </form>
   )
 }

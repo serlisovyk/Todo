@@ -57,6 +57,10 @@ export function useTodoEdit(todo, onClose) {
     onClose({ shouldFocusEditButton: true })
   }
 
+  const handleCancel = () => onClose({ shouldFocusEditButton: true })
+
+  const keepFocus = (event) => event.preventDefault()
+
   const handleBlur = (event) => {
     const isStillInside = event.currentTarget.contains(event.relatedTarget)
     if (isStillInside) return
@@ -74,6 +78,8 @@ export function useTodoEdit(todo, onClose) {
     setPriority,
     handleTitleChange,
     saveAction,
+    handleCancel,
+    keepFocus,
     handleBlur,
   }
 }
