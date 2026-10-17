@@ -16,7 +16,7 @@ export function TodosProvider({ children }) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    async function loadTodos() {
+    const loadTodos = async () => {
       try {
         const loaded = await repository.list()
 
@@ -34,7 +34,7 @@ export function TodosProvider({ children }) {
     return repository.subscribe(loadTodos)
   }, [repository])
 
-  async function saveChange(snapshot, write) {
+  const saveChange = async (snapshot, write) => {
     try {
       const result = await write()
 
@@ -47,7 +47,7 @@ export function TodosProvider({ children }) {
     }
   }
 
-  async function addTodo(input) {
+  const addTodo = async (input) => {
     try {
       const todo = await repository.create(input)
 
@@ -61,7 +61,7 @@ export function TodosProvider({ children }) {
     }
   }
 
-  async function updateTodo(todoId, patch) {
+  const updateTodo = async (todoId, patch) => {
     const snapshot = todos
 
     setTodos(patchTodo(todos, todoId, patch))
@@ -75,7 +75,7 @@ export function TodosProvider({ children }) {
     setTodos((current) => replaceTodos(current, [updated]))
   }
 
-  async function toggleTodo(todoId) {
+  const toggleTodo = async (todoId) => {
     const todo = todos.find((candidate) => candidate.id === todoId)
 
     if (!todo) return
@@ -83,7 +83,7 @@ export function TodosProvider({ children }) {
     await updateTodo(todoId, { completed: !todo.completed })
   }
 
-  async function removeTodos(todoIds) {
+  const removeTodos = async (todoIds) => {
     const snapshot = todos
     const { removed, remaining } = splitTodosByIds(todos, todoIds)
 
@@ -95,7 +95,7 @@ export function TodosProvider({ children }) {
     return removed
   }
 
-  async function restoreTodos(removedTodos) {
+  const restoreTodos = async (removedTodos) => {
     const snapshot = todos
 
     setTodos(appendMissingTodos(todos, removedTodos))
@@ -103,7 +103,7 @@ export function TodosProvider({ children }) {
     await saveChange(snapshot, () => repository.restore(removedTodos))
   }
 
-  async function toggleAll() {
+  const toggleAll = async () => {
     const snapshot = todos
     const isCompleted = !todos.every((todo) => todo.completed)
     const changed = todos.filter((todo) => todo.completed !== isCompleted)
@@ -123,16 +123,14 @@ export function TodosProvider({ children }) {
     setTodos((current) => replaceTodos(current, updated))
   }
 
-  async function clearCompleted() {
+  const clearCompleted = async () => {
     const completed = todos.filter((todo) => todo.completed)
     const completedIds = completed.map((todo) => todo.id)
 
     return removeTodos(completedIds)
   }
 
-  function dismissError() {
-    setError(null)
-  }
+  const dismissError = () => setError(null)
 
   const value = {
     todos,
