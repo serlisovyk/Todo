@@ -1,6 +1,6 @@
 # Storage behind a `TodoRepository` base class: localStorage by default, IndexedDB by env
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: superseded by 2026-10-17-repository-storage-restore.md
 
 ## Context
 

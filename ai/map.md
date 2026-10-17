@@ -59,7 +59,7 @@ JavaScript modules has an `index.js` of named exports; code imports across folde
 
 ## Storage
 
-Every access goes through `storage/` (decision `repository-storage`); the theme script in `<head>` is
+Every access goes through `storage/` (decision `repository-storage-restore`); the theme script in `<head>` is
 the one reader outside it (decision `theme-three-states`). `todo:theme` and IndexedDB are agreed, not
 built yet.
 
