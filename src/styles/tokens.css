@@ -13,6 +13,7 @@
   --color-focus: var(--color-accent);
   --color-highlight: #fde68a;
   --color-on-highlight: #18181b;
+  --color-shadow: rgb(24 24 27 / 0.16);
 
   --color-category-work: #2563eb;
   --color-category-personal: #db2777;
@@ -75,6 +76,7 @@
   --color-border-control: #6a6a77;
   --color-accent: #8b8cf8;
   --color-on-accent: #0e0e11;
+  --color-shadow: rgb(0 0 0 / 0.5);
 
   --color-category-work: #60a5fa;
   --color-category-personal: #f472b6;
