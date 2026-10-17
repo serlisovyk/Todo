@@ -37,7 +37,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `app.css`, barrel `index.js`. `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
   and the theme switch.
-- `components/pill-select/` — `PillSelect`: a native `<select>` in a pill with a slot for an indicator.
+- `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot or flag,
+  also inside each option of the open list.
 - `components/theme-switch/` — `ThemeSwitch`: three radio buttons (sun, moon, monitor) that set the theme.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the empty

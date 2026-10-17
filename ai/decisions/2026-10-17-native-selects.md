@@ -1,6 +1,6 @@
 # Native `<select>`s for fixed pickers, the colour drawn beside them
 
-Date: 2026-10-17 · Status: accepted
+Date: 2026-10-17 · Status: superseded by 2026-10-17-base-select-pickers.md
 
 ## Context
 

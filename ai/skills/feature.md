@@ -67,6 +67,12 @@ outside text fields (`useToastShortcut`, in `Toast`), and its button names the k
 **An icon button** — a `lucide-react` icon, an `aria-label`, a touch target of at least 44px,
 always visible (a touch screen has no hover).
 
+**A picker** — a `PillSelect` over a short fixed list. The caller passes `renderMark(id)`, the mark
+for one option (a dot with `data-category`, a flag with `data-priority`); the pill shows it for the
+value and the open list shows it in each option where the browser has `base-select`. The text of an
+option always says what its mark says, and the list stays the browser's (decision
+`base-select-pickers`).
+
 **An animation** — `@starting-style` for an element that enters; a View Transition
 (`document.startViewTransition` + `flushSync`) for a reorder or a removal, feature-detected and
 skipped under reduced motion. It never blocks, queues or drops the next action (decision

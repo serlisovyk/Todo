@@ -95,6 +95,9 @@ is both added and removed as a listener. One style per class.
   inside the selector it changes, as a strict range without `=`: `@media (width < 480px)`,
   `@media (width > 768px)`.
 - `:hover` only inside `@media (hover: hover)`, so a tap leaves no hover look.
+- A feature not every supported browser knows, such as `appearance: base-select`, is an enhancement:
+  the base rules stay the fallback and the new ones sit together in one `@supports` block at the end
+  of the stylesheet, so without support nothing changes.
 - A divider between rows is a `border-bottom` on `&:not(:last-child)`, not `& + &`.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
