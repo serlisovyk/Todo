@@ -5,7 +5,7 @@ export function PillSelect(props) {
   const { labelText, name, options, value, onChange, renderMark } = props
 
   return (
-    <label className="pill-select">
+    <label className="pill-select" title={labelText}>
       <span className="sr-only">{labelText}</span>
 
       <span className="pill-select-indicator">{renderMark(value)}</span>

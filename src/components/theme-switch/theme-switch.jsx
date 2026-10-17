@@ -13,7 +13,7 @@ export function ThemeSwitch() {
       <legend className="sr-only">Theme</legend>
 
       {THEMES.map(({ id, label, Icon }) => (
-        <label key={id} className="theme-switch-option">
+        <label key={id} className="theme-switch-option" title={label}>
           <input
             className="theme-switch-input"
             type="radio"

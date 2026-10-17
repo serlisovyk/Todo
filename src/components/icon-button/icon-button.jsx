@@ -9,7 +9,7 @@ export function IconButton(props) {
       className="icon-button"
       type={type}
       data-tone={tone}
-      aria-label={labelText}
+      title={labelText}
     >
       <Icon className="icon-button-icon" aria-hidden="true" />
     </button>
