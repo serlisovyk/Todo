@@ -1,2 +1,9 @@
-export { DATA_STORAGE_KEY, DATA_FORMAT_VERSION } from './storage.constants.js'
+export {
+  DATA_STORAGE_KEY,
+  DATA_FORMAT_VERSION,
+  INVALID_TODO_MESSAGE,
+  MISSING_TODO_MESSAGE,
+  SAVE_ERROR_MESSAGE,
+  NOT_IMPLEMENTED_MESSAGE,
+} from './storage.constants.js'
 export { CATEGORIES, PRIORITIES, TITLE_MAX_LENGTH } from './todos.constants.js'
