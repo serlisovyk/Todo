@@ -104,7 +104,9 @@ is both added and removed as a listener. One style per class.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
   values and a contrast check in both themes. Inside `@media (forced-colors: active)` the system
-  colour keywords (`Highlight`, `HighlightText`) are used instead: that mode keeps only those.
+  colour keywords (`Highlight`, `HighlightText`) are used instead: that mode keeps only those. Text
+  laid over a `Highlight` fill also sets `forced-color-adjust: none`, or the browser's backplate
+  hides it.
 - Colour tokens are named by role, never by hue: `--color-surface`, `--color-text-muted`,
   `--color-category-work`, `--color-danger` (an error message and an invalid field). A field or a
   checkbox is outlined with `--color-border-control`; `--color-border` is for decorative dividers

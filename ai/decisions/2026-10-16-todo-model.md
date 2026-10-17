@@ -1,6 +1,6 @@
 # A task has a title, a fixed category and a priority; no due date
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: accepted
 
 ## Context
 

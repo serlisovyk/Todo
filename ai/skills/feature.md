@@ -49,18 +49,21 @@ a filter, a toast, an animation, the stored format.
 `todo-item` shows it. Export and import need nothing extra: they use the same validator
 (decision `export-and-import`).
 
-**A filter** — its allowed values and default in a constants file; its state in `use-filters`,
-read from and written to the URL query with `history.replaceState` (a default is not written, an
-unknown value is ignored); the filtering itself a pure function in `utils/`. The control is a
-radio group: the status stays on screen, everything else goes into the Filters panel (decision
-`filters-and-search`).
+**A filter** — its allowed values and default in `filters.constants.js`; the URL query is its state:
+`use-filters` reads it with `useSyncExternalStore` and `changeFilters(patch)` writes it with
+`history.replaceState` (a default is not written, an unknown value is ignored), so every component
+sees the same filters. A new one is a line in `parseFilters` and `buildFiltersSearch` and a
+predicate in `matchesFilters`, all pure in `filters.utils.js`; the shown list is derived in render
+with `filterTodos`, never stored. The control is a radio group: the status stays on screen,
+everything else goes into the Filters panel (decision `filters-and-search`). The footer's counter
+and buttons ignore the filters (decision `footer-acts-on-all-tasks`).
 
 **A toast** — `const { showToast } = useToast()`, then `showToast({ message })`; an undoable action
 adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no action). One toast at a time, a new one replaces the old; `ToastRegion` is
 the one live region, the toast goes after `TOAST_DURATION` and waits while hovered or focused. An
 undoable action keeps what it removed and `restoreTodos` puts it back at the same position: the
 callback runs seconds later, so it must not read state from its own closure. The focus moves before
-the row goes (to the next task) and after Undo (to the restored one); a change that must be on screen
+the row goes (to the next task, else the previous one, else the checked status radio) and after Undo (to the restored one); a change that must be on screen
 before the focus moves is committed with `flushSync` first. An action toast also answers Ctrl/Cmd+Z
 outside text fields (`useToastShortcut`, in `Toast`), and its button names the keys in
 `aria-keyshortcuts`. A toast enters with `@starting-style` and leaves through `useToastExit`: the

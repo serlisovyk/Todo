@@ -64,6 +64,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 ### Interface and look
 
 - [Filters in a panel and in the URL; search highlights matches](2026-10-16-filters-and-search.md)
+- [The footer counts and acts on all tasks, not on the filtered list](2026-10-17-footer-acts-on-all-tasks.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
 - [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
 - [`lucide-react` icons, self-hosted Inter, an own toast](2026-10-16-ui-dependencies.md)

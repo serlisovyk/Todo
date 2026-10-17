@@ -15,8 +15,10 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 (`architecture`, `react`, `style`, `scope`). Then check what the rules do not cover:
 
 - **Tasks**: add, edit (Enter, the Save button or leaving the field saves, `Escape` or the Cancel
-  button cancels and never saves, an empty title keeps the old one), toggle, delete and Undo (back at the same place), clear completed and Undo, mark
-  all. Completed tasks stay at the bottom under every sort; the counter matches the list.
+  button cancels and never saves, an empty title keeps the old one), toggle, delete and Undo (back at
+  the same place), clear completed and Undo, mark all (both ways). Completed tasks stay at the bottom
+  under every sort; the counter is the active tasks out of all, whatever the filters; a button that
+  hides when used hands the focus on.
 - **Filters and search**: status, category, sort and query combine; a reload restores them from
   the URL; unknown values in the URL are ignored; the empty list says which case it is ("No tasks
   yet" or "No tasks match your filters"); the highlight marks every match and special characters

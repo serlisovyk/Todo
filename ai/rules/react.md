@@ -38,17 +38,17 @@ and storage: `ai/rules/architecture.md`.
 
 - An effect only synchronizes with something outside React: the repository's `subscribe`, the
   document (`data-theme`, a meta tag), the URL, a document key listener. It returns its cleanup. A
-  browser value that only feeds the render (`matchMedia`) is read with `useSyncExternalStore`, not
-  copied into state by an effect.
+  browser value that only feeds the render (`matchMedia`, the URL query) is read with
+  `useSyncExternalStore`, not copied into state by an effect.
 - Work that follows a user action runs in the event handler or the form action, not in an effect
   that watches state. A change the focus depends on (a button that comes back, a row that returns)
   is committed with `flushSync` in the handler or the action, and only then focused.
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.
-- Nothing reads `localStorage`, `indexedDB` or the URL during render. The one exception is a
-  provider's lazy `useState` initializer that restores a saved choice the first paint shows (the
-  theme), read once through its repository.
+- Nothing reads `localStorage` or `indexedDB` during render, and the URL only through
+  `useSyncExternalStore`. The one exception is a provider's lazy `useState` initializer that
+  restores a saved choice the first paint shows (the theme), read once through its repository.
 
 ## Hooks
 
@@ -69,7 +69,9 @@ and storage: `ai/rules/architecture.md`.
 - Every control has an accessible name: a visible or visually hidden `<label>`; an icon-only button
   has a `title`, which is its name and its tooltip (decision `tooltips-as-title`).
 - After an action, focus lands somewhere meaningful: after adding — the input; after deleting —
-  the next task; after editing — the edit button.
+  the next task, else the previous one, else the checked status radio (a text field would keep
+  Ctrl/Cmd+Z for its own undo); after editing — the edit button.
 - A change a screen-reader user must hear goes through one polite live region (`role="status"`),
   never a second region for the same event and never `assertive`. A message that can repeat is a
-  node keyed by the attempt inside the region, so the second one is announced again.
+  node keyed by the attempt inside the region, so the second one is announced again. The tasks-left
+  counter is a different event from a toast and has its own `aria-live="polite"` element.
