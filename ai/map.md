@@ -31,6 +31,12 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   renders `App` in `StrictMode`.
 - `components/app/` — `App`, the root component and page shell (`<main>` at the content width):
   `app.jsx`, `app.css` and its barrel `index.js`; `components/index.js` re-exports every component.
+- `constants/` — `storage.constants.js` (key, version, storage error messages), `todos.constants.js`
+  (categories, priorities, limits); barrel `index.js`.
+- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator),
+  `validation.utils.js` (general checks); barrel `index.js`.
+- `storage/` — `TodoRepository` (the contract), `LocalStorageRepository`, `createRepository` (the
+  barrel's only export; it also asks for persistent storage).
 - `styles/style.css` — the one stylesheet entry: imports the files below in order.
 - `styles/tokens.css` — every colour for both themes and the scales (spacing, radii, type,
   durations, focus ring).
@@ -46,15 +52,16 @@ JavaScript modules has an `index.js` of named exports; code imports across folde
 | `hooks/`      | `use-*` hooks: context access, browser APIs         | `use-todos.js`                |
 | `storage/`    | `TodoRepository` and its implementations            | `local-storage.repository.js` |
 | `utils/`      | pure functions: filtering, sorting, validation      | `todos.utils.js`              |
-| `constants/`  | shared values: storage keys, categories, priorities | `categories.constants.js`     |
+| `constants/`  | shared values: storage keys, categories, priorities | `todos.constants.js`          |
 | `styles/`     | tokens, base styles, every `@keyframes`             | `tokens.css`                  |
 
 `styles/` has no `index.js`: `style.css` imports its stylesheets, and `main.jsx` imports `style.css`.
 
 ## Storage
 
-Agreed, not built yet. Every access goes through `storage/` (decision `repository-storage`); the theme
-script in `<head>` is the one reader outside it (decision `theme-three-states`).
+Every access goes through `storage/` (decision `repository-storage`); the theme script in `<head>` is
+the one reader outside it (decision `theme-three-states`). `todo:theme` and IndexedDB are agreed, not
+built yet.
 
 | Key          | Holds                                  | Written by                                   |
 | ------------ | -------------------------------------- | -------------------------------------------- |
@@ -65,7 +72,8 @@ With `VITE_STORAGE=indexeddb` the tasks live in the IndexedDB database `todo`, s
 
 ## Where is the recipe
 
-- A feature, a component, a storage change, a filter, a toast, an animation: `ai/skills/feature.md`.
+- A feature, a component, a filter, a toast, an animation: `ai/skills/feature.md`.
+- A repository implementation or a change to the stored format: `ai/skills/storage.md`.
 - Reviewing a diff: `ai/skills/review.md`.
 - What must hold: `ai/rules/`. Why it is so: `ai/decisions/` (index in its `README.md`).
 - Starting an agent session: `ai/prompts/`. Writing a Linear issue: `ai/linear-task-template.md`.

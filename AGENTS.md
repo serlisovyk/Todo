@@ -65,6 +65,7 @@ Skill playbooks live in `ai/skills/` (tool-agnostic Markdown, index in
 
 - `feature` — which layer owns a feature's data, state, logic, markup and styles, and how
   they connect.
+- `storage` — how to add a repository implementation and how to change the stored format.
 - `review` — self-review for regressions, scope creep, accessibility, and docs drift.
 
 If a change materially reshapes a pattern, update the matching skill in the same change

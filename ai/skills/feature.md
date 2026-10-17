@@ -18,10 +18,7 @@ a filter, a toast, an animation, the stored format.
      duration JS needs) in the matching `*.constants.js`, re-exported from `constants/index.js`.
    - **Utils** — the logic as pure functions in a `*.utils.js`: filtering, sorting, validating,
      splitting text. No React, no DOM, no storage.
-   - **Storage** — only when the stored data changes: the shared validator and every repository
-     implementation (decision `repository-storage`). A new field with a safe default is read as
-     that default from older data; changing what a field means or allows bumps the format
-     version and adds a step to a migration table, keyed by the version it starts from.
+   - **Storage** — only when the stored data or the repository changes: `ai/skills/storage.md`.
    - **Context** — the state and its action: `useState` in the provider; the action changes the
      UI first, writes through the repository, and rolls back with an error toast on failure.
    - **Hook** — what components call (`useTodos()`). A browser API (the URL, `matchMedia`, a
@@ -56,10 +53,6 @@ back at the same position.
 
 **An icon button** — a `lucide-react` icon, an `aria-label`, a touch target of at least 44px,
 always visible (a touch screen has no hover).
-
-**A storage backend** — a class that extends `TodoRepository`, reads through the shared
-validator, reports other tabs' changes through `subscribe`, and is picked in `createRepository()`
-by `VITE_STORAGE`. Components and contexts do not change.
 
 **An animation** — `@starting-style` for an element that enters; a View Transition
 (`document.startViewTransition` + `flushSync`) for a reorder or a removal, feature-detected and

@@ -22,14 +22,18 @@ style standard plus this project's naming (decision `structure-and-naming`).
 - Booleans start with `is`, `has`, `can` or `should` (`isEditing`, `hasCompleted`).
 - No magic numbers or strings: shared values come from `constants/`.
 - Repeated scaffolding (a `try` / `catch` around every call) goes into one private helper.
-- **Blank lines group steps** (read, compute, write); a guard of one or two lines has none inside.
+- **Blank lines group steps** (read, compute, write). A multi-line statement is its own paragraph.
+  A guard is its own paragraph: the `if`, together with a `const` made only for it
+  (`const hasRemoved = …` + `if (!hasRemoved) return`). When the checked value is used further on
+  (`const current = …` + `if (!current) throw …`), a blank line separates the `if` from it.
 - Parameter names say what they are (`todoId`, `isCompleted`), not a bare `x` or `data`.
 
 ## Classes
 
-Only `storage/` uses classes. State is in private fields (`#items`), helpers are private methods,
-handlers are ordinary methods; an arrow-function field only for a function that is both added and
-removed as a listener. One style per class.
+Only `storage/` uses classes. A class file holds only its imports and the class: its messages come
+from `constants/`, and a helper is a private method, never a function at module level. State is in
+private fields (`#items`), handlers are ordinary methods; an arrow-function field only for a
+function that is both added and removed as a listener. One style per class.
 
 ## Files, names and imports
 
@@ -48,6 +52,8 @@ removed as a listener. One style per class.
 - `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
   and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
   is imported directly (`./todo-item.jsx`), never through its own `index.js`.
+- **Import order:** packages, then `@/` modules with `@/constants` last, then `./` siblings, then
+  the stylesheet.
 - One component uses another through that component's folder barrel
   (`import { TodoItem } from '@/components/todo-item'`), never through `@/components`, which
   re-exports the importer itself and would form a cycle.
