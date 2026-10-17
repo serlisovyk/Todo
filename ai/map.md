@@ -37,22 +37,25 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `app.css`, barrel `index.js`. `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
   and the theme switch.
+- `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`; the row and the edit form
+  use it.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot or flag,
   also inside each option of the open list.
 - `components/theme-switch/` — `ThemeSwitch`: three radio buttons (sun, moon, monitor) that set the theme.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the empty
   text, the rows in `sortTodos` order) and one row (checkbox, title, category, priority, edit and delete).
-- `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority).
+- `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority, Save and Cancel).
 - `components/toast-region/`, `components/toast/` — `ToastRegion`: the always-present `role="status"`
   region; `Toast`: the message (with an error icon) and its action button.
 - `hooks/` — `useTodoForm`, `useTodoItem` (delete, Undo, edit mode), `useTodoEdit`, `useToastTimer`,
-  `useToastShortcut` (Ctrl/Cmd+Z runs the toast's action): each component's logic; barrel `index.js`.
+  `useToastExit` (the exit), `useToastShortcut` (Ctrl/Cmd+Z runs the toast's action): each component's logic;
+  barrel `index.js`.
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
   `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the
   `useTodos` messages), `toast.constants.js` (the duration, the shortcut, a message),
   `theme.constants.js` (the themes with their icons, `todo:theme`, media queries, CSS variables),
-  `css.constants.js` (the time units `toMilliseconds` reads); barrel `index.js`.
+  `css.constants.js` (the time units `toMilliseconds` reads, the reduced-motion query); barrel `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task
   validator; the pure list transforms the context applies; `sortTodos`: the order the list shows),
   `theme.utils.js` (`isTheme`, `resolveTheme`), `css.utils.js` (`toMilliseconds`), `validation.utils.js`
@@ -69,7 +72,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   circle reveal in a View Transition) are private to it. `context/index.js` re-exports each context folder.
 - `styles/style.css` — the one stylesheet entry: imports the files below in order.
 - `styles/tokens.css` — every colour for both themes and the scales (spacing, radii, type,
-  durations, focus ring).
+  durations, easings, focus ring); under reduced motion it zeroes the durations.
 - `styles/colors.css` — `[data-category]` and `[data-priority]` set `--category-color` and
   `--priority-color` from the colour tokens.
 - `styles/base.css` — the Inter face, box sizing, `body`, the focus ring, `.sr-only`.

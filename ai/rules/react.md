@@ -67,7 +67,7 @@ and storage: `ai/rules/architecture.md`.
   `<form>`, `<ul>` for the list. A `div` with `onClick` is a bug; `eslint-plugin-jsx-a11y` reports
   it along with missing labels and alt texts.
 - Every control has an accessible name: a visible or visually hidden `<label>`; an icon-only button
-  has `aria-label`.
+  has a `title`, which is its name and its tooltip (decision `tooltips-as-title`).
 - After an action, focus lands somewhere meaningful: after adding — the input; after deleting —
   the next task; after editing — the edit button.
 - A change a screen-reader user must hear goes through one polite live region (`role="status"`),

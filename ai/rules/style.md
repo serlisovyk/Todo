@@ -79,7 +79,9 @@ is both added and removed as a listener. One style per class.
 - Interface texts are English and sentence case (`Add task`, `Clear completed`); one action has one
   name wherever it shows.
 - Icons come from `lucide-react`, imported by name; an icon next to text is decorative, an icon-only
-  button is named by `aria-label`.
+  button is named by its `title`, which is also its tooltip, and has no `aria-label`. A control named
+  by a hidden `<label>` has its `title` on that label, not on the control: a `title` on the control
+  or beside an `aria-label` is read a second time as a description (decision `tooltips-as-title`).
 - Text for assistive technology only uses the `.sr-only` class, not `display: none` or `hidden`.
 - A blank line separates sibling elements and components inside the JSX of a `return`, at every
   level, an icon and the element next to it included. Consecutive self-closing components without
@@ -111,10 +113,14 @@ is both added and removed as a listener. One style per class.
   element that shows it. `styles/colors.css` maps the attribute to `--category-color` or
   `--priority-color`, and the component's CSS reads that variable. Never an inline style.
 - Spacing (`--space-*`), radii (`--radius-*`), font sizes and weights (`--font-size-*`,
-  `--font-weight-*`), line heights, durations (`--duration-*`, `--ease-out`) and sizes
+  `--font-weight-*`), line heights, durations and easings (`--duration-*`, `--ease-*`) and sizes
   (`--touch-target`, `--content-max-width`) come from the token scales; no other literal for them.
 - Text uses the two weight tokens only (400 and 500) and inherits the font from `body`.
-- Every `@keyframes` and every `::view-transition-*` rule lives in `styles/animations.css`;
-  `prefers-reduced-motion` turns motion off.
+- Every `@keyframes` and every `::view-transition-*` rule lives in `styles/animations.css`.
+- Reduced motion is handled once, in `tokens.css`, by zeroing the `--duration-*` tokens; components
+  never add their own `prefers-reduced-motion` block; every duration comes from a token; JS that waits
+  for a transition or starts a View Transition checks the query itself.
 - One `:focus-visible` rule in the base styles draws the ring for every control; never
-  `outline: none` without a replacement. A `transition` names its properties, never `all`.
+  `outline: none` without a replacement.
+- A `transition` names its properties, never `all`. An element that leaves is a state (`is-leaving`)
+  the stylesheet transitions to, and a script removes it on `transitionend`.

@@ -36,8 +36,9 @@ a filter, a toast, an animation, the stored format.
      component imports it from `@/components/<name>`.
    - **Files** — a new folder gets its `index.js` with its first file; every new public name is
      re-exported there, and other folders import it through `@/<folder>`.
-   - **Styles** — colours and sizes from the tokens, keyframes in `animations.css`, reduced
-     motion handled; a category or priority colour through `data-category` / `data-priority`.
+   - **Styles** — colours, sizes and durations from the tokens (`tokens.css` zeroes the durations
+     under reduced motion, a component adds no block of its own), keyframes in `animations.css`; a
+     category or priority colour through `data-category` / `data-priority`.
 3. Providers are wired in one place, inside `App`; nothing else calls `createRoot`.
 4. Verify per `ai/rules/definition-of-done.md`: use the feature on desktop and at 320px, in both
    themes, and reload for anything stored.
@@ -62,10 +63,14 @@ callback runs seconds later, so it must not read state from its own closure. The
 the row goes (to the next task) and after Undo (to the restored one); a change that must be on screen
 before the focus moves is committed with `flushSync` first. An action toast also answers Ctrl/Cmd+Z
 outside text fields (`useToastShortcut`, in `Toast`), and its button names the keys in
-`aria-keyshortcuts`.
+`aria-keyshortcuts`. A toast enters with `@starting-style` and leaves through `useToastExit`: the
+timer and the button set `is-leaving`, CSS moves it away and `transitionend` removes it (at once
+under reduced motion, where no transition runs), and while it leaves it takes no input.
 
-**An icon button** — a `lucide-react` icon, an `aria-label`, a touch target of at least 44px,
-always visible (a touch screen has no hover).
+**An icon button** — an `IconButton` with a `lucide-react` icon, a `labelText` (its `title`: the name and
+the tooltip, no `aria-label`) and, for a destructive one, `tone="danger"`. It is 44px and always
+visible (a touch screen has no hover); `ref`, `type` and handlers go to the `<button>`. A button in a
+form that must not count as leaving the field cancels the default of `mousedown` (`TodoEditForm`).
 
 **A picker** — a `PillSelect` over a short fixed list. The caller passes `renderMark(id)`, the mark
 for one option (a dot with `data-category`, a flag with `data-priority`); the pill shows it for the
@@ -73,10 +78,11 @@ value and the open list shows it in each option where the browser has `base-sele
 option always says what its mark says, and the list stays the browser's (decision
 `base-select-pickers`).
 
-**An animation** — `@starting-style` for an element that enters; a View Transition
-(`document.startViewTransition` + `flushSync`) for a reorder or a removal, feature-detected and
-skipped under reduced motion. It never blocks, queues or drops the next action (decision
-`list-animations`). `useCircleTransition` in `context/theme/` shows the shape: the feature check,
+**An animation** — a colour that changes on hover or selection is a `transition` of that property over
+`--duration-base`, which reduced motion zeroes in `tokens.css`; `@starting-style` for an element that
+enters; a View Transition (`document.startViewTransition` + `flushSync`) for a reorder or a removal,
+feature-detected and skipped under reduced motion by a check in the script. It never blocks, queues
+or drops the next action (decision `list-animations`). `useCircleTransition` in `context/theme/` shows the shape: the feature check,
 the reduced-motion check and `flushSync` in one place.
 
 ## Avoid

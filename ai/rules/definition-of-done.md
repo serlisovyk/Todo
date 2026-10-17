@@ -20,12 +20,14 @@ for approval.
 ## Accessibility
 
 - Controls are real elements (`<button>`, `<input>`, `<select>`, `<form>`) with an accessible name;
-  an icon-only button has an `aria-label`.
+  an icon-only button is named by its `title`, a control named by a label has the `title` on the
+  label, and no name is read twice (decision `tooltips-as-title`).
 - Everything works from the keyboard, the focus ring is visible, and after adding, editing,
   deleting or closing a panel the focus lands somewhere meaningful.
 - Text contrast is at least 4.5:1, icons and control borders at least 3:1, in **both** themes.
 - A change a screen-reader user must hear is announced through the polite live region.
-- New animation respects `prefers-reduced-motion`.
+- New animation takes its duration from a `--duration-*` token, which reduced motion zeroes; a script
+  that waits for a transition or starts a View Transition checks the query itself.
 - Touch targets are at least 44px; the layout works from 320px wide to desktop and at 200% zoom with
   no horizontal scroll.
 
