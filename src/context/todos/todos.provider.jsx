@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useToast } from '@/context/toast'
 import { createRepository } from '@/storage'
 import {
   appendMissingTodos,
@@ -10,10 +11,11 @@ import {
 import { TodosContext } from './todos.context.js'
 
 export function TodosProvider({ children }) {
+  const { showToast } = useToast()
+
   const [repository] = useState(createRepository)
   const [todos, setTodos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -23,7 +25,7 @@ export function TodosProvider({ children }) {
         setTodos(loaded)
       } catch (loadError) {
         setTodos([])
-        setError(loadError.message)
+        showToast({ message: loadError.message, isError: true })
       }
 
       setIsLoading(false)
@@ -32,7 +34,7 @@ export function TodosProvider({ children }) {
     loadTodos()
 
     return repository.subscribe(loadTodos)
-  }, [repository])
+  }, [repository, showToast])
 
   const saveChange = async (snapshot, write) => {
     try {
@@ -41,7 +43,7 @@ export function TodosProvider({ children }) {
       return { isSaved: true, result }
     } catch (writeError) {
       setTodos(snapshot)
-      setError(writeError.message)
+      showToast({ message: writeError.message, isError: true })
 
       return { isSaved: false, result: null }
     }
@@ -55,7 +57,7 @@ export function TodosProvider({ children }) {
 
       return todo
     } catch (createError) {
-      setError(createError.message)
+      showToast({ message: createError.message, isError: true })
 
       return null
     }
@@ -130,12 +132,9 @@ export function TodosProvider({ children }) {
     return removeTodos(completedIds)
   }
 
-  const dismissError = () => setError(null)
-
   const value = {
     todos,
     isLoading,
-    error,
     addTodo,
     updateTodo,
     toggleTodo,
@@ -143,7 +142,6 @@ export function TodosProvider({ children }) {
     restoreTodos,
     toggleAll,
     clearCompleted,
-    dismissError,
   }
 
   return <TodosContext value={value}>{children}</TodosContext>
