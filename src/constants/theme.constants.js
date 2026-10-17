@@ -18,8 +18,8 @@ export const DARK_SCHEME_QUERY = '(prefers-color-scheme: dark)'
 export const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 
 export const PAGE_COLOR_VARIABLE = '--color-page'
-export const TRANSITION_DURATION_VARIABLE = '--duration-base'
-export const TRANSITION_EASING_VARIABLE = '--ease-out'
+export const TRANSITION_DURATION_VARIABLE = '--duration-slower'
+export const TRANSITION_EASING_VARIABLE = '--ease-in-out'
 export const THEME_COLOR_META_SELECTOR = 'meta[name="theme-color"]'
 export const CIRCLE_PSEUDO_ELEMENT = '::view-transition-new(root)'
 
