@@ -8,6 +8,7 @@ export function TodoItem({ todo }) {
   const { id, title, completed, category: categoryId, priority: priorityId } = todo
 
   const { toggleTodo } = useTodos()
+
   const metaId = useId()
 
   const category = CATEGORIES.find((candidate) => candidate.id === categoryId)
