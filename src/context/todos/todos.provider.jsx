@@ -98,15 +98,19 @@ export function TodosProvider({ children }) {
     return removed
   }
 
-  const restoreTodos = async (removedTodos) => {
-    const removedIds = removedTodos.map((todo) => todo.id)
+  const restoreTodos = async (restoredTodos) => {
+    const restoredIds = restoredTodos.map((todo) => todo.id)
 
     const removeRestored = (current) =>
-      splitTodosByIds(current, removedIds).remaining
+      splitTodosByIds(current, restoredIds).remaining
 
-    setTodos((current) => appendMissingTodos(current, removedTodos))
+    setTodos((current) => appendMissingTodos(current, restoredTodos))
 
-    await saveChange(removeRestored, () => repository.restore(removedTodos))
+    const { isSaved } = await saveChange(removeRestored, () =>
+      repository.restore(restoredTodos),
+    )
+
+    return isSaved
   }
 
   const markAll = async (isCompleted) => {
