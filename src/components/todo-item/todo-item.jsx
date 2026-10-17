@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Check, Flag, Pencil, Trash2 } from 'lucide-react'
+import { IconButton } from '@/components/icon-button'
 import { TodoEditForm } from '@/components/todo-edit-form'
 import { useTodoItem } from '@/hooks'
 import { getTodoCheckboxId } from '@/utils'
@@ -63,24 +64,19 @@ export function TodoItem({ todo }) {
       </div>
 
       <div className="todo-item-actions">
-        <button
+        <IconButton
           ref={editButtonRef}
-          type="button"
-          className="todo-item-action"
-          aria-label={`Edit ${title}`}
+          Icon={Pencil}
+          labelText={`Edit ${title}`}
           onClick={startEditing}
-        >
-          <Pencil className="todo-item-action-icon" aria-hidden="true" />
-        </button>
+        />
 
-        <button
-          type="button"
-          className="todo-item-action todo-item-delete"
-          aria-label={`Delete ${title}`}
+        <IconButton
+          Icon={Trash2}
+          tone="danger"
+          labelText={`Delete ${title}`}
           onClick={handleDelete}
-        >
-          <Trash2 className="todo-item-action-icon" aria-hidden="true" />
-        </button>
+        />
       </div>
     </li>
   )

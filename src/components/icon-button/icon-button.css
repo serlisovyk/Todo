@@ -1,0 +1,28 @@
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-text);
+    }
+
+    &[data-tone='danger']:hover {
+      color: var(--color-danger);
+    }
+  }
+}
+
+.icon-button-icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}

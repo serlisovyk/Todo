@@ -1,5 +1,6 @@
 export { App } from './app'
 export { AppHeader } from './app-header'
+export { IconButton } from './icon-button'
 export { PillSelect } from './pill-select'
 export { ThemeSwitch } from './theme-switch'
 export { Toast } from './toast'
