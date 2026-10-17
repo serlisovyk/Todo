@@ -109,9 +109,8 @@ export function TodosProvider({ children }) {
     await saveChange(removeRestored, () => repository.restore(removedTodos))
   }
 
-  const toggleAll = async () => {
+  const markAll = async (isCompleted) => {
     const snapshot = todos
-    const isCompleted = !todos.every((todo) => todo.completed)
     const changed = todos.filter((todo) => todo.completed !== isCompleted)
 
     setTodos(setAllCompleted(todos, isCompleted))
@@ -144,7 +143,7 @@ export function TodosProvider({ children }) {
     toggleTodo,
     removeTodos,
     restoreTodos,
-    toggleAll,
+    markAll,
     clearCompleted,
   }
 
