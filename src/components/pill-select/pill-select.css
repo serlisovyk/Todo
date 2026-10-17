@@ -1,0 +1,42 @@
+.pill-select {
+  position: relative;
+  display: block;
+}
+
+.pill-select-control {
+  appearance: none;
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-10);
+  border: 1px solid var(--color-border-control);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-surface-hover);
+    }
+  }
+}
+
+.pill-select-indicator,
+.pill-select-chevron {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  pointer-events: none;
+}
+
+.pill-select-indicator {
+  inset-inline-start: var(--space-4);
+  display: flex;
+}
+
+.pill-select-chevron {
+  inset-inline-end: var(--space-4);
+  width: var(--space-4);
+  height: var(--space-4);
+  color: var(--color-text-muted);
+}

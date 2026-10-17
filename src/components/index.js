@@ -1,4 +1,5 @@
 export { App } from './app'
 export { AppHeader } from './app-header'
+export { PillSelect } from './pill-select'
 export { TodoItem } from './todo-item'
 export { TodoList } from './todo-list'
