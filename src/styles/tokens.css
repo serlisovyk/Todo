@@ -89,3 +89,12 @@
   --color-priority-high: #f87171;
   --color-priority-medium: #fbbf24;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+}

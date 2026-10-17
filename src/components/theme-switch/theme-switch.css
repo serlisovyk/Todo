@@ -24,6 +24,7 @@
   border: 2px solid transparent;
   border-radius: var(--radius-full);
   cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
 
   &:checked {
     background-color: var(--color-accent);
@@ -49,6 +50,7 @@
   height: var(--space-5);
   color: var(--color-text-muted);
   pointer-events: none;
+  transition: color var(--duration-base) var(--ease-out);
 
   .theme-switch-input:checked + & {
     color: var(--color-on-accent);

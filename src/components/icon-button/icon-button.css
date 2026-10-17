@@ -10,6 +10,7 @@
   background-color: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
+  transition: color var(--duration-base) var(--ease-out);
 
   @media (hover: hover) {
     &:hover {
