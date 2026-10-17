@@ -87,3 +87,18 @@ export function setAllCompleted(todos, isCompleted) {
 
   return updated
 }
+
+function compareTodos(first, second) {
+  if (first.completed && !second.completed) return 1
+  if (!first.completed && second.completed) return -1
+
+  const newestFirst = Date.parse(second.createdAt) - Date.parse(first.createdAt)
+
+  return newestFirst
+}
+
+export function sortTodos(todos) {
+  const sorted = todos.toSorted(compareTodos)
+
+  return sorted
+}
