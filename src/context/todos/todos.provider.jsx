@@ -1,0 +1,152 @@
+import { useEffect, useState } from 'react'
+import { createRepository } from '@/storage'
+import {
+  appendMissingTodos,
+  patchTodo,
+  replaceTodos,
+  setAllCompleted,
+  splitTodosByIds,
+} from '@/utils'
+import { TodosContext } from './todos.context.js'
+
+export function TodosProvider({ children }) {
+  const [repository] = useState(createRepository)
+  const [todos, setTodos] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    async function loadTodos() {
+      try {
+        const loaded = await repository.list()
+
+        setTodos(loaded)
+      } catch (loadError) {
+        setTodos([])
+        setError(loadError.message)
+      }
+
+      setIsLoading(false)
+    }
+
+    loadTodos()
+
+    return repository.subscribe(loadTodos)
+  }, [repository])
+
+  async function saveChange(snapshot, write) {
+    try {
+      const result = await write()
+
+      return { isSaved: true, result }
+    } catch (writeError) {
+      setTodos(snapshot)
+      setError(writeError.message)
+
+      return { isSaved: false, result: null }
+    }
+  }
+
+  async function addTodo(input) {
+    try {
+      const todo = await repository.create(input)
+
+      setTodos((current) => [...current, todo])
+
+      return todo
+    } catch (createError) {
+      setError(createError.message)
+
+      return null
+    }
+  }
+
+  async function updateTodo(todoId, patch) {
+    const snapshot = todos
+
+    setTodos(patchTodo(todos, todoId, patch))
+
+    const { isSaved, result: updated } = await saveChange(snapshot, () =>
+      repository.update(todoId, patch),
+    )
+
+    if (!isSaved) return
+
+    setTodos((current) => replaceTodos(current, [updated]))
+  }
+
+  async function toggleTodo(todoId) {
+    const todo = todos.find((candidate) => candidate.id === todoId)
+
+    if (!todo) return
+
+    await updateTodo(todoId, { completed: !todo.completed })
+  }
+
+  async function removeTodos(todoIds) {
+    const snapshot = todos
+    const { removed, remaining } = splitTodosByIds(todos, todoIds)
+
+    setTodos(remaining)
+
+    const { isSaved } = await saveChange(snapshot, () => repository.remove(todoIds))
+    if (!isSaved) return []
+
+    return removed
+  }
+
+  async function restoreTodos(removedTodos) {
+    const snapshot = todos
+
+    setTodos(appendMissingTodos(todos, removedTodos))
+
+    await saveChange(snapshot, () => repository.restore(removedTodos))
+  }
+
+  async function toggleAll() {
+    const snapshot = todos
+    const isCompleted = !todos.every((todo) => todo.completed)
+    const changed = todos.filter((todo) => todo.completed !== isCompleted)
+
+    setTodos(setAllCompleted(todos, isCompleted))
+
+    const { isSaved, result: updated } = await saveChange(snapshot, () =>
+      Promise.all(
+        changed.map((todo) =>
+          repository.update(todo.id, { completed: isCompleted }),
+        ),
+      ),
+    )
+
+    if (!isSaved) return
+
+    setTodos((current) => replaceTodos(current, updated))
+  }
+
+  async function clearCompleted() {
+    const completed = todos.filter((todo) => todo.completed)
+    const completedIds = completed.map((todo) => todo.id)
+
+    return removeTodos(completedIds)
+  }
+
+  function dismissError() {
+    setError(null)
+  }
+
+  const value = {
+    todos,
+    isLoading,
+    error,
+    addTodo,
+    updateTodo,
+    toggleTodo,
+    removeTodos,
+    restoreTodos,
+    toggleAll,
+    clearCompleted,
+    dismissError,
+  }
+
+  return <TodosContext value={value}>{children}</TodosContext>
+}

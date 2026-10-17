@@ -13,3 +13,6 @@ export const PRIORITIES = [
 ]
 
 export const TITLE_MAX_LENGTH = 200
+
+export const MISSING_TODOS_PROVIDER_MESSAGE =
+  'useTodos must be used inside TodosProvider.'

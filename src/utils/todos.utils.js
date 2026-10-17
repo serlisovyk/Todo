@@ -44,3 +44,46 @@ export function sanitizeTodos(values) {
 
   return todos.filter(Boolean)
 }
+
+export function replaceTodos(todos, updatedTodos) {
+  const replaced = todos.map((todo) => {
+    const updated = updatedTodos.find((candidate) => candidate.id === todo.id)
+
+    if (!updated) return todo
+
+    return updated
+  })
+
+  return replaced
+}
+
+export function patchTodo(todos, todoId, patch) {
+  const patched = todos.map((todo) => {
+    if (todo.id !== todoId) return todo
+
+    return { ...todo, ...patch }
+  })
+
+  return patched
+}
+
+export function splitTodosByIds(todos, ids) {
+  const removed = todos.filter((todo) => ids.includes(todo.id))
+  const remaining = todos.filter((todo) => !ids.includes(todo.id))
+
+  return { removed, remaining }
+}
+
+export function appendMissingTodos(todos, restoredTodos) {
+  const listedIds = todos.map((todo) => todo.id)
+  const missing = restoredTodos.filter((todo) => !listedIds.includes(todo.id))
+  const appended = [...todos, ...missing]
+
+  return appended
+}
+
+export function setAllCompleted(todos, isCompleted) {
+  const updated = todos.map((todo) => ({ ...todo, completed: isCompleted }))
+
+  return updated
+}
