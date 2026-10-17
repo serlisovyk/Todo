@@ -9,6 +9,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 const STORAGE_GLOBALS = ['localStorage', 'indexedDB']
 const STORAGE_OWNERS = ['window', 'globalThis', 'self']
+const STORAGE_READERS = ['src/storage/**', 'public/theme.js']
 const STORAGE_MESSAGE = 'Browser storage is only touched in src/storage/.'
 
 const restrictedStorageGlobals = STORAGE_GLOBALS.map((name) => ({
@@ -71,8 +72,8 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/**/*.{js,jsx}'],
-    ignores: ['src/storage/**'],
+    files: ['**/*.{js,jsx}'],
+    ignores: STORAGE_READERS,
     rules: {
       'no-restricted-globals': ['error', ...restrictedStorageGlobals],
       'no-restricted-properties': ['error', ...restrictedStorageProperties],
