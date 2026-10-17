@@ -26,7 +26,10 @@ Data flows one way: constants → storage → context → hooks → components. 
 - `TodoRepository` is the contract: `list()`, `create(input)`, `update(id, patch)`,
   `remove(ids)`, `restore(todos)`, `subscribe(onExternalChange)`, all asynchronous. `restore` writes
   removed tasks back unchanged, for Undo. An implementation extends the class (decision
-  `repository-storage-restore`).
+  `repository-storage-restore`). Besides the contract the base class holds the helpers the
+  implementations share: checking a task, building a new one, applying a patch (`requireValidTodo`,
+  `buildTodo`, `applyPatch`); an implementation calls them and never repeats that logic (decision
+  `shared-repository-helpers`).
 - `createRepository()` picks the implementation from `import.meta.env.VITE_STORAGE`; nothing
   else knows which one runs.
 - Stored data is checked when read: a broken task costs only itself, unreadable or unknown data

@@ -1,8 +1,7 @@
-import { sanitizeTodo, sanitizeTodos } from '@/utils'
+import { sanitizeTodos } from '@/utils'
 import {
   DATA_FORMAT_VERSION,
   DATA_STORAGE_KEY,
-  INVALID_TODO_MESSAGE,
   MISSING_TODO_MESSAGE,
   SAVE_ERROR_MESSAGE,
 } from '@/constants'
@@ -15,15 +14,7 @@ export class LocalStorageRepository extends TodoRepository {
 
   async create(input) {
     const todos = this.#read()
-    const now = new Date().toISOString()
-
-    const todo = this.#validate({
-      ...input,
-      id: crypto.randomUUID(),
-      completed: false,
-      createdAt: now,
-      updatedAt: now,
-    })
+    const todo = this.buildTodo(input)
 
     this.#write([...todos, todo])
 
@@ -36,13 +27,7 @@ export class LocalStorageRepository extends TodoRepository {
 
     if (!current) throw new Error(MISSING_TODO_MESSAGE)
 
-    const updated = this.#validate({
-      ...current,
-      ...patch,
-      id,
-      createdAt: current.createdAt,
-      updatedAt: new Date().toISOString(),
-    })
+    const updated = this.applyPatch(current, patch)
 
     this.#write(todos.map((todo) => (todo === current ? updated : todo)))
 
@@ -62,7 +47,7 @@ export class LocalStorageRepository extends TodoRepository {
   async restore(todos) {
     const stored = this.#read()
     const storedIds = stored.map((todo) => todo.id)
-    const restored = todos.map((todo) => this.#validate(todo))
+    const restored = todos.map((todo) => this.requireValidTodo(todo))
     const missing = restored.filter((todo) => !storedIds.includes(todo.id))
 
     const hasMissing = missing.length > 0
@@ -81,14 +66,6 @@ export class LocalStorageRepository extends TodoRepository {
     window.addEventListener('storage', handleStorage)
 
     return () => window.removeEventListener('storage', handleStorage)
-  }
-
-  #validate(candidate) {
-    const todo = sanitizeTodo(candidate)
-
-    if (!todo) throw new Error(INVALID_TODO_MESSAGE)
-
-    return todo
   }
 
   #read() {
