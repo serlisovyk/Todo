@@ -8,15 +8,15 @@ lives; `ai/rules/react.md` covers components, state and hooks.
 Data flows one way: constants → storage → context → hooks → components. Each folder has one job
 (decisions `structure-and-naming`, `context-folders`):
 
-| Layer         | Owns                                                        | Must not                                |
-| ------------- | ----------------------------------------------------------- | --------------------------------------- |
-| `constants/`  | shared values: storage keys, categories, priorities, limits | import from another layer               |
-| `utils/`      | pure functions: filter, sort, validate, highlight           | use React, the DOM or storage           |
-| `storage/`    | persistence behind `TodoRepository`                         | know about React or the UI              |
-| `context/`    | app state, its actions, its hook, the repository            | render UI beyond its provider           |
-| `hooks/`      | wrappers over browser APIs; hooks not tied to a context     | keep data that must survive a reload    |
-| `components/` | markup, local UI state, styles; `App` wires the providers   | import `storage/`, touch `localStorage` |
-| `main.jsx`    | `createRoot` and `StrictMode` around `App`                  | hold logic, wire providers              |
+| Layer         | Owns                                                           | Must not                                |
+| ------------- | -------------------------------------------------------------- | --------------------------------------- |
+| `constants/`  | shared values: storage keys, categories, priorities, limits    | import from another layer               |
+| `utils/`      | pure functions: filter, sort, validate, highlight              | use React, the DOM or storage           |
+| `storage/`    | persistence behind `TodoRepository`                            | know about React or the UI              |
+| `context/`    | app state, its actions, its hook, the repository               | render UI beyond its provider           |
+| `hooks/`      | hooks not tied to a context: browser APIs, a component's logic | keep data that must survive a reload    |
+| `components/` | markup, styles, simple local state; `App` wires the providers  | import `storage/`, touch `localStorage` |
+| `main.jsx`    | `createRoot` and `StrictMode` around `App`                     | hold logic, wire providers              |
 
 ## Storage
 
@@ -51,7 +51,8 @@ Data flows one way: constants → storage → context → hooks → components. 
 
 ## Boundaries
 
-- No inline `style` attribute, except CSS custom properties that pass a value from JS to CSS.
+- No inline `style` attribute. A value that JS hands to CSS is a data attribute a stylesheet maps to
+  a custom property: `data-category` and `data-priority` in `styles/colors.css`.
 - No app state on `window`, no global event bus, no singletons.
 - No router: the only "route" state is the filter query string.
 - Do not rename existing CSS classes only for cosmetic reasons; class names are part of the

@@ -29,6 +29,11 @@ style standard plus this project's naming (decision `structure-and-naming`).
 - Destructuring the props or the main object is its own paragraph; the hooks come after it.
 - Destructure in `map` callbacks (`({ id, label }) =>`), not a repeated `option.id`.
 - Parameter names say what they are (`todoId`, `isCompleted`), not a bare `x` or `data`.
+- **Functions:** a component and a hook are declared with `function`; every function inside them
+  (a handler, a form action, a helper, an effect's inner loader) is a `const` arrow function.
+  Module-level functions, such as those in `utils/`, keep `function`.
+- An arrow whose body is one expression is written in the concise form when it fits the print
+  width: `const dismissError = () => setError(null)`.
 
 ## Classes
 
@@ -47,7 +52,7 @@ is both added and removed as a listener. One style per class.
 - A component has no suffix: `components/theme-toggle/theme-toggle.jsx` + `theme-toggle.css`.
 - A hook is `use-<name>.js`; one over a context sits in that context's folder.
 - Names in code: components and classes PascalCase, hooks `use<Name>`, functions camelCase verbs,
-  constants `UPPER_SNAKE_CASE`.
+  constants `UPPER_SNAKE_CASE`. A ref is named after the element it points to (`titleInputRef`).
 - Every folder of JavaScript modules has an `index.js` that re-exports its public names, named
   exports only — a top-level folder (`components/`, `utils/`) and every folder inside it
   (`components/todo-item/`). It appears with the folder's first file, never as an empty
@@ -74,6 +79,9 @@ is both added and removed as a listener. One style per class.
 - Icons come from `lucide-react`, imported by name; an icon next to text is decorative, an icon-only
   button is named by `aria-label`.
 - Text for assistive technology only uses the `.sr-only` class, not `display: none` or `hidden`.
+- A blank line separates sibling elements and components inside the JSX of a `return`, at every
+  level, an icon and the element next to it included. Consecutive self-closing components without
+  children (`<TodoForm />`, `<TodoList />`) stay together; a text child stays next to its element.
 
 ## CSS
 
@@ -90,8 +98,12 @@ is both added and removed as a listener. One style per class.
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
   values and a contrast check in both themes.
 - Colour tokens are named by role, never by hue: `--color-surface`, `--color-text-muted`,
-  `--color-category-work`. A field or a checkbox is outlined with `--color-border-control`;
-  `--color-border` is for decorative dividers only.
+  `--color-category-work`, `--color-danger` (an error message and an invalid field). A field or a
+  checkbox is outlined with `--color-border-control`; `--color-border` is for decorative dividers
+  only.
+- A category or priority colour comes from a `data-category` or `data-priority` attribute on the
+  element that shows it. `styles/colors.css` maps the attribute to `--category-color` or
+  `--priority-color`, and the component's CSS reads that variable. Never an inline style.
 - Spacing (`--space-*`), radii (`--radius-*`), font sizes and weights (`--font-size-*`,
   `--font-weight-*`), line heights, durations (`--duration-*`, `--ease-out`) and sizes
   (`--touch-target`, `--content-max-width`) come from the token scales; no other literal for them.

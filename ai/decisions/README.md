@@ -66,6 +66,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
 - [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
 - [`lucide-react` icons, self-hosted Inter, an own toast](2026-10-16-ui-dependencies.md)
+- [Native `<select>`s for fixed pickers, the colour drawn beside them](2026-10-17-native-selects.md)
 - [Inter loads from `public/` with a preload, Arial as the fallback](2026-10-16-inter-font-loading.md)
 - [Theme: light, dark or system, set before the first paint](2026-10-16-theme-three-states.md)
 - [List animations are a progressive enhancement](2026-10-16-list-animations.md)

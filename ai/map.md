@@ -30,16 +30,21 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 
 - `main.jsx` — the entry point and the only `createRoot`: imports `App` and `styles/style.css`,
   renders `App` in `StrictMode`.
-- `components/app/` — `App`, the root component: the `TodosProvider` around the page shell (`<main>`
-  at the content width); `app.jsx`, `app.css`, barrel `index.js`. `components/index.js` re-exports
-  every component.
+- `components/app/` — `App`, the root component: the `TodosProvider` around the page header and
+  `<main>` (both at the content width); `app.jsx`, `app.css`, barrel `index.js`.
+  `components/index.js` re-exports every component.
+- `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo and the `<h1>`.
+- `components/pill-select/` — `PillSelect`: a native `<select>` in a pill with a slot for an indicator.
+- `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the empty
   text, the rows in `sortTodos` order) and one row (checkbox, title, category, priority).
+- `hooks/` — `use-todo-form.js` (`useTodoForm`: the add-task form's fields, submit, focus and messages);
+  barrel `index.js`.
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
-  `todos.constants.js` (categories, priorities, limits, the `useTodos` error message); barrel
-  `index.js`.
-- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`: the one task validator; the pure
-  list transforms the context applies; `sortTodos`: the order the list shows),
+  `todos.constants.js` (categories, priorities, their defaults, limits, the form's and the `useTodos`
+  messages); barrel `index.js`.
+- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task
+  validator; the pure list transforms the context applies; `sortTodos`: the order the list shows),
   `validation.utils.js` (general checks); barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (the barrel's only export:
@@ -57,15 +62,15 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 The layout (decisions `structure-and-naming`, `context-folders`). A folder appears with its first file; a folder of
 JavaScript modules has an `index.js` of named exports; code imports across folders through `@/`:
 
-| Folder        | Holds                                               | Example                       |
-| ------------- | --------------------------------------------------- | ----------------------------- |
-| `components/` | a folder per component: `.jsx`, `index.js`, `.css`  | `todo-item/todo-item.jsx`     |
-| `context/`    | a folder per context: object, provider and its hook | `todos/todos.provider.jsx`    |
-| `hooks/`      | `use-*` hooks not tied to a context: browser APIs   | `use-filters.js`              |
-| `storage/`    | `TodoRepository` and its implementations            | `local-storage.repository.js` |
-| `utils/`      | pure functions: filtering, sorting, validation      | `todos.utils.js`              |
-| `constants/`  | shared values: storage keys, categories, priorities | `todos.constants.js`          |
-| `styles/`     | tokens, base styles, every `@keyframes`             | `tokens.css`                  |
+| Folder        | Holds                                                                  | Example                       |
+| ------------- | ---------------------------------------------------------------------- | ----------------------------- |
+| `components/` | a folder per component: `.jsx`, `index.js`, `.css`                     | `todo-item/todo-item.jsx`     |
+| `context/`    | a folder per context: object, provider and its hook                    | `todos/todos.provider.jsx`    |
+| `hooks/`      | `use-*` hooks not tied to a context: browser APIs, a component's logic | `use-todo-form.js`            |
+| `storage/`    | `TodoRepository` and its implementations                               | `local-storage.repository.js` |
+| `utils/`      | pure functions: filtering, sorting, validation                         | `todos.utils.js`              |
+| `constants/`  | shared values: storage keys, categories, priorities                    | `todos.constants.js`          |
+| `styles/`     | tokens, colour mapping, base styles, every `@keyframes`                | `tokens.css`                  |
 
 `styles/` has no `index.js`: `style.css` imports its stylesheets, and `main.jsx` imports `style.css`.
 

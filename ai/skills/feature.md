@@ -27,7 +27,8 @@ a filter, a toast, an animation, the stored format.
    - **Hook** — what components call (`useTodos()`: the tasks, `isLoading`, `error` and the
      actions), `use-<name>.js` in the context's folder. The folder's barrel exports only the
      provider and the hook, so the object stays internal. A browser API (the URL, `matchMedia`, a
-     document key listener) gets its own `use-*` hook in `hooks/` that cleans up after itself.
+     document key listener) gets its own `use-*` hook in `hooks/` that cleans up after itself, and
+     so does a component's own logic (a form's fields, submit and focus): `use-<component>.js`.
    - **Component** — a folder in `components/` with its `.jsx`, its `index.js` and its `.css`
      once it has rules; `components/index.js` re-exports the folder. It reads through the hook,
      renders, and reports actions through `on<Action>` props or the hook's actions. Another
@@ -35,7 +36,7 @@ a filter, a toast, an animation, the stored format.
    - **Files** — a new folder gets its `index.js` with its first file; every new public name is
      re-exported there, and other folders import it through `@/<folder>`.
    - **Styles** — colours and sizes from the tokens, keyframes in `animations.css`, reduced
-     motion handled.
+     motion handled; a category or priority colour through `data-category` / `data-priority`.
 3. Providers are wired in one place, inside `App`; nothing else calls `createRoot`.
 4. Verify per `ai/rules/definition-of-done.md`: use the feature on desktop and at 320px, in both
    themes, and reload for anything stored.

@@ -13,7 +13,7 @@ for approval.
   version — and the app still starts; nothing is written at start.
 - Shared values come from `constants/`; colours, spacing, radii, font sizes and durations from
   the tokens.
-- No comments, no inline styles (except CSS custom properties), no app state on `window`.
+- No comments, no inline styles, no app state on `window`.
 - Stale code, styles and constants left behind by the change are removed.
 - Nothing from `ai/rules/scope.md` or `ai/decisions/2026-10-16-rejected-features.md` slipped in.
 
