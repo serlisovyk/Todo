@@ -1,3 +1,5 @@
+export { toMilliseconds } from './css.utils.js'
+export { isTheme, resolveTheme } from './theme.utils.js'
 export {
   appendMissingTodos,
   getTodoCheckboxId,
