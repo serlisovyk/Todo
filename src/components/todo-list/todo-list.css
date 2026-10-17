@@ -1,0 +1,22 @@
+.todo-list,
+.todo-list-message {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.todo-list {
+  padding: 0;
+  list-style: none;
+}
+
+.todo-list-message {
+  padding: var(--space-10) var(--space-6);
+  color: var(--color-text-muted);
+  text-align: center;
+
+  @media (width < 480px) {
+    padding-inline: var(--space-4);
+  }
+}
