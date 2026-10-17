@@ -1,0 +1,64 @@
+.status-switch {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(var(--touch-target) * 2), 1fr)
+  );
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+}
+
+.status-switch-option {
+  display: grid;
+  place-items: center;
+}
+
+.status-switch-input {
+  grid-area: 1 / 1;
+  appearance: none;
+  width: 100%;
+  height: var(--touch-target);
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
+
+  &:checked {
+    background-color: var(--color-accent);
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:checked) {
+      background-color: var(--color-surface-hover);
+    }
+  }
+
+  @media (forced-colors: active) {
+    &:checked {
+      border-color: Highlight;
+      background-color: Highlight;
+    }
+  }
+}
+
+.status-switch-label {
+  grid-area: 1 / 1;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+  pointer-events: none;
+  transition: color var(--duration-base) var(--ease-out);
+
+  .status-switch-input:checked + & {
+    color: var(--color-on-accent);
+
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+    }
+  }
+}

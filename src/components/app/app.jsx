@@ -1,4 +1,5 @@
 import { AppHeader } from '@/components/app-header'
+import { StatusSwitch } from '@/components/status-switch'
 import { TodoForm } from '@/components/todo-form'
 import { TodoList } from '@/components/todo-list'
 import { ToastRegion } from '@/components/toast-region'
@@ -14,6 +15,7 @@ export function App() {
 
           <main className="app">
             <TodoForm />
+            <StatusSwitch />
             <TodoList />
           </main>
         </TodosProvider>

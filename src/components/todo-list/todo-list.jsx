@@ -1,10 +1,13 @@
 import { TodoItem } from '@/components/todo-item'
 import { useTodos } from '@/context'
-import { sortTodos } from '@/utils'
+import { useFilters } from '@/hooks'
+import { filterTodos, sortTodos } from '@/utils'
 import './todo-list.css'
 
 export function TodoList() {
   const { todos, isLoading } = useTodos()
+
+  const { filters } = useFilters()
 
   if (isLoading) return <p className="todo-list-message">Loading tasks…</p>
 
@@ -15,7 +18,14 @@ export function TodoList() {
     )
   }
 
-  const sortedTodos = sortTodos(todos)
+  const visibleTodos = filterTodos(todos, filters)
+
+  const hasVisible = visibleTodos.length > 0
+  if (!hasVisible) {
+    return <p className="todo-list-message">No tasks match your filters.</p>
+  }
+
+  const sortedTodos = sortTodos(visibleTodos)
   const items = sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
 
   return <ul className="todo-list">{items}</ul>
