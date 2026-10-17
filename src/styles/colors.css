@@ -1,0 +1,31 @@
+[data-category='work'] {
+  --category-color: var(--color-category-work);
+}
+
+[data-category='personal'] {
+  --category-color: var(--color-category-personal);
+}
+
+[data-category='study'] {
+  --category-color: var(--color-category-study);
+}
+
+[data-category='shopping'] {
+  --category-color: var(--color-category-shopping);
+}
+
+[data-category='health'] {
+  --category-color: var(--color-category-health);
+}
+
+[data-priority='high'] {
+  --priority-color: var(--color-priority-high);
+}
+
+[data-priority='medium'] {
+  --priority-color: var(--color-priority-medium);
+}
+
+[data-priority='low'] {
+  --priority-color: var(--color-priority-low);
+}
