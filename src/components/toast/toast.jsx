@@ -1,30 +1,37 @@
 import { CircleAlert } from 'lucide-react'
-import { useToastShortcut, useToastTimer } from '@/hooks'
+import { useToastExit, useToastShortcut, useToastTimer } from '@/hooks'
 import { UNDO_ARIA_KEYSHORTCUTS } from '@/constants'
 import './toast.css'
 
 export function Toast({ toast, onDismiss }) {
   const { message, isError, actionLabel, onAction } = toast
 
+  const { isLeaving, dismiss, handleTransitionEnd } = useToastExit(onDismiss)
+
   const { handleMouseEnter, handleMouseLeave, handleFocus, handleBlur } =
-    useToastTimer(onDismiss)
+    useToastTimer(dismiss)
 
   const handleAction = () => {
     onAction()
-    onDismiss()
+    dismiss()
   }
 
-  const shortcutAction = onAction ? handleAction : null
+  const canRunAction = Boolean(onAction) && !isLeaving
+  const shortcutAction = canRunAction ? handleAction : null
 
   useToastShortcut(shortcutAction)
 
+  const className = isLeaving ? 'toast is-leaving' : 'toast'
+
   return (
     <div
-      className="toast"
+      className={className}
+      inert={isLeaving}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      onTransitionEnd={handleTransitionEnd}
     >
       <p className="toast-message">
         {isError && <CircleAlert className="toast-icon" aria-hidden="true" />}

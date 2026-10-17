@@ -1,3 +1,4 @@
+export { useToastExit } from './use-toast-exit.js'
 export { useToastShortcut } from './use-toast-shortcut.js'
 export { useToastTimer } from './use-toast-timer.js'
 export { useTodoEdit } from './use-todo-edit.js'

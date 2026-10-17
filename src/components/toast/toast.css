@@ -9,6 +9,19 @@
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
   pointer-events: auto;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    translate var(--duration-base) var(--ease-out);
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 var(--space-4);
+  }
+
+  &.is-leaving {
+    opacity: 0;
+    translate: 0 var(--space-4);
+  }
 
   @media (width < 480px) {
     width: 100%;
