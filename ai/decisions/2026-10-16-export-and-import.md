@@ -1,6 +1,6 @@
 # Backup by JSON export and import, merged by id
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: superseded by 2026-10-17-backup-export-import.md
 
 ## Context
 

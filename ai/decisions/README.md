@@ -59,7 +59,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [Storage behind a `TodoRepository` base class, with `restore` for Undo](2026-10-17-repository-storage-restore.md)
 - [Helpers shared by repositories are ordinary methods of the base class](2026-10-17-shared-repository-helpers.md)
 - [A task has a title, a fixed category and a priority; no due date](2026-10-16-todo-model.md)
-- [Backup by JSON export and import, merged by id](2026-10-16-export-and-import.md)
+- [Backup by JSON export and import, in a row of its own, merged by id](2026-10-17-backup-export-import.md)
 
 ### Interface and look
 

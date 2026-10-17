@@ -47,7 +47,7 @@ a filter, a toast, an animation, the stored format.
 
 **A task field** — the validator accepts it (a default for older data), `todo-form` sets it,
 `todo-item` shows it. Export and import need nothing extra: they use the same validator
-(decision `export-and-import`).
+(decision `backup-export-import`).
 
 **A filter** — its allowed values and default in `filters.constants.js`; the URL query is its state:
 `use-filters` reads it with `useSyncExternalStore` and `changeFilters(patch)` writes it with
@@ -77,6 +77,18 @@ under reduced motion, where no transition runs), and while it leaves it takes no
 the tooltip, no `aria-label`) and, for a destructive one, `tone="danger"`. It is 44px and always
 visible (a touch screen has no hover); `ref`, `type` and handlers go to the `<button>`. A button in a
 form that must not count as leaving the field cancels the default of `mousedown` (`TodoEditForm`).
+
+**A text button** — a `TextButton`: its children are the label, `ref`, `type` and handlers go to the
+`<button>`. One look everywhere (the footer, the toast's action, the backup row); it has no `className` and no
+variants, and a layout need, such as the toast keeping its action at the end, is the container's CSS.
+
+**A file in or out** — the pure parts (the object written, the file name, the whole-file check, the split into
+new, present and broken tasks, the summary) are in `backup.utils.js`; the `Blob` and `<a download>`, the
+`<input type="file" hidden>` and the flow are one hook, driven by real buttons (`useTodoBackup`). An import
+rejects a file by `file.size` before reading it, checks the whole file, then writes only the new valid tasks
+with `restoreTodos`, which says whether the write held: a refused write shows the storage error toast and no
+summary. Every failure is an error toast and changes nothing; the input is cleared after each choice, so the
+same file can be chosen again (decision `backup-export-import`).
 
 **A picker** — a `PillSelect` over a short fixed list. The caller passes `renderMark(id)`, the mark
 for one option (a dot with `data-category`, a flag with `data-priority`); the pill shows it for the

@@ -26,6 +26,9 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 - **Storage**: a reload keeps everything; broken or foreign data gives an empty list without a
   crash and is not overwritten until something changes; blocked or full storage gives a toast,
   not a crash; two tabs stay in sync; both backends behave the same.
+- **Backup**: an exported file imports back with nothing duplicated and nothing of the present tasks
+  changed; a foreign, broken, oversized or wrong-version file changes nothing and says why; a refused
+  write leaves no half-written import; a file from one backend imports into the other.
 - **Theme**: light, dark and system all work; system follows the OS live; no frame in the wrong
   theme on load.
 - **Accessibility in the browser**: every flow by keyboard alone; focus after each action; a

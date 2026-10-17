@@ -69,8 +69,9 @@ falls back to a default, and whose `save` throws the readable message when the b
   3. Change `sanitizeTodo` to the new shape.
   4. Update every implementation (an IndexedDB schema changes in the `upgrade` callback of
      `openDB`, and its connection then closes itself on `blocking`, or a newer tab's upgrade
-     waits for it) and the export, which shares the format version (decision
-     `export-and-import`).
+     waits for it) and the backup, which shares the format version: the export writes it and
+     `parseBackup` accepts it, and the versions the migration table knows once there is one
+     (decision `backup-export-import`).
   5. A durable change to the model is a new dated record in `ai/decisions/`.
 
 ## Verify
