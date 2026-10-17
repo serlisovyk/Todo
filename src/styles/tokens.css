@@ -63,7 +63,7 @@
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --touch-target: 2.75rem;
-  --content-max-width: 35rem;
+  --content-max-width: 42rem;
 }
 
 :root[data-theme='dark'] {
