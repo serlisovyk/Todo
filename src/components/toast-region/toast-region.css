@@ -1,0 +1,13 @@
+.toast-region {
+  position: fixed;
+  inset-inline: 0;
+  bottom: var(--space-6);
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--space-6);
+  pointer-events: none;
+
+  @media (width < 480px) {
+    padding-inline: var(--space-4);
+  }
+}
