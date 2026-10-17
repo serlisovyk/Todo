@@ -108,6 +108,7 @@ export class IndexedDbRepository extends TodoRepository {
 
     try {
       const transaction = database.transaction(INDEXED_DB_STORE_NAME, 'readwrite')
+
       const [result] = await Promise.all([
         operation(transaction.store),
         transaction.done,

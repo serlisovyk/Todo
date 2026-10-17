@@ -87,6 +87,7 @@ export function TodosProvider({ children }) {
 
   const removeTodos = async (todoIds) => {
     const snapshot = todos
+
     const { removed, remaining } = splitTodosByIds(todos, todoIds)
 
     setTodos(remaining)
