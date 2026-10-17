@@ -30,19 +30,22 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 
 - `main.jsx` — the entry point and the only `createRoot`: imports `App` and `styles/style.css`,
   renders `App` in `StrictMode`.
-- `components/app/` — `App`, the root component: the `TodosProvider` around the page header and
-  `<main>` (both at the content width); `app.jsx`, `app.css`, barrel `index.js`.
-  `components/index.js` re-exports every component.
+- `components/app/` — `App`, the root component: the `ToastProvider` and `TodosProvider` around the page
+  header, `<main>` (both at the content width) and the toast region; `app.jsx`, `app.css`, barrel
+  `index.js`. `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo and the `<h1>`.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill with a slot for an indicator.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the empty
-  text, the rows in `sortTodos` order) and one row (checkbox, title, category, priority).
-- `hooks/` — `use-todo-form.js` (`useTodoForm`: the add-task form's fields, submit, focus and messages);
-  barrel `index.js`.
+  text, the rows in `sortTodos` order) and one row (checkbox, title, category, priority, edit and delete).
+- `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority).
+- `components/toast-region/`, `components/toast/` — `ToastRegion`: the always-present `role="status"`
+  region; `Toast`: the message (with an error icon) and its action button.
+- `hooks/` — `useTodoForm`, `useTodoItem` (delete, Undo, edit mode), `useTodoEdit`, `useToastTimer`,
+  `useToastShortcut` (Ctrl/Cmd+Z runs the toast's action): each component's logic; barrel `index.js`.
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
-  `todos.constants.js` (categories, priorities, their defaults, limits, the form's and the `useTodos`
-  messages); barrel `index.js`.
+  `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the
+  `useTodos` messages), `toast.constants.js` (the duration, the shortcut, a message); barrel `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task
   validator; the pure list transforms the context applies; `sortTodos`: the order the list shows),
   `validation.utils.js` (general checks); barrel `index.js`.
@@ -50,7 +53,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (the barrel's only export:
   it picks the implementation by `VITE_STORAGE` and also asks for persistent storage).
 - `context/todos/` — `TodosProvider` and `useTodos` (the only public names; `TodosContext` stays
-  inside): the tasks, `isLoading`, `error` and the actions over the repository.
+  inside): the tasks, `isLoading` and the actions over the repository; a failed write or read is a toast.
+- `context/toast/` — `ToastProvider` and `useToast`: the one toast, `showToast` and `dismissToast`.
   `context/index.js` re-exports each context folder.
 - `styles/style.css` — the one stylesheet entry: imports the files below in order.
 - `styles/tokens.css` — every colour for both themes and the scales (spacing, radii, type,

@@ -7,6 +7,8 @@ and storage: `ai/rules/architecture.md`.
 
 - Function components only. One component per file, in its own folder next to its stylesheet:
   `components/todo-item/todo-item.jsx` exports `TodoItem` and imports `./todo-item.css`.
+- A component file holds only its imports and the component, and so does a provider file: constants,
+  maps and lookup tables go to `constants/`, pure helpers to `utils/`, logic to a hook.
 - Named exports only, no default exports.
 - Props are plain data and callbacks named `on<Action>` (`onToggle`, `onDelete`). A component that
   needs app state calls the hook instead of receiving it through several levels of props.
@@ -36,7 +38,8 @@ and storage: `ai/rules/architecture.md`.
 - An effect only synchronizes with something outside React: the repository's `subscribe`,
   `matchMedia`, the URL, a document key listener. It returns its cleanup.
 - Work that follows a user action runs in the event handler or the form action, not in an effect
-  that watches state.
+  that watches state. A change the focus depends on (a button that comes back, a row that returns)
+  is committed with `flushSync` in the handler or the action, and only then focused.
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.

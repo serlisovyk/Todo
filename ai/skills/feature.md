@@ -21,11 +21,11 @@ a filter, a toast, an animation, the stored format.
    - **Storage** — only when the stored data or the repository changes: `ai/skills/storage.md`.
    - **Context** — a folder `context/<name>/` with the object (`<name>.context.js`), the provider
      (`<name>.provider.jsx`) and the hook. The state is `useState` in the provider; the action
-     changes the UI first, writes through the repository, and on failure rolls back and sets
-     `error` for the toast to show. It never throws or rejects; a caller that needs a result gets
-     an empty one on failure (`null`, `[]`).
-   - **Hook** — what components call (`useTodos()`: the tasks, `isLoading`, `error` and the
-     actions), `use-<name>.js` in the context's folder. The folder's barrel exports only the
+     changes the UI first, writes through the repository, and on failure rolls back and shows the
+     message as a toast. It never throws or rejects; a caller that needs a result gets an empty
+     one on failure (`null`, `[]`).
+   - **Hook** — what components call (`useTodos()`: the tasks, `isLoading` and the actions),
+     `use-<name>.js` in the context's folder. The folder's barrel exports only the
      provider and the hook, so the object stays internal. A browser API (the URL, `matchMedia`, a
      document key listener) gets its own `use-*` hook in `hooks/` that cleans up after itself, and
      so does a component's own logic (a form's fields, submit and focus): `use-<component>.js`.
@@ -53,9 +53,15 @@ unknown value is ignored); the filtering itself a pure function in `utils/`. The
 radio group: the status stays on screen, everything else goes into the Filters panel (decision
 `filters-and-search`).
 
-**A toast** — through the toast context: one toast at a time, `role="status"`, gone after
-5 seconds, paused while hovered or focused. An undoable action keeps what it removed and puts it
-back at the same position.
+**A toast** — `const { showToast } = useToast()`, then `showToast({ message })`; an undoable action
+adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no action). One toast at a time, a new one replaces the old; `ToastRegion` is
+the one live region, the toast goes after `TOAST_DURATION` and waits while hovered or focused. An
+undoable action keeps what it removed and `restoreTodos` puts it back at the same position: the
+callback runs seconds later, so it must not read state from its own closure. The focus moves before
+the row goes (to the next task) and after Undo (to the restored one); a change that must be on screen
+before the focus moves is committed with `flushSync` first. An action toast also answers Ctrl/Cmd+Z
+outside text fields (`useToastShortcut`, in `Toast`), and its button names the keys in
+`aria-keyshortcuts`.
 
 **An icon button** — a `lucide-react` icon, an `aria-label`, a touch target of at least 44px,
 always visible (a touch screen has no hover).

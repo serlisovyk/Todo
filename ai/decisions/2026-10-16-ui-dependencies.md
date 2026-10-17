@@ -1,6 +1,6 @@
 # `lucide-react` icons, self-hosted Inter, an own toast
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: accepted
 
 ## Context
 

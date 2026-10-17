@@ -26,8 +26,7 @@ need this skill: see `feature`.
      through `sanitizeTodos`. Unreadable data, an unknown version or a broken record is an empty
      list or a skipped record, never an exception, and a broken record is left as it is. A store
      that cannot be opened at all rejects with a readable `Error` whose `cause` is the original;
-     the context turns that into its `error`. Nothing is written at start, and a read never
-     writes.
+     the context shows that as a toast. Nothing is written at start, and a read never writes.
    - `create(input)` writes the task `buildTodo` returns and resolves to it.
    - `update(id, patch)` writes the task `applyPatch` returns for the stored one and resolves to
      it. An unknown `id` rejects. A store with transactions reads and writes in one, so two tabs

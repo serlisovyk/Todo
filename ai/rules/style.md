@@ -26,14 +26,15 @@ style standard plus this project's naming (decision `structure-and-naming`).
   A guard is its own paragraph: the `if`, together with a `const` made only for it
   (`const hasRemoved = …` + `if (!hasRemoved) return`). When the checked value is used further on
   (`const current = …` + `if (!current) throw …`), a blank line separates the `if` from it.
-- Destructuring the props or the main object is its own paragraph; the hooks come after it.
+- A destructuring statement is its own paragraph: the props or the main object comes first, the
+  hooks after it. A hook call that destructures its result stays in the paragraph of its hook kind.
 - Destructure in `map` callbacks (`({ id, label }) =>`), not a repeated `option.id`.
 - Parameter names say what they are (`todoId`, `isCompleted`), not a bare `x` or `data`.
 - **Functions:** a component and a hook are declared with `function`; every function inside them
   (a handler, a form action, a helper, an effect's inner loader) is a `const` arrow function.
   Module-level functions, such as those in `utils/`, keep `function`.
 - An arrow whose body is one expression is written in the concise form when it fits the print
-  width: `const dismissError = () => setError(null)`.
+  width: `const dismissToast = () => setToast(null)`.
 
 ## Classes
 
