@@ -31,7 +31,9 @@ and storage: `ai/rules/architecture.md`.
   object has its own file because `react-refresh` rejects a component file that also exports it.
 - No `useReducer`, no state-management library, no server-state library.
 - Derive instead of storing: the visible list, the counter, "has completed tasks" are computed
-  during render from the tasks and the filters, never kept as their own state.
+  during render from the tasks and the filters, never kept as their own state. State that follows a
+  change of its inputs and must not follow their later values (the announced filter result) is
+  replaced during render under a guard that compares the inputs, never by an effect that watches them.
 - The React Compiler memoizes: no manual `useMemo`, `useCallback` or `memo`.
 
 ## Effects and events
@@ -74,4 +76,6 @@ and storage: `ai/rules/architecture.md`.
 - A change a screen-reader user must hear goes through one polite live region (`role="status"`),
   never a second region for the same event and never `assertive`. A message that can repeat is a
   node keyed by the attempt inside the region, so the second one is announced again. The tasks-left
-  counter is a different event from a toast and has its own `aria-live="polite"` element.
+  counter and the filter result are different events from a toast: the counter has its own
+  `aria-live="polite"` element, the result its own `role="status"` region above the list, which speaks
+  only when the filters change.

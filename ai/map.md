@@ -37,33 +37,41 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `app.css`, barrel `index.js`. `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
   and the theme switch.
+- `components/filter-announcer/` — `FilterAnnouncer`: the persistent visually hidden live region above the list;
+  it says what the filters show; its logic is `useFilterAnnouncement`.
 - `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`; the row and the edit form
   use it.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot or flag,
   also inside each option of the open list.
+- `components/search-field/` — `SearchField`: the labelled search input and its clear button; its logic is
+  `useSearchField`.
 - `components/status-switch/` — `StatusSwitch`: three radio buttons (All, Active, Completed) that set the status filter.
 - `components/theme-switch/` — `ThemeSwitch`: three radio buttons (sun, moon, monitor) that set the theme.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the two empty texts,
-  the rows `filterTodos` shows in `sortTodos` order) and one row (checkbox, title, category, priority, edit, delete).
+  the rows `filterTodos` shows in `sortTodos` order) and one row (checkbox, title with the
+  query's matches in `<mark>`, category, priority, edit, delete).
 - `components/todo-footer/` — `TodoFooter`: under the list, the tasks-left counter, the mark-all buttons and
   Clear completed; its logic is `useTodoFooter`.
 - `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority, Save and Cancel).
 - `components/toast-region/`, `components/toast/` — `ToastRegion`: the always-present `role="status"`
   region; `Toast`: the message (with an error icon) and its action button.
-- `hooks/` — `useFilters` (the filters in the URL query), `useTodoForm`, `useTodoItem` (delete, Undo, edit
+- `hooks/` — `useFilters` (the filters in the URL query), `useSearchField` (the field and the `/` shortcut),
+  `useFilterAnnouncement` (the filter result message), `useTodoForm`, `useTodoItem` (delete, Undo, edit
   mode), `useTodoEdit`, `useTodoFooter`, `useToastTimer`, `useToastExit` (the exit), `useToastShortcut`
   (Ctrl/Cmd+Z runs the toast's action): each component's logic; barrel `index.js`.
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
   `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the
-  `useTodos` messages), `filters.constants.js` (the statuses, the `status` parameter),
+  `useTodos` messages), `filters.constants.js` (the statuses, the `status` and `q` parameters, the search
+  keys, the highlight's regexp), `keyboard.constants.js` (the editable-field selector the shortcuts skip),
   `toast.constants.js` (the duration, the shortcut, a message), `theme.constants.js` (the themes with
   their icons, `todo:theme`, media queries, CSS variables), `css.constants.js` (the time units
   `toMilliseconds` reads, the reduced-motion query); barrel `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task
   validator; the pure list transforms the context applies; `sortTodos`: the order the list shows; the
-  counter and toast messages), `filters.utils.js` (`filterTodos`, and `parseFilters` and
-  `buildFiltersSearch` between the URL query and the filters), `theme.utils.js` (`isTheme`, `resolveTheme`),
+  counter, toast and filter-result messages), `filters.utils.js` (`filterTodos`, and `parseFilters` and
+  `buildFiltersSearch` between the URL query and the filters), `highlight.utils.js` (`splitByQuery`: a
+  title cut into plain and matching parts), `theme.utils.js` (`isTheme`, `resolveTheme`),
   `css.utils.js` (`toMilliseconds`), `validation.utils.js` (general checks); barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (picks the implementation by

@@ -54,9 +54,12 @@ a filter, a toast, an animation, the stored format.
 `history.replaceState` (a default is not written, an unknown value is ignored), so every component
 sees the same filters. A new one is a line in `parseFilters` and `buildFiltersSearch` and a
 predicate in `matchesFilters`, all pure in `filters.utils.js`; the shown list is derived in render
-with `filterTodos`, never stored. The control is a radio group: the status stays on screen,
-everything else goes into the Filters panel (decision `filters-and-search`). The footer's counter
-and buttons ignore the filters (decision `footer-acts-on-all-tasks`).
+with `filterTodos`, never stored. The search query (`q`) is the free-text one: the field shows the raw
+text; the filter, `splitByQuery` (the plain and `<mark>` parts a row renders, never HTML) and the
+announcement trim it. `FilterAnnouncer` says the result once per change of the filters, so a new
+filter needs nothing there. The control is a radio group: the status stays on screen, everything else
+goes into the Filters panel (decision `filters-and-search`). The footer's counter and buttons ignore
+the filters (decision `footer-acts-on-all-tasks`).
 
 **A toast** — `const { showToast } = useToast()`, then `showToast({ message })`; an undoable action
 adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no action). One toast at a time, a new one replaces the old; `ToastRegion` is

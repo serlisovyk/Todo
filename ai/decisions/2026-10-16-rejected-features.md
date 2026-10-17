@@ -24,6 +24,7 @@ Do not build or propose these again unless the author explicitly asks:
 | Feature folders                              | Flat role folders chosen (`structure-and-naming`)            |
 | Authentication, a backend                    | No server                                                    |
 | Subtasks, recurring tasks, reminders         | Out of proportion for a small todo app                       |
+| A single-key shortcut for a new task (`N`)   | `/` is the only one, its hint is the search placeholder      |
 | PWA (manifest, service worker), i18n         | Overkill for this project                                    |
 | Tailwind, CSS Modules, CSS-in-JS             | Plain CSS with tokens (`plain-css-and-tokens`)               |
 | A toast library                              | An own toast is a few lines (`ui-dependencies`)              |
