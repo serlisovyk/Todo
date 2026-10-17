@@ -1,0 +1,12 @@
+import { ListChecks } from 'lucide-react'
+import './app-header.css'
+
+export function AppHeader() {
+  return (
+    <header className="app-header">
+      <ListChecks className="app-header-icon" />
+
+      <h1 className="app-header-title">Todo</h1>
+    </header>
+  )
+}

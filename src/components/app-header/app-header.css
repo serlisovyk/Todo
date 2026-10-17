@@ -1,0 +1,25 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: var(--space-10) var(--space-6) 0;
+
+  @media (width < 480px) {
+    padding: var(--space-6) var(--space-4) 0;
+  }
+}
+
+.app-header-icon {
+  width: var(--space-8);
+  height: var(--space-8);
+  color: var(--color-accent);
+}
+
+.app-header-title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
