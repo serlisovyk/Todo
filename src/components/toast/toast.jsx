@@ -1,4 +1,5 @@
 import { CircleAlert } from 'lucide-react'
+import { TextButton } from '@/components/text-button'
 import { useToastExit, useToastShortcut, useToastTimer } from '@/hooks'
 import { UNDO_ARIA_KEYSHORTCUTS } from '@/constants'
 import './toast.css'
@@ -39,14 +40,12 @@ export function Toast({ toast, onDismiss }) {
       </p>
 
       {actionLabel && (
-        <button
-          className="toast-action"
-          type="button"
+        <TextButton
           aria-keyshortcuts={UNDO_ARIA_KEYSHORTCUTS}
           onClick={handleAction}
         >
           {actionLabel}
-        </button>
+        </TextButton>
       )}
     </div>
   )

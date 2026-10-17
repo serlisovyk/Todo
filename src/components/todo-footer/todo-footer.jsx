@@ -1,3 +1,4 @@
+import { TextButton } from '@/components/text-button'
 import { useTodoFooter } from '@/hooks'
 import './todo-footer.css'
 
@@ -24,36 +25,21 @@ export function TodoFooter() {
       </p>
 
       {hasActive && (
-        <button
-          ref={markAllDoneButtonRef}
-          type="button"
-          className="todo-footer-action"
-          onClick={handleMarkAllDone}
-        >
+        <TextButton ref={markAllDoneButtonRef} onClick={handleMarkAllDone}>
           Mark all as done
-        </button>
+        </TextButton>
       )}
 
       {hasCompleted && (
-        <button
-          ref={markAllActiveButtonRef}
-          type="button"
-          className="todo-footer-action"
-          onClick={handleMarkAllActive}
-        >
+        <TextButton ref={markAllActiveButtonRef} onClick={handleMarkAllActive}>
           Mark all as active
-        </button>
+        </TextButton>
       )}
 
       {hasCompleted && (
-        <button
-          ref={clearCompletedButtonRef}
-          type="button"
-          className="todo-footer-action"
-          onClick={handleClearCompleted}
-        >
+        <TextButton ref={clearCompletedButtonRef} onClick={handleClearCompleted}>
           Clear completed
-        </button>
+        </TextButton>
       )}
     </footer>
   )

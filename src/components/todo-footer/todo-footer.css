@@ -17,23 +17,3 @@
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
 }
-
-.todo-footer-action {
-  flex: none;
-  min-height: var(--touch-target);
-  padding: var(--space-2);
-  border: 0;
-  border-radius: var(--radius-sm);
-  background-color: transparent;
-  color: var(--color-accent);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: background-color var(--duration-base) var(--ease-out);
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: var(--color-surface-hover);
-    }
-  }
-}
