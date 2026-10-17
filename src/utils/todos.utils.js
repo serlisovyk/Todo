@@ -1,5 +1,6 @@
 import {
   CATEGORIES,
+  NO_MATCHES_MESSAGE,
   PLURAL_LOCALE,
   PRIORITIES,
   TASK_NOUNS,
@@ -136,4 +137,12 @@ export function getTasksClearedMessage(count) {
   const taskCount = formatTaskCount(count)
 
   return `${taskCount} cleared`
+}
+
+export function getTasksShownMessage(count) {
+  if (count === 0) return NO_MATCHES_MESSAGE
+
+  const taskCount = formatTaskCount(count)
+
+  return `${taskCount} shown`
 }

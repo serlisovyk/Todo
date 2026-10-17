@@ -59,3 +59,9 @@ export function buildFiltersSearch(filters) {
 
   return params.toString()
 }
+
+export function getFiltersKey(filters) {
+  const trimmedFilters = { ...filters, query: filters.query.trim() }
+
+  return buildFiltersSearch(trimmedFilters)
+}

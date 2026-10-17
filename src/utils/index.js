@@ -2,6 +2,7 @@ export { toMilliseconds } from './css.utils.js'
 export {
   buildFiltersSearch,
   filterTodos,
+  getFiltersKey,
   matchesFilters,
   parseFilters,
 } from './filters.utils.js'
@@ -12,6 +13,7 @@ export {
   countActiveTodos,
   getTasksClearedMessage,
   getTasksLeftMessage,
+  getTasksShownMessage,
   getTodoCheckboxId,
   isValidTitle,
   patchTodo,

@@ -1,3 +1,4 @@
+export { useFilterAnnouncement } from './use-filter-announcement.js'
 export { useFilters } from './use-filters.js'
 export { useSearchField } from './use-search-field.js'
 export { useToastExit } from './use-toast-exit.js'

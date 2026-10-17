@@ -18,6 +18,8 @@ export const FILTERS_CHANGE_EVENT = 'todo:filters'
 export const SEARCH_SHORTCUT_KEY = '/'
 export const CLEAR_SEARCH_KEY = 'Escape'
 
+export const NO_MATCHES_MESSAGE = 'No tasks match your filters'
+
 export const REGEXP_SPECIAL_CHARACTERS = /[.*+?^${}()|[\]\\]/g
 export const REGEXP_ESCAPE_REPLACEMENT = '\\$&'
 export const MATCH_FLAGS = 'gi'
