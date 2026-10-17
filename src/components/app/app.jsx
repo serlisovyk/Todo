@@ -1,5 +1,10 @@
+import { TodosProvider } from '@/context'
 import './app.css'
 
 export function App() {
-  return <main className="app">Todo</main>
+  return (
+    <TodosProvider>
+      <main className="app">Todo</main>
+    </TodosProvider>
+  )
 }
