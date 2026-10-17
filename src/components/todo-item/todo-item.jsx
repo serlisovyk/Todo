@@ -1,5 +1,6 @@
 import { useId } from 'react'
-import { Check, Flag, Trash2 } from 'lucide-react'
+import { Check, Flag, Pencil, Trash2 } from 'lucide-react'
+import { TodoEditForm } from '@/components/todo-edit-form'
 import { useTodoItem } from '@/hooks'
 import { getTodoCheckboxId } from '@/utils'
 import { CATEGORIES, PRIORITIES } from '@/constants'
@@ -8,9 +9,25 @@ import './todo-item.css'
 export function TodoItem({ todo }) {
   const { id, title, completed, category: categoryId, priority: priorityId } = todo
 
-  const { rowRef, handleToggle, handleDelete } = useTodoItem(todo)
+  const {
+    rowRef,
+    editButtonRef,
+    isEditing,
+    handleToggle,
+    handleDelete,
+    startEditing,
+    stopEditing,
+  } = useTodoItem(todo)
 
   const metaId = useId()
+
+  if (isEditing) {
+    return (
+      <li ref={rowRef} className="todo-item">
+        <TodoEditForm todo={todo} onClose={stopEditing} />
+      </li>
+    )
+  }
 
   const category = CATEGORIES.find((candidate) => candidate.id === categoryId)
   const priority = PRIORITIES.find((candidate) => candidate.id === priorityId)
@@ -46,6 +63,16 @@ export function TodoItem({ todo }) {
       </div>
 
       <div className="todo-item-actions">
+        <button
+          ref={editButtonRef}
+          type="button"
+          className="todo-item-action"
+          aria-label={`Edit ${title}`}
+          onClick={startEditing}
+        >
+          <Pencil className="todo-item-action-icon" aria-hidden="true" />
+        </button>
+
         <button
           type="button"
           className="todo-item-action todo-item-delete"

@@ -18,6 +18,7 @@ export const DEFAULT_PRIORITY = 'medium'
 export const TITLE_MAX_LENGTH = 200
 export const TITLE_INPUT_ID = 'todo-title'
 export const TODO_CHECKBOX_SELECTOR = 'input[type="checkbox"]'
+export const CANCEL_EDIT_KEY = 'Escape'
 
 export const EMPTY_TITLE_MESSAGE = 'Enter a task title.'
 export const TODO_ADDED_MESSAGE = 'Task added'

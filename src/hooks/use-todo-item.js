@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useTodos, useToast } from '@/context'
 import { getTodoCheckboxId } from '@/utils'
@@ -16,8 +16,19 @@ export function useTodoItem(todo) {
   const { showToast } = useToast()
 
   const rowRef = useRef(null)
+  const editButtonRef = useRef(null)
+
+  const [isEditing, setIsEditing] = useState(false)
 
   const handleToggle = () => toggleTodo(id)
+
+  const startEditing = () => setIsEditing(true)
+
+  const stopEditing = ({ shouldFocusEditButton }) => {
+    flushSync(() => setIsEditing(false))
+
+    if (shouldFocusEditButton) editButtonRef.current.focus()
+  }
 
   const findFocusTarget = () => {
     const row = rowRef.current
@@ -51,5 +62,13 @@ export function useTodoItem(todo) {
     })
   }
 
-  return { rowRef, handleToggle, handleDelete }
+  return {
+    rowRef,
+    editButtonRef,
+    isEditing,
+    handleToggle,
+    handleDelete,
+    startEditing,
+    stopEditing,
+  }
 }

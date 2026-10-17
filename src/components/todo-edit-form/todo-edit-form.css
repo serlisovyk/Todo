@@ -1,0 +1,37 @@
+.todo-edit-form {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-block: var(--space-3);
+
+  .pill-select {
+    @media (width < 480px) {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.todo-edit-form-title {
+  flex: 1 1 100%;
+  min-width: 0;
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-control);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.todo-edit-form-dot {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--category-color);
+}
+
+.todo-edit-form-flag {
+  width: var(--space-4);
+  height: var(--space-4);
+  color: var(--priority-color);
+}
