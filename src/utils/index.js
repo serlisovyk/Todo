@@ -1,5 +1,6 @@
 export {
   appendMissingTodos,
+  isValidTitle,
   patchTodo,
   replaceTodos,
   sanitizeTodo,

@@ -5,7 +5,7 @@ function isKnownId(options, value) {
   return options.some((option) => option.id === value)
 }
 
-function isValidTitle(title) {
+export function isValidTitle(title) {
   if (typeof title !== 'string') return false
 
   const trimmedLength = title.trim().length
