@@ -1,4 +1,5 @@
 import { ListChecks } from 'lucide-react'
+import { ThemeSwitch } from '@/components/theme-switch'
 import './app-header.css'
 
 export function AppHeader() {
@@ -7,6 +8,8 @@ export function AppHeader() {
       <ListChecks className="app-header-icon" />
 
       <h1 className="app-header-title">Todo</h1>
+
+      <ThemeSwitch />
     </header>
   )
 }

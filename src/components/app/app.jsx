@@ -2,20 +2,22 @@ import { AppHeader } from '@/components/app-header'
 import { TodoForm } from '@/components/todo-form'
 import { TodoList } from '@/components/todo-list'
 import { ToastRegion } from '@/components/toast-region'
-import { ToastProvider, TodosProvider } from '@/context'
+import { ThemeProvider, ToastProvider, TodosProvider } from '@/context'
 import './app.css'
 
 export function App() {
   return (
     <ToastProvider>
-      <TodosProvider>
-        <AppHeader />
+      <ThemeProvider>
+        <TodosProvider>
+          <AppHeader />
 
-        <main className="app">
-          <TodoForm />
-          <TodoList />
-        </main>
-      </TodosProvider>
+          <main className="app">
+            <TodoForm />
+            <TodoList />
+          </main>
+        </TodosProvider>
+      </ThemeProvider>
 
       <ToastRegion />
     </ToastProvider>

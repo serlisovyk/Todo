@@ -1,6 +1,7 @@
 export { App } from './app'
 export { AppHeader } from './app-header'
 export { PillSelect } from './pill-select'
+export { ThemeSwitch } from './theme-switch'
 export { Toast } from './toast'
 export { ToastRegion } from './toast-region'
 export { TodoEditForm } from './todo-edit-form'
