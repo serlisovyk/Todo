@@ -15,5 +15,8 @@ export const STATUS_PARAM = 'status'
 export const QUERY_PARAM = 'q'
 export const FILTERS_CHANGE_EVENT = 'todo:filters'
 
+export const SEARCH_SHORTCUT_KEY = '/'
+export const CLEAR_SEARCH_KEY = 'Escape'
+
 export const STATUS_INPUT_NAME = 'status'
 export const CHECKED_STATUS_SELECTOR = `input[name="${STATUS_INPUT_NAME}"]:checked`

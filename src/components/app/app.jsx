@@ -1,4 +1,5 @@
 import { AppHeader } from '@/components/app-header'
+import { SearchField } from '@/components/search-field'
 import { StatusSwitch } from '@/components/status-switch'
 import { TodoFooter } from '@/components/todo-footer'
 import { TodoForm } from '@/components/todo-form'
@@ -16,6 +17,7 @@ export function App() {
 
           <main className="app">
             <TodoForm />
+            <SearchField />
             <StatusSwitch />
             <TodoList />
             <TodoFooter />

@@ -1,4 +1,5 @@
 export { useFilters } from './use-filters.js'
+export { useSearchField } from './use-search-field.js'
 export { useToastExit } from './use-toast-exit.js'
 export { useToastShortcut } from './use-toast-shortcut.js'
 export { useToastTimer } from './use-toast-timer.js'
