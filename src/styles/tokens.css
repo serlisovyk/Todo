@@ -24,6 +24,8 @@
   --color-priority-medium: #b45309;
   --color-priority-low: var(--color-text-muted);
 
+  --color-danger: var(--color-priority-high);
+
   --font-family: 'Inter', Arial, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.8125rem;
