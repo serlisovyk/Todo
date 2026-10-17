@@ -59,6 +59,18 @@ export class LocalStorageRepository extends TodoRepository {
     this.#write(remaining)
   }
 
+  async restore(todos) {
+    const stored = this.#read()
+    const storedIds = stored.map((todo) => todo.id)
+    const restored = todos.map((todo) => this.#validate(todo))
+    const missing = restored.filter((todo) => !storedIds.includes(todo.id))
+
+    const hasMissing = missing.length > 0
+    if (!hasMissing) return
+
+    this.#write([...stored, ...missing])
+  }
+
   subscribe(onExternalChange) {
     const handleStorage = (event) => {
       if (event.key !== DATA_STORAGE_KEY) return

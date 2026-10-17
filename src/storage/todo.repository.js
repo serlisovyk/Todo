@@ -17,6 +17,10 @@ export class TodoRepository {
     this.#throwNotImplemented()
   }
 
+  async restore() {
+    this.#throwNotImplemented()
+  }
+
   subscribe() {
     this.#throwNotImplemented()
   }
