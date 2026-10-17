@@ -36,13 +36,13 @@ export function TodosProvider({ children }) {
     return repository.subscribe(loadTodos)
   }, [repository, showToast])
 
-  const saveChange = async (snapshot, write) => {
+  const saveChange = async (rollback, write) => {
     try {
       const result = await write()
 
       return { isSaved: true, result }
     } catch (writeError) {
-      setTodos(snapshot)
+      setTodos(rollback)
       showToast({ message: writeError.message, isError: true })
 
       return { isSaved: false, result: null }
@@ -98,11 +98,14 @@ export function TodosProvider({ children }) {
   }
 
   const restoreTodos = async (removedTodos) => {
-    const snapshot = todos
+    const removedIds = removedTodos.map((todo) => todo.id)
 
-    setTodos(appendMissingTodos(todos, removedTodos))
+    const removeRestored = (current) =>
+      splitTodosByIds(current, removedIds).remaining
 
-    await saveChange(snapshot, () => repository.restore(removedTodos))
+    setTodos((current) => appendMissingTodos(current, removedTodos))
+
+    await saveChange(removeRestored, () => repository.restore(removedTodos))
   }
 
   const toggleAll = async () => {
