@@ -9,8 +9,10 @@ export const STATUSES = [
 ]
 
 export const DEFAULT_STATUS = STATUS_ALL
+export const DEFAULT_QUERY = ''
 
 export const STATUS_PARAM = 'status'
+export const QUERY_PARAM = 'q'
 export const FILTERS_CHANGE_EVENT = 'todo:filters'
 
 export const STATUS_INPUT_NAME = 'status'

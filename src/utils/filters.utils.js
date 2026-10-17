@@ -1,5 +1,7 @@
 import {
+  DEFAULT_QUERY,
   DEFAULT_STATUS,
+  QUERY_PARAM,
   STATUS_ACTIVE,
   STATUS_COMPLETED,
   STATUS_PARAM,
@@ -17,8 +19,18 @@ function matchesStatus(todo, status) {
   return true
 }
 
+function matchesQuery(todo, query) {
+  const normalizedQuery = query.trim().toLowerCase()
+  const normalizedTitle = todo.title.toLowerCase()
+
+  return normalizedTitle.includes(normalizedQuery)
+}
+
 export function matchesFilters(todo, filters) {
-  return matchesStatus(todo, filters.status)
+  const isStatusMatch = matchesStatus(todo, filters.status)
+  const isQueryMatch = matchesQuery(todo, filters.query)
+
+  return isStatusMatch && isQueryMatch
 }
 
 export function filterTodos(todos, filters) {
@@ -32,14 +44,18 @@ export function parseFilters(search) {
   const queryStatus = params.get(STATUS_PARAM)
 
   const status = isStatus(queryStatus) ? queryStatus : DEFAULT_STATUS
+  const query = params.get(QUERY_PARAM) ?? DEFAULT_QUERY
 
-  return { status }
+  return { status, query }
 }
 
 export function buildFiltersSearch(filters) {
   const params = new URLSearchParams()
 
   if (filters.status !== DEFAULT_STATUS) params.set(STATUS_PARAM, filters.status)
+
+  const hasQuery = filters.query.trim() !== DEFAULT_QUERY
+  if (hasQuery) params.set(QUERY_PARAM, filters.query)
 
   return params.toString()
 }
