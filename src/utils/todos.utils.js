@@ -12,7 +12,7 @@ function isKnownId(options, value) {
   return options.some((option) => option.id === value)
 }
 
-function formatTaskCount(count) {
+export function formatTaskCount(count) {
   const pluralForm = new Intl.PluralRules(PLURAL_LOCALE).select(count)
   const noun = TASK_NOUNS[pluralForm]
 

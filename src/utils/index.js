@@ -1,3 +1,10 @@
+export {
+  buildBackup,
+  getBackupFileName,
+  getImportMessage,
+  parseBackup,
+  splitBackupTodos,
+} from './backup.utils.js'
 export { toMilliseconds } from './css.utils.js'
 export {
   buildFiltersSearch,
@@ -11,6 +18,7 @@ export { isTheme, resolveTheme } from './theme.utils.js'
 export {
   appendMissingTodos,
   countActiveTodos,
+  formatTaskCount,
   getTasksClearedMessage,
   getTasksLeftMessage,
   getTasksShownMessage,
