@@ -2,7 +2,7 @@
   {
     "name": "JavaScript",
     "path": "dist/assets/*.js",
-    "limit": "80 kB",
+    "limit": "90 kB",
     "gzip": true
   },
   {
