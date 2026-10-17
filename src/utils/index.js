@@ -5,6 +5,7 @@ export {
   matchesFilters,
   parseFilters,
 } from './filters.utils.js'
+export { splitByQuery } from './highlight.utils.js'
 export { isTheme, resolveTheme } from './theme.utils.js'
 export {
   appendMissingTodos,

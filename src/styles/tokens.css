@@ -78,6 +78,8 @@
   --color-border-control: #6a6a77;
   --color-accent: #8b8cf8;
   --color-on-accent: #0e0e11;
+  --color-highlight: #876a12;
+  --color-on-highlight: #fffbeb;
   --color-shadow: rgb(0 0 0 / 0.5);
 
   --color-category-work: #60a5fa;

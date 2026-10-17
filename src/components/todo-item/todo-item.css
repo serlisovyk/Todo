@@ -79,6 +79,17 @@
   }
 }
 
+.todo-item-mark {
+  background-color: var(--color-highlight);
+  color: var(--color-on-highlight);
+
+  @media (forced-colors: active) {
+    background-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}
+
 .todo-item-meta {
   display: flex;
   flex-wrap: wrap;

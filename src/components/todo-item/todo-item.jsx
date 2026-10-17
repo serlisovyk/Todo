@@ -13,6 +13,7 @@ export function TodoItem({ todo }) {
   const {
     rowRef,
     editButtonRef,
+    titleParts,
     isEditing,
     handleToggle,
     handleDelete,
@@ -33,6 +34,16 @@ export function TodoItem({ todo }) {
   const category = CATEGORIES.find((candidate) => candidate.id === categoryId)
   const priority = PRIORITIES.find((candidate) => candidate.id === priorityId)
 
+  const titleNodes = titleParts.map(({ start, text, isMatch }) =>
+    isMatch ? (
+      <mark key={start} className="todo-item-mark">
+        {text}
+      </mark>
+    ) : (
+      text
+    ),
+  )
+
   return (
     <li ref={rowRef} className="todo-item">
       <div className="todo-item-body">
@@ -48,7 +59,7 @@ export function TodoItem({ todo }) {
 
           <Check className="todo-item-check" aria-hidden="true" />
 
-          <span className="todo-item-title">{title}</span>
+          <span className="todo-item-title">{titleNodes}</span>
         </label>
 
         <div className="todo-item-meta" id={metaId}>
