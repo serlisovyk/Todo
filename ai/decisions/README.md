@@ -65,6 +65,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 
 - [Category and sort are two pills under the search field, Reset is an icon; filters in the URL](2026-10-18-filter-pills.md)
 - [The `/` shortcut stays a single-key shortcut that cannot be turned off](2026-10-17-search-shortcut-key.md)
+- [The Undo toast keeps its 5-second limit, a conscious deviation from WCAG 2.2.1](2026-10-18-undo-toast-time-limit.md)
 - [The footer counts and acts on all tasks, not on the filtered list](2026-10-17-footer-acts-on-all-tasks.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
 - [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
