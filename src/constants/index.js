@@ -69,7 +69,10 @@ export {
   UNDO_ARIA_KEYSHORTCUTS,
   MISSING_TOAST_PROVIDER_MESSAGE,
 } from './toast.constants.js'
-export { EDITABLE_FIELD_SELECTOR } from './keyboard.constants.js'
+export {
+  EDITABLE_FIELD_SELECTOR,
+  PICKER_OPTION_SELECTOR,
+} from './keyboard.constants.js'
 export {
   MILLISECOND_UNIT,
   MILLISECONDS_PER_SECOND,

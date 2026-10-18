@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTodos } from '@/context'
 import { isValidTitle } from '@/utils'
-import { CANCEL_EDIT_KEY } from '@/constants'
+import { CANCEL_EDIT_KEY, PICKER_OPTION_SELECTOR } from '@/constants'
 
 export function useTodoEdit(todo, onClose) {
   const {
@@ -27,6 +27,9 @@ export function useTodoEdit(todo, onClose) {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key !== CANCEL_EDIT_KEY) return
+
+      const pickerOption = event.target.closest(PICKER_OPTION_SELECTOR)
+      if (pickerOption) return
 
       onClose({ shouldFocusEditButton: true })
     }

@@ -65,8 +65,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
   `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the
   `useTodos` messages), `filters.constants.js` (the statuses, category options and sorts with their URL
-  parameters, the search keys, the highlight's regexp), `keyboard.constants.js` (the editable-field selector the
-  shortcuts skip), `toast.constants.js` (the duration, the shortcut, a message), `backup.constants.js` (the
+  parameters, the search keys, the highlight's regexp), `keyboard.constants.js` (the selectors the shortcuts
+  and the edit form test), `toast.constants.js` (the duration, the shortcut, a message), `backup.constants.js` (the
   backup file's name, type and size limit, the messages), `theme.constants.js` (the themes with their icons,
   `todo:theme`, media queries, CSS variables), `css.constants.js` (the time units, the reduced-motion query);
   barrel `index.js`.
