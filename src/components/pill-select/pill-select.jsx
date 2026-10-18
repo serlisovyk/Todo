@@ -18,7 +18,7 @@ export function PillSelect(props) {
         onChange={(event) => onChange(event.target.value)}
       >
         {options.map(({ id, label }) => (
-          <option key={id} value={id}>
+          <option key={id} value={id} title="">
             <span className="pill-select-mark">{renderMark(id)}</span>
             {label}
           </option>
