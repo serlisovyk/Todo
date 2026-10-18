@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTodos } from '@/context'
 import { isValidTitle } from '@/utils'
-import { CANCEL_EDIT_KEY, PICKER_OPTION_SELECTOR } from '@/constants'
+import {
+  CANCEL_EDIT_KEY,
+  PICKER_OPTION_SELECTOR,
+  PRESSED_SELECTOR,
+} from '@/constants'
 
 export function useTodoEdit(todo, onClose) {
   const {
@@ -69,12 +73,22 @@ export function useTodoEdit(todo, onClose) {
 
   const keepFocus = (event) => event.preventDefault()
 
+  const closeAfterClick = () =>
+    setTimeout(() => onClose({ shouldFocusEditButton: false }))
+
   const handleBlur = (event) => {
     const isStillInside = event.currentTarget.contains(event.relatedTarget)
     if (isStillInside) return
 
     saveChanges()
-    onClose({ shouldFocusEditButton: false })
+
+    const isPointerPressed = document.querySelector(PRESSED_SELECTOR) !== null
+    if (!isPointerPressed) {
+      closeAfterClick()
+      return
+    }
+
+    document.addEventListener('mouseup', closeAfterClick, { once: true })
   }
 
   return {

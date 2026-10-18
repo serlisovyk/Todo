@@ -72,6 +72,7 @@ export {
 export {
   EDITABLE_FIELD_SELECTOR,
   PICKER_OPTION_SELECTOR,
+  PRESSED_SELECTOR,
 } from './keyboard.constants.js'
 export {
   MILLISECOND_UNIT,
