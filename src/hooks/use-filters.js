@@ -21,8 +21,9 @@ export function useFilters() {
 
   const changeFilters = (patch) => {
     const url = new URL(window.location.href)
+    const currentFilters = parseFilters(url.search)
 
-    url.search = buildFiltersSearch({ ...filters, ...patch })
+    url.search = buildFiltersSearch({ ...currentFilters, ...patch })
 
     window.history.replaceState(window.history.state, '', url)
     window.dispatchEvent(new Event(FILTERS_CHANGE_EVENT))

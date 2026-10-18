@@ -66,7 +66,7 @@ export function TodosProvider({ children }) {
   const updateTodo = async (todoId, patch) => {
     const snapshot = todos
 
-    setTodos(patchTodo(todos, todoId, patch))
+    setTodos((current) => patchTodo(current, todoId, patch))
 
     const { isSaved, result: updated } = await saveChange(snapshot, () =>
       repository.update(todoId, patch),
@@ -88,9 +88,9 @@ export function TodosProvider({ children }) {
   const removeTodos = async (todoIds) => {
     const snapshot = todos
 
-    const { removed, remaining } = splitTodosByIds(todos, todoIds)
+    const { removed } = splitTodosByIds(todos, todoIds)
 
-    setTodos(remaining)
+    setTodos((current) => splitTodosByIds(current, todoIds).remaining)
 
     const { isSaved } = await saveChange(snapshot, () => repository.remove(todoIds))
     if (!isSaved) return []
@@ -117,7 +117,7 @@ export function TodosProvider({ children }) {
     const snapshot = todos
     const changed = todos.filter((todo) => todo.completed !== isCompleted)
 
-    setTodos(setAllCompleted(todos, isCompleted))
+    setTodos((current) => setAllCompleted(current, isCompleted))
 
     const { isSaved, result: updated } = await saveChange(snapshot, () =>
       Promise.all(
