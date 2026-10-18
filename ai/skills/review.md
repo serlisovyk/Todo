@@ -22,7 +22,8 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 - **Filters and search**: status, category, sort and query combine; a reload restores them from
   the URL; unknown values in the URL are ignored; the empty list says which case it is ("No tasks
   yet" or "No tasks match your filters"); the highlight marks every match and special characters
-  are plain text; a row that an edit hides hands the focus on. The category and sort pills show the
+  are plain text; a row that an edit hides hands the focus on; the live region says the result only
+  when its text changes, so typing that keeps the count is quiet. The category and sort pills show the
   choice on every load, the Reset icon is there only while one of them is not the default, and it hands
   the focus to the category pill and leaves the status and the query alone, and its appearance moves no
   pill; the search hint shows whole at 320px, and the pills row has no horizontal scroll, with and without

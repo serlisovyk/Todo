@@ -78,4 +78,4 @@ and storage: `ai/rules/architecture.md`.
   node keyed by the attempt inside the region, so the second one is announced again. The tasks-left
   counter and the filter result are different events from a toast: the counter has its own
   `aria-live="polite"` element, the result its own `role="status"` region above the list, which speaks
-  only when the filters change.
+  only when the filters change and its text differs from the last one.

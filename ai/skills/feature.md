@@ -56,8 +56,8 @@ sees the same filters. A new one is a line in `parseFilters` and `buildFiltersSe
 predicate in `matchesFilters`, all pure in `filters.utils.js`; the shown list is derived in render
 with `filterTodos`, never stored. The search query (`q`) is the free-text one: the field shows the raw
 text; the filter, `splitByQuery` (the plain and `<mark>` parts a row renders, never HTML) and the
-announcement trim it. `FilterAnnouncer` says the result once per change of the filters, so a new
-filter needs nothing there. The control: the status stays a radio group on screen; the category and the
+announcement trim it. `FilterAnnouncer` says the result when the filters change and its text differs from the last one,
+so a new filter needs nothing there. The control: the status stays a radio group on screen; the category and the
 sort are `PillSelect`s in `FiltersToolbar`, on the row under the search field (decision `filter-pills`), their
 options a list in `filters.constants.js` and a `CategoryDot` as the category's `renderMark`. A Reset icon
 button shows while `canResetFilters`, applies `RESET_DEFAULTS`, commits it with `flushSync` and focuses the

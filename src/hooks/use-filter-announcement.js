@@ -21,7 +21,10 @@ export function useFilterAnnouncement() {
 
   const hasFiltersChanged = announcement.filtersKey !== filtersKey
   if (hasFiltersChanged) {
-    setAnnouncement({ filtersKey, message, attempt: announcement.attempt + 1 })
+    const isNewMessage = message !== announcement.message
+    const attempt = isNewMessage ? announcement.attempt + 1 : announcement.attempt
+
+    setAnnouncement({ filtersKey, message, attempt })
   }
 
   return announcement
