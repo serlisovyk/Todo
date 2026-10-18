@@ -18,6 +18,50 @@
     }
   }
 
+  &[data-toggling='true'] {
+    .todo-item-checkbox:checked {
+      @starting-style {
+        border-color: var(--color-border-control);
+        background-color: transparent;
+      }
+    }
+
+    .todo-item-checkbox:checked + .todo-item-check {
+      @starting-style {
+        opacity: 0;
+        scale: 0.5;
+      }
+    }
+
+    .todo-item-checkbox:checked ~ .todo-item-title {
+      @starting-style {
+        color: var(--color-text);
+        text-decoration-color: transparent;
+      }
+    }
+
+    .todo-item-checkbox:not(:checked) {
+      @starting-style {
+        border-color: var(--color-accent);
+        background-color: var(--color-accent);
+      }
+    }
+
+    .todo-item-checkbox:not(:checked) + .todo-item-check {
+      @starting-style {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    .todo-item-checkbox:not(:checked) ~ .todo-item-title {
+      @starting-style {
+        color: var(--color-text-muted);
+        text-decoration-color: var(--color-text-muted);
+      }
+    }
+  }
+
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-border);
   }
@@ -59,6 +103,9 @@
   border-radius: var(--radius-sm);
   background-color: transparent;
   cursor: pointer;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
 
   &:checked {
     border-color: var(--color-accent);
@@ -72,16 +119,28 @@
   height: var(--todo-item-checkbox-size);
   color: var(--color-on-accent);
   pointer-events: none;
-  visibility: hidden;
+  opacity: 0;
+  scale: 0.5;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    scale var(--duration-base) var(--ease-out);
 
   .todo-item-checkbox:checked + & {
-    visibility: visible;
+    opacity: 1;
+    scale: 1;
   }
 }
 
 .todo-item-title {
   grid-column: 2;
   overflow-wrap: anywhere;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    text-decoration-color var(--duration-base) var(--ease-out);
+
+  @media (forced-colors: none) {
+    text-decoration: line-through transparent;
+  }
 
   .todo-item-checkbox:checked ~ & {
     color: var(--color-text-muted);

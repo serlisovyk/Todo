@@ -15,6 +15,7 @@ export function TodoItem({ todo }) {
     editButtonRef,
     titleParts,
     isEditing,
+    isToggling,
     handleToggle,
     handleDelete,
     startEditing,
@@ -45,7 +46,7 @@ export function TodoItem({ todo }) {
   )
 
   return (
-    <li ref={rowRef} className="todo-item">
+    <li ref={rowRef} className="todo-item" data-toggling={isToggling}>
       <div className="todo-item-body">
         <label className="todo-item-label">
           <input

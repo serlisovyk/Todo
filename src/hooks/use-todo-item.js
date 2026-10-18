@@ -22,6 +22,7 @@ export function useTodoItem(todo) {
   const editButtonRef = useRef(null)
 
   const [isEditing, setIsEditing] = useState(false)
+  const [isToggling, setIsToggling] = useState(false)
 
   const titleParts = splitByQuery(title, filters.query)
 
@@ -59,6 +60,9 @@ export function useTodoItem(todo) {
     const isHiddenAfterToggle = !matchesFilters(toggledTodo, filters)
     if (isHiddenAfterToggle) findFocusTarget().focus()
 
+    setIsToggling(true)
+    requestAnimationFrame(() => setIsToggling(false))
+
     toggleTodo(id)
   }
 
@@ -88,6 +92,7 @@ export function useTodoItem(todo) {
     editButtonRef,
     titleParts,
     isEditing,
+    isToggling,
     handleToggle,
     handleDelete,
     startEditing,
