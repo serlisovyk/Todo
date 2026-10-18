@@ -102,10 +102,15 @@ option always says what its mark says, and the list stays the browser's (decisio
 
 **An animation** — a colour that changes on hover or selection is a `transition` of that property over
 `--duration-base`, which reduced motion zeroes in `tokens.css`; `@starting-style` for an element that
-enters; a View Transition (`document.startViewTransition` + `flushSync`) for a reorder or a removal,
-feature-detected and skipped under reduced motion by a check in the script. It never blocks, queues
-or drops the next action (decision `list-animations`). `useCircleTransition` in `context/theme/` shows the shape: the feature check,
-the reduced-motion check and `flushSync` in one place.
+enters, applied only in the state that means "added" (`todo-item.css` waits for the add form's focused
+title). The list uses no View Transition: it takes the page's clicks while it runs, so a reorder, a delete,
+Undo and a filter change are instant and a row that changes in place (a checked task) is a CSS transition
+(decision `list-motion-without-view-transitions`). A browser starts no transition for an element React moves in
+the DOM (a task checked sends its row down), so a toggling row carries `data-toggling` (`useTodoItem`, cleared
+on the next frame) and `todo-item.css` gives it a `@starting-style` with the look of the state it came from. A
+reorder animation, if one is wanted, is FLIP through the Web Animations API. The theme's reveal,
+`useCircleTransition` in `context/theme/`, is the one View Transition and checks the feature and the
+reduced-motion query itself.
 
 ## Avoid
 

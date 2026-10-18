@@ -1,6 +1,6 @@
 # List animations are a progressive enhancement
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: superseded by 2026-10-18-list-motion-without-view-transitions.md
 
 ## Context
 

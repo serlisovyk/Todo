@@ -50,7 +50,7 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 - Build green, but the change was never used in the browser.
 - Checked on desktop only — never at 320px or by touch.
 - Checked in one theme only.
-- Animation checked only with motion enabled.
+- Animation checked only with motion enabled, or only with slow single clicks and never a burst of fast ones.
 - Stored data checked without a reload, or only with clean storage.
 
 ## Report

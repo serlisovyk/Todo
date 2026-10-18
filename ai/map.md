@@ -95,7 +95,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `styles/colors.css` — `[data-category]` and `[data-priority]` set `--category-color` and
   `--priority-color` from the colour tokens.
 - `styles/base.css` — the Inter face, box sizing, `body`, the focus ring, `.sr-only`.
-- `styles/animations.css` — the View Transition rules; every `@keyframes` goes here too.
+- `styles/animations.css` — the theme's View Transition rules; every `@keyframes` goes here too.
 
 The layout (decisions `structure-and-naming`, `context-folders`). A folder appears with its first file; a folder of
 JavaScript modules has an `index.js` of named exports; code imports across folders through `@/`:
