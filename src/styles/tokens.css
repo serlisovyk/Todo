@@ -7,7 +7,7 @@
   --color-text: #18181b;
   --color-text-muted: #65656f;
   --color-border: #e4e4e9;
-  --color-border-control: #8a8a95;
+  --color-border-control: #84848f;
   --color-accent: #5b5bd6;
   --color-on-accent: #ffffff;
   --color-focus: var(--color-accent);
@@ -75,7 +75,7 @@
   --color-text: #ededf0;
   --color-text-muted: #9a9aa6;
   --color-border: #2a2a31;
-  --color-border-control: #6a6a77;
+  --color-border-control: #6e6e7b;
   --color-accent: #8b8cf8;
   --color-on-accent: #0e0e11;
   --color-highlight: #876a12;
