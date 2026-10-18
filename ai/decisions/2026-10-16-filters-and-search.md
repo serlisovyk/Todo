@@ -1,6 +1,6 @@
 # Filters in a panel and in the URL; search highlights matches
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: accepted
 
 ## Context
 

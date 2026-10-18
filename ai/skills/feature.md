@@ -58,8 +58,12 @@ with `filterTodos`, never stored. The search query (`q`) is the free-text one: t
 text; the filter, `splitByQuery` (the plain and `<mark>` parts a row renders, never HTML) and the
 announcement trim it. `FilterAnnouncer` says the result once per change of the filters, so a new
 filter needs nothing there. The control is a radio group: the status stays on screen, everything else
-goes into the Filters panel (decision `filters-and-search`). The footer's counter and buttons ignore
-the filters (decision `footer-acts-on-all-tasks`).
+goes into the Filters panel (decision `filters-and-search`): a `FilterGroup` in `FiltersPanel`, its
+options a list in `filters.constants.js` and a `CategoryDot` as `renderMark`. `FiltersToolbar` owns the panel's
+open state, which is kept nowhere; the panel is always in the page, `hidden` while closed, and the
+sort is no predicate: `sortTodos(todos, sort)` orders the shown list in render, completed tasks last
+under every sort (decision `filters-panel-behavior`). The footer's counter and buttons ignore the
+filters (decision `footer-acts-on-all-tasks`).
 
 **A toast** — `const { showToast } = useToast()`, then `showToast({ message })`; an undoable action
 adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no action). One toast at a time, a new one replaces the old; `ToastRegion` is
@@ -91,7 +95,7 @@ summary. Every failure is an error toast and changes nothing; the input is clear
 same file can be chosen again (decision `backup-export-import`).
 
 **A picker** — a `PillSelect` over a short fixed list. The caller passes `renderMark(id)`, the mark
-for one option (a dot with `data-category`, a flag with `data-priority`); the pill shows it for the
+for one option (a `CategoryDot`, a flag with `data-priority`); the pill shows it for the
 value and the open list shows it in each option where the browser has `base-select`. The text of an
 option always says what its mark says, and the list stays the browser's (decision
 `base-select-pickers`).

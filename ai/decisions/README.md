@@ -64,6 +64,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 ### Interface and look
 
 - [Filters in a panel and in the URL; search highlights matches](2026-10-16-filters-and-search.md)
+- [The Filters panel starts closed, Reset covers the category and the sort, completed tasks stay last](2026-10-18-filters-panel-behavior.md)
 - [The `/` shortcut stays a single-key shortcut that cannot be turned off](2026-10-17-search-shortcut-key.md)
 - [The footer counts and acts on all tasks, not on the filtered list](2026-10-17-footer-acts-on-all-tasks.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
