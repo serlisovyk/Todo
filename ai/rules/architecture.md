@@ -46,7 +46,7 @@ Data flows one way: constants → storage → context → hooks → components. 
 ## State
 
 - App state lives in providers in `context/`: the tasks, the theme, the toast. Filter state is the
-  URL query, read and written through `use-filters` (decision `filters-and-search`).
+  URL query, read and written through `use-filters` (decision `filter-pills`).
 - A component reads state and actions through the context's hook (`useTodos()`). A context
   folder exports only its provider and its hook, so the context object stays internal.
 - A context changes the UI first, then writes through the repository; on failure it rolls the change

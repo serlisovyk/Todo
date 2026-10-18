@@ -36,17 +36,14 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   toast region; `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
   and the theme switch.
-- `components/category-dot/` — `CategoryDot`: the 12px dot in a category's colour (the forms and the panel).
+- `components/category-dot/` — `CategoryDot`: the 12px dot in a category's colour (the forms and the category pill).
 - `components/filter-announcer/` — `FilterAnnouncer`: the persistent visually hidden live region above the list;
   it says what the filters show; its logic is `useFilterAnnouncement`.
-- `components/filter-group/` — `FilterGroup`: a fieldset of radio buttons; `renderMark` draws an option's dot.
-- `components/filters-panel/` — `FiltersPanel`: the card with the category and sort groups and Reset filters; its
-  logic is `useFiltersPanel`.
-- `components/filters-toolbar/` — `FiltersToolbar`: the search field, the Filters button and the panel in one grid,
-  and the panel's open state; its logic is `useFiltersToolbar`.
+- `components/filters-toolbar/` — `FiltersToolbar`: the search field and, under it, the Category and Sort pills and
+  Reset filters; its logic is `useFiltersToolbar`.
 - `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`.
-- `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot or flag,
-  also inside each option of the open list.
+- `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot, flag or
+  icon, also inside each option of the open list; `ref` reaches the `<select>`.
 - `components/search-field/` — `SearchField`: the labelled search input and its clear button; its logic is
   `useSearchField`.
 - `components/status-switch/` — `StatusSwitch`: three radio buttons (All, Active, Completed) that set the status filter.
@@ -62,9 +59,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority, Save and Cancel).
 - `components/toast-region/`, `components/toast/` — `ToastRegion`: the always-present `role="status"`
   region; `Toast`: the message (with an error icon) and its action button.
-- `hooks/` — `useFilters` (the filters in the URL query), `useFiltersToolbar` and `useFiltersPanel` (the Filters
-  button and the panel), `useSearchField` (the field and the `/` shortcut), `useFilterAnnouncement` (the filter
-  result message), `useTodoForm`, `useTodoItem`, `useTodoEdit`, `useTodoFooter`, `useTodoBackup`, `useToastTimer`,
+- `hooks/` — `useFilters` (the filters in the URL query), `useFiltersToolbar` (the pills and Reset),
+  `useSearchField` (the field and the `/` shortcut), `useFilterAnnouncement` (the filter result message), `useTodoForm`, `useTodoItem`, `useTodoEdit`, `useTodoFooter`, `useTodoBackup`, `useToastTimer`,
   `useToastExit`, `useToastShortcut` (Ctrl/Cmd+Z runs the toast's action): each component's logic; barrel `index.js`.
 - `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
   `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the

@@ -1,6 +1,6 @@
 # Filters in a panel and in the URL; search highlights matches
 
-Date: 2026-10-16 · Status: accepted
+Date: 2026-10-16 · Status: superseded by 2026-10-18-filter-pills.md
 
 ## Context
 

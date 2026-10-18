@@ -1,6 +1,6 @@
 # The Filters panel starts closed, Reset covers the category and the sort, completed tasks stay last
 
-Date: 2026-10-18 · Status: accepted
+Date: 2026-10-18 · Status: superseded by 2026-10-18-filter-pills.md
 
 ## Context
 

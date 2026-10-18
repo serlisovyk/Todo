@@ -22,9 +22,11 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 - **Filters and search**: status, category, sort and query combine; a reload restores them from
   the URL; unknown values in the URL are ignored; the empty list says which case it is ("No tasks
   yet" or "No tasks match your filters"); the highlight marks every match and special characters
-  are plain text; a row that an edit hides hands the focus on. The Filters panel is closed on every
-  load, a dot and the button's name say the category or sort is set, `Escape` closes it and leaves
-  the focus on the button, and Reset hands the focus on and leaves the status and the query alone.
+  are plain text; a row that an edit hides hands the focus on. The category and sort pills show the
+  choice on every load, the Reset icon is there only while one of them is not the default, and it hands
+  the focus to the category pill and leaves the status and the query alone, and its appearance moves no
+  pill; the search hint shows whole at 320px, and the pills row has no horizontal scroll, with and without
+  Reset.
 - **Storage**: a reload keeps everything; broken or foreign data gives an empty list without a
   crash and is not overwritten until something changes; blocked or full storage gives a toast,
   not a crash; two tabs stay in sync; both backends behave the same.
