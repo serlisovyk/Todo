@@ -1,6 +1,7 @@
 .theme-switch {
   display: flex;
   gap: var(--space-1);
+  min-width: 0;
   margin: 0;
   margin-inline-start: auto;
   padding: var(--space-1);
@@ -12,6 +13,7 @@
 .theme-switch-option {
   position: relative;
   display: grid;
+  min-width: 0;
   place-items: center;
 }
 
@@ -19,6 +21,7 @@
   grid-area: 1 / 1;
   appearance: none;
   width: var(--touch-target);
+  max-width: 100%;
   height: var(--touch-target);
   margin: 0;
   border: 2px solid transparent;

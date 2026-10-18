@@ -1,6 +1,7 @@
 .pill-select {
   position: relative;
   display: block;
+  min-width: 0;
 }
 
 .pill-select-control {

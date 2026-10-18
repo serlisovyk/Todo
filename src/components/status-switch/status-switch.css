@@ -1,9 +1,6 @@
 .status-switch {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(calc(var(--touch-target) * 2), 1fr)
-  );
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-1);
   margin: 0;
   padding: var(--space-1);
@@ -14,6 +11,8 @@
 
 .status-switch-option {
   display: grid;
+  grid-template-columns: minmax(min-content, 1fr);
+  flex: 1 1 0;
   place-items: center;
 }
 
@@ -48,7 +47,9 @@
 
 .status-switch-label {
   grid-area: 1 / 1;
+  min-width: var(--touch-target);
   color: var(--color-text-muted);
+  text-align: center;
   font-weight: var(--font-weight-medium);
   pointer-events: none;
   transition: color var(--duration-base) var(--ease-out);
