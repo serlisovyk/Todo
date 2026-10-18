@@ -30,6 +30,10 @@
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
 
+  &:placeholder-shown {
+    padding-inline-end: var(--space-4);
+  }
+
   &::placeholder {
     color: var(--color-text-muted);
     opacity: 1;
