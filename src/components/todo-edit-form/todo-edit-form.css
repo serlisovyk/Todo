@@ -23,13 +23,6 @@
   background-color: var(--color-surface);
 }
 
-.todo-edit-form-dot {
-  width: var(--space-3);
-  height: var(--space-3);
-  border-radius: var(--radius-full);
-  background-color: var(--category-color);
-}
-
 .todo-edit-form-flag {
   width: var(--space-4);
   height: var(--space-4);

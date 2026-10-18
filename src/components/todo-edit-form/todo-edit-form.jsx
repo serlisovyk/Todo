@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Check, Flag, X } from 'lucide-react'
+import { CategoryDot } from '@/components/category-dot'
 import { IconButton } from '@/components/icon-button'
 import { PillSelect } from '@/components/pill-select'
 import { useTodoEdit } from '@/hooks'
@@ -45,9 +46,7 @@ export function TodoEditForm({ todo, onClose }) {
         options={CATEGORIES}
         value={category}
         onChange={setCategory}
-        renderMark={(categoryId) => (
-          <span className="todo-edit-form-dot" data-category={categoryId} />
-        )}
+        renderMark={(categoryId) => <CategoryDot categoryId={categoryId} />}
       />
 
       <PillSelect

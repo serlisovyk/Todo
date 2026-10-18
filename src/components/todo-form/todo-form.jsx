@@ -1,4 +1,5 @@
 import { Flag, Plus } from 'lucide-react'
+import { CategoryDot } from '@/components/category-dot'
 import { PillSelect } from '@/components/pill-select'
 import { useTodoForm } from '@/hooks'
 import {
@@ -62,9 +63,7 @@ export function TodoForm() {
         options={CATEGORIES}
         value={category}
         onChange={setCategory}
-        renderMark={(categoryId) => (
-          <span className="todo-form-dot" data-category={categoryId} />
-        )}
+        renderMark={(categoryId) => <CategoryDot categoryId={categoryId} />}
       />
 
       <PillSelect

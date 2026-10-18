@@ -1,5 +1,6 @@
 export { App } from './app'
 export { AppHeader } from './app-header'
+export { CategoryDot } from './category-dot'
 export { FilterAnnouncer } from './filter-announcer'
 export { IconButton } from './icon-button'
 export { PillSelect } from './pill-select'
