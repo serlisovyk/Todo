@@ -134,13 +134,10 @@
 .todo-item-title {
   grid-column: 2;
   overflow-wrap: anywhere;
+  text-decoration: line-through transparent;
   transition:
     color var(--duration-base) var(--ease-out),
     text-decoration-color var(--duration-base) var(--ease-out);
-
-  @media (forced-colors: none) {
-    text-decoration: line-through transparent;
-  }
 
   .todo-item-checkbox:checked ~ & {
     color: var(--color-text-muted);
@@ -151,12 +148,6 @@
 .todo-item-mark {
   background-color: var(--color-highlight);
   color: var(--color-on-highlight);
-
-  @media (forced-colors: active) {
-    background-color: Highlight;
-    color: HighlightText;
-    forced-color-adjust: none;
-  }
 }
 
 .todo-item-meta {

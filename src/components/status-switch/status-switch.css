@@ -36,13 +36,6 @@
       background-color: var(--color-surface-hover);
     }
   }
-
-  @media (forced-colors: active) {
-    &:checked {
-      border-color: Highlight;
-      background-color: Highlight;
-    }
-  }
 }
 
 .status-switch-label {
@@ -56,10 +49,5 @@
 
   .status-switch-input:checked + & {
     color: var(--color-on-accent);
-
-    @media (forced-colors: active) {
-      color: HighlightText;
-      forced-color-adjust: none;
-    }
   }
 }

@@ -14,6 +14,7 @@ template.
 - A backend, an HTTP API, a mock server (MSW, json-server)
 - Authentication, analytics, third-party runtime scripts, a font CDN
 - A service worker or PWA manifest, i18n
+- Windows contrast themes (`forced-colors`) are not tuned: out of scope by the author's decision
 
 ## Dependencies
 

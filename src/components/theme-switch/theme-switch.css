@@ -38,13 +38,6 @@
       background-color: var(--color-surface-hover);
     }
   }
-
-  @media (forced-colors: active) {
-    &:checked {
-      border-color: Highlight;
-      background-color: Highlight;
-    }
-  }
 }
 
 .theme-switch-icon {
@@ -57,9 +50,5 @@
 
   .theme-switch-input:checked + & {
     color: var(--color-on-accent);
-
-    @media (forced-colors: active) {
-      color: HighlightText;
-    }
   }
 }
