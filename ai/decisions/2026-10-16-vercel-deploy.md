@@ -1,6 +1,6 @@
 # Deployed on Vercel through its Git integration
 
-Date: 2026-10-16 · Status: accepted (not implemented)
+Date: 2026-10-16 · Status: superseded by 2026-10-18-vercel-and-link-previews.md
 
 ## Context
 

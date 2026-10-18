@@ -11,3 +11,4 @@ docs are listed in `AGENTS.md`.
 - [storage](storage.md) — adding a repository implementation and changing the stored format:
   the validator, the version bump, the migration table.
 - [review](review.md) — self-review of a diff: regressions, scope creep, accessibility, docs drift.
+- [og-image](og-image.md) — making a new link preview card and keeping the favicon's colours in step with the accent.

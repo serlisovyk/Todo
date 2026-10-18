@@ -67,6 +67,7 @@ Skill playbooks live in `ai/skills/` (tool-agnostic Markdown, index in
   they connect.
 - `storage` — how to add a repository implementation and how to change the stored format.
 - `review` — self-review for regressions, scope creep, accessibility, and docs drift.
+- `og-image` — how to make a new link preview card and keep the favicon's colours in step with the accent.
 
 If a change materially reshapes a pattern, update the matching skill in the same change
 (`ai/rules/docs.md`).

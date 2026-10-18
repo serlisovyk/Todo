@@ -45,7 +45,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [No automated tests](2026-10-16-no-automated-tests.md)
 - [pnpm is the package manager](2026-10-16-pnpm.md)
 - [Merge locally into `main`, no pull requests](2026-10-16-local-merge-without-pr.md)
-- [Deployed on Vercel through its Git integration](2026-10-16-vercel-deploy.md)
+- [Vercel deploys with no `vercel.json`; the link preview is a render of the app's list](2026-10-18-vercel-and-link-previews.md)
 - [Bundle size budgets: JavaScript 90 kB, CSS 8 kB (gzip)](2026-10-17-js-budget-90-kb.md)
 - [`eslint-plugin-jsx-a11y` runs on ESLint 10 through an allowed peer](2026-10-16-jsx-a11y-on-eslint-10.md)
 - [Features the author rejected](2026-10-16-rejected-features.md)
