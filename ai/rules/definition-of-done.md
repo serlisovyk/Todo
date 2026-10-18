@@ -24,12 +24,17 @@ for approval.
   label, and no name is read twice (decision `tooltips-as-title`).
 - Everything works from the keyboard, the focus ring is visible, and after adding, editing,
   deleting or closing a panel the focus lands somewhere meaningful.
-- Text contrast is at least 4.5:1, icons and control borders at least 3:1, in **both** themes.
+- Text contrast is at least 4.5:1, icons and control borders at least 3:1, in **both** themes and in
+  every state, hover included.
+- A fixed overlay (the toast) never covers the focused control: the page keeps `--toast-clearance` of
+  scroll padding and bottom space.
 - A change a screen-reader user must hear is announced through the polite live region.
 - New animation takes its duration from a `--duration-*` token, which reduced motion zeroes; a script
   that waits for a transition or starts a View Transition checks the query itself.
 - Touch targets are at least 44px; the layout works from 320px wide to desktop and at 200% zoom with
-  no horizontal scroll.
+  no horizontal scroll, and with 150 to 200% text the header, the switches and the pills still reflow.
+- A click or a tap lands on the control it started on: nothing that a press moves (a form that closes on
+  blur) changes the layout before the pointer is released.
 
 ## Docs (in the same change, within `ai/rules/docs.md`)
 

@@ -37,9 +37,12 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
   theme on load.
 - **Accessibility in the browser**: every flow by keyboard alone; focus after each action; a
   screen reader hears names, states and each announcement once (the accessibility tree lists no
-  description equal to a name); tooltips on icon buttons, chips and pills; contrast in both themes;
-  320px and 200% zoom without horizontal scroll; reduced motion (durations from the tokens, no
-  `prefers-reduced-motion` block in a component).
+  description equal to a name); tooltips on icon buttons, chips and pills, none over an open picker;
+  contrast in both themes, hover and focus included; 320px and 200% zoom without horizontal scroll,
+  and 150 to 200% text at 320px; the toast never hides the focused control; a click on a control
+  below a form that closes on blur still lands, by mouse and by touch; Escape in an open picker
+  closes the picker only; reduced motion (durations from the tokens, no `prefers-reduced-motion`
+  block in a component).
 - **React**: no state that could be derived; no manual memoization; effects only synchronize with
   something outside React and clean up; list keys are ids.
 - **Scope**: nothing from `ai/rules/scope.md` or the rejected features slipped in; no unrelated
@@ -52,6 +55,7 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 - Build green, but the change was never used in the browser.
 - Checked on desktop only — never at 320px or by touch.
 - Checked in one theme only.
+- Checked in the default look only: not on hover, not with 200% text, not with a toast on screen.
 - Animation checked only with motion enabled, or only with slow single clicks and never a burst of fast ones.
 - Stored data checked without a reload, or only with clean storage.
 
