@@ -10,6 +10,7 @@ export {
   buildFiltersSearch,
   filterTodos,
   getFiltersKey,
+  hasPanelChoice,
   matchesFilters,
   parseFilters,
 } from './filters.utils.js'
@@ -32,4 +33,4 @@ export {
   sortTodos,
   splitTodosByIds,
 } from './todos.utils.js'
-export { isIsoDate, isPlainObject } from './validation.utils.js'
+export { isIsoDate, isKnownId, isPlainObject } from './validation.utils.js'

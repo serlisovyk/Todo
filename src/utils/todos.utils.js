@@ -3,14 +3,12 @@ import {
   NO_MATCHES_MESSAGE,
   PLURAL_LOCALE,
   PRIORITIES,
+  SORT_OLDEST,
+  SORT_PRIORITY,
   TASK_NOUNS,
   TITLE_MAX_LENGTH,
 } from '@/constants'
-import { isIsoDate, isPlainObject } from './validation.utils.js'
-
-function isKnownId(options, value) {
-  return options.some((option) => option.id === value)
-}
+import { isIsoDate, isKnownId, isPlainObject } from './validation.utils.js'
 
 export function formatTaskCount(count) {
   const pluralForm = new Intl.PluralRules(PLURAL_LOCALE).select(count)
@@ -112,16 +110,56 @@ export function setAllCompleted(todos, isCompleted) {
   return updated
 }
 
-function compareTodos(first, second) {
+function compareCompletion(first, second) {
   if (first.completed && !second.completed) return 1
   if (!first.completed && second.completed) return -1
 
+  return 0
+}
+
+function compareNewestFirst(first, second) {
   const newestFirst = Date.parse(second.createdAt) - Date.parse(first.createdAt)
 
   return newestFirst
 }
 
-export function sortTodos(todos) {
+function compareOldestFirst(first, second) {
+  const oldestFirst = Date.parse(first.createdAt) - Date.parse(second.createdAt)
+
+  return oldestFirst
+}
+
+function getPriorityRank(priorityId) {
+  return PRIORITIES.findIndex(({ id }) => id === priorityId)
+}
+
+function comparePriority(first, second) {
+  const firstRank = getPriorityRank(first.priority)
+  const secondRank = getPriorityRank(second.priority)
+
+  const highestFirst = secondRank - firstRank
+  if (highestFirst !== 0) return highestFirst
+
+  return compareNewestFirst(first, second)
+}
+
+function getSortComparator(sort) {
+  if (sort === SORT_OLDEST) return compareOldestFirst
+  if (sort === SORT_PRIORITY) return comparePriority
+
+  return compareNewestFirst
+}
+
+export function sortTodos(todos, sort) {
+  const compareBySort = getSortComparator(sort)
+
+  const compareTodos = (first, second) => {
+    const completionOrder = compareCompletion(first, second)
+    if (completionOrder !== 0) return completionOrder
+
+    return compareBySort(first, second)
+  }
+
   const sorted = todos.toSorted(compareTodos)
 
   return sorted

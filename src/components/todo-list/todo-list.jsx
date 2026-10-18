@@ -25,7 +25,7 @@ export function TodoList() {
     return <p className="todo-list-message">No tasks match your filters.</p>
   }
 
-  const sortedTodos = sortTodos(visibleTodos)
+  const sortedTodos = sortTodos(visibleTodos, filters.sort)
   const items = sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
 
   return <ul className="todo-list">{items}</ul>

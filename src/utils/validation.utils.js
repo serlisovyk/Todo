@@ -15,3 +15,7 @@ export function isIsoDate(value) {
 
   return isCanonical
 }
+
+export function isKnownId(options, value) {
+  return options.some((option) => option.id === value)
+}
