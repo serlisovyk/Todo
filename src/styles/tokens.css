@@ -64,6 +64,7 @@
   --focus-ring-offset: 2px;
   --touch-target: 2.75rem;
   --content-max-width: 42rem;
+  --toast-clearance: calc(var(--space-12) * 2);
 }
 
 :root[data-theme='dark'] {
