@@ -1,6 +1,6 @@
 import { AppHeader } from '@/components/app-header'
 import { FilterAnnouncer } from '@/components/filter-announcer'
-import { SearchField } from '@/components/search-field'
+import { FiltersToolbar } from '@/components/filters-toolbar'
 import { StatusSwitch } from '@/components/status-switch'
 import { TodoBackup } from '@/components/todo-backup'
 import { TodoFooter } from '@/components/todo-footer'
@@ -19,7 +19,7 @@ export function App() {
 
           <main className="app">
             <TodoForm />
-            <SearchField />
+            <FiltersToolbar />
             <StatusSwitch />
             <FilterAnnouncer />
             <TodoList />
