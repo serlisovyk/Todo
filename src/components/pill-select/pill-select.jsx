@@ -2,7 +2,7 @@ import { ChevronDown } from 'lucide-react'
 import './pill-select.css'
 
 export function PillSelect(props) {
-  const { labelText, name, options, value, onChange, renderMark } = props
+  const { ref, labelText, name, options, value, onChange, renderMark } = props
 
   return (
     <label className="pill-select" title={labelText}>
@@ -11,6 +11,7 @@ export function PillSelect(props) {
       <span className="pill-select-indicator">{renderMark(value)}</span>
 
       <select
+        ref={ref}
         className="pill-select-control"
         name={name}
         value={value}
