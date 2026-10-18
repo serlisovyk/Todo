@@ -1,0 +1,19 @@
+# Todo
+
+> A fast, accessible todo list with categories, priorities, search and filters, saved in your browser.
+
+Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks never leave the browser: they are kept in localStorage (or IndexedDB), and there is no backend, account, tracking or analytics.
+
+## Features
+
+- Add, edit, complete and delete tasks, with Undo for a deletion
+- A category (Work, Personal, Study, Shopping, Health) and a priority (Low, Medium, High) on every task
+- Search with highlighted matches, filters by status and category, sorting by newest, oldest or priority; the filters live in the URL
+- Light, dark or system theme
+- Export and import of a JSON backup
+- Works from the keyboard and with a screen reader, built for WCAG 2.2 AA
+
+## Links
+
+- [Todo](https://todo-plum-nu-78.vercel.app/): the live app
+- [Source code](https://github.com/serlisovyk/Todo): the repository on GitHub
