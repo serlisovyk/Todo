@@ -1,39 +1,36 @@
-import { useEffect, useId, useRef, useState } from 'react'
-import { hasPanelChoice } from '@/utils'
-import { CLOSE_FILTERS_KEY } from '@/constants'
+import { useRef } from 'react'
+import { flushSync } from 'react-dom'
+import { canResetFilters } from '@/utils'
+import { RESET_DEFAULTS } from '@/constants'
 import { useFilters } from './use-filters.js'
 
 export function useFiltersToolbar() {
-  const { filters } = useFilters()
+  const { filters, changeFilters } = useFilters()
 
-  const buttonRef = useRef(null)
-  const panelRef = useRef(null)
-  const panelId = useId()
+  const categorySelectRef = useRef(null)
 
-  const [isOpen, setIsOpen] = useState(false)
+  const { category, sort } = filters
 
-  const hasChoice = hasPanelChoice(filters)
+  const canReset = canResetFilters(filters)
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key !== CLOSE_FILTERS_KEY) return
+  const handleCategoryChange = (categoryId) =>
+    changeFilters({ category: categoryId })
 
-      const isInsidePanel = panelRef.current.contains(event.target)
-      const isOnButton = buttonRef.current === event.target
+  const handleSortChange = (sortId) => changeFilters({ sort: sortId })
 
-      const isInsideFilters = isInsidePanel || isOnButton
-      if (!isInsideFilters) return
+  const handleReset = () => {
+    flushSync(() => changeFilters(RESET_DEFAULTS))
 
-      buttonRef.current.focus()
-      setIsOpen(false)
-    }
+    categorySelectRef.current.focus()
+  }
 
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
-
-  const handleToggle = () => setIsOpen(!isOpen)
-
-  return { buttonRef, panelRef, panelId, isOpen, hasChoice, handleToggle }
+  return {
+    categorySelectRef,
+    category,
+    sort,
+    canReset,
+    handleCategoryChange,
+    handleSortChange,
+    handleReset,
+  }
 }

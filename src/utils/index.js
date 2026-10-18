@@ -8,9 +8,9 @@ export {
 export { toMilliseconds } from './css.utils.js'
 export {
   buildFiltersSearch,
+  canResetFilters,
   filterTodos,
   getFiltersKey,
-  hasPanelChoice,
   matchesFilters,
   parseFilters,
 } from './filters.utils.js'

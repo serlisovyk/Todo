@@ -52,7 +52,7 @@ export function filterTodos(todos, filters) {
   return filtered
 }
 
-export function hasPanelChoice(filters) {
+export function canResetFilters(filters) {
   const isCategoryChosen = filters.category !== DEFAULT_CATEGORY_FILTER
   const isSortChosen = filters.sort !== DEFAULT_SORT
 

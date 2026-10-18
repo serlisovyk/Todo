@@ -32,7 +32,7 @@ export const DEFAULT_CATEGORY_FILTER = CATEGORY_ALL
 export const DEFAULT_SORT = SORT_NEWEST
 export const DEFAULT_QUERY = ''
 
-export const PANEL_DEFAULTS = {
+export const RESET_DEFAULTS = {
   category: DEFAULT_CATEGORY_FILTER,
   sort: DEFAULT_SORT,
 }
@@ -45,7 +45,6 @@ export const FILTERS_CHANGE_EVENT = 'todo:filters'
 
 export const SEARCH_SHORTCUT_KEY = '/'
 export const CLEAR_SEARCH_KEY = 'Escape'
-export const CLOSE_FILTERS_KEY = 'Escape'
 
 export const NO_MATCHES_MESSAGE = 'No tasks match your filters'
 
@@ -54,7 +53,4 @@ export const REGEXP_ESCAPE_REPLACEMENT = '\\$&'
 export const MATCH_FLAGS = 'gi'
 
 export const STATUS_INPUT_NAME = 'status'
-export const CATEGORY_INPUT_NAME = 'category'
-export const SORT_INPUT_NAME = 'sort'
 export const CHECKED_STATUS_SELECTOR = `input[name="${STATUS_INPUT_NAME}"]:checked`
-export const CHECKED_CATEGORY_SELECTOR = `input[name="${CATEGORY_INPUT_NAME}"]:checked`
