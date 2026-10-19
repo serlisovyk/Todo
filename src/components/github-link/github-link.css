@@ -1,0 +1,21 @@
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  transition: color var(--duration-base) var(--ease-out);
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.github-link-icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}

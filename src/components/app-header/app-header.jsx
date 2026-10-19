@@ -1,4 +1,5 @@
 import { ListChecks } from 'lucide-react'
+import { GithubLink } from '@/components/github-link'
 import { ThemeSwitch } from '@/components/theme-switch'
 import './app-header.css'
 
@@ -9,7 +10,11 @@ export function AppHeader() {
 
       <h1 className="app-header-title">Todo</h1>
 
-      <ThemeSwitch />
+      <div className="app-header-actions">
+        <ThemeSwitch />
+
+        <GithubLink />
+      </div>
     </header>
   )
 }

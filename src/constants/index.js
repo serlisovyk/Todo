@@ -1,4 +1,8 @@
-export { AUTHOR_NAME } from './app.constants.js'
+export {
+  AUTHOR_NAME,
+  REPOSITORY_URL,
+  REPOSITORY_LINK_LABEL,
+} from './app.constants.js'
 export {
   DATA_STORAGE_KEY,
   DATA_FORMAT_VERSION,
