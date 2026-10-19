@@ -7,8 +7,8 @@ non-negotiable rules; this file is the full flow.
 
 - Read the Linear issue (`MY-<n>`) in full, including its checklists, its «Решения автора»
   section and its "blocked by" relations. Do not start a task whose blockers are not `Done`.
-- Check `ai/decisions/` for anything the task would contradict — especially
-  `2026-10-16-rejected-features.md`. If it reverses a decision, say so before starting.
+- Check `ai/decisions/` for anything the task would contradict — especially the rejected
+  ideas `ai/rules/scope.md` names. If it reverses a decision, say so before starting.
 - If the scope is ambiguous or conflicts with a rule or decision record, ask **before**
   writing anything, and put every question in a plain chat message too, not only in a
   question tool: a restart of the session loses what only the tool showed.

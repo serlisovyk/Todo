@@ -23,7 +23,8 @@ template.
 - Tooling in scope: ESLint, Prettier, Husky + lint-staged, GitHub Actions CI, size-limit.
 
 Features the author already rejected are listed in
-`ai/decisions/2026-10-16-rejected-features.md` — do not propose them again.
+`ai/decisions/2026-10-16-rejected-features.md` and
+`ai/decisions/2026-10-19-more-rejected-ideas.md` — do not propose them again.
 
 ## Prefer
 

@@ -29,7 +29,8 @@ needs only the newest one. The old record only changes its `Status` line to
 Propose one as soon as the decision surfaces, without being asked, and only for:
 
 - a standing constraint ("we will not do X", "always / never Y");
-- a feature the author deliberately rejected — all of them go into `rejected-features`;
+- a feature the author deliberately rejected — in a dated record that adds to `rejected-features`
+  (a record is not rewritten);
 - a tradeoff accepted over a named alternative, one a future agent would likely undo;
 - a goal agreed now and built later (`accepted (not implemented)`);
 - a convention chosen where an obvious alternative existed.
@@ -49,6 +50,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [Bundle size budgets: JavaScript 90 kB, CSS 8 kB (gzip)](2026-10-17-js-budget-90-kb.md)
 - [`eslint-plugin-jsx-a11y` runs on ESLint 10 through an allowed peer](2026-10-16-jsx-a11y-on-eslint-10.md)
 - [Features the author rejected](2026-10-16-rejected-features.md)
+- [More ideas the author rejected: Mark all Undo, shortcut help, Dependabot, device checks, CI audits, a domain](2026-10-19-more-rejected-ideas.md)
 
 ### Code structure, state and storage
 
