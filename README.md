@@ -2,11 +2,11 @@
 
 ✅ A fast, accessible todo list with categories, priorities, search, and filters, saved in your browser.
 
-**Live demo:** <https://todo-plum-nu-78.vercel.app/>
-
-Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks never leave the browser: they are kept in localStorage or IndexedDB behind a swappable repository, and there is no backend, account, or analytics. The code is layered: constants, pure utilities, a storage layer, contexts for the app state, hooks for each component's logic, and components styled with plain CSS and design tokens.
+**[▶ Open the demo](https://todo-plum-nu-78.vercel.app/)**
 
 ![Todo demo: adding a task, checking it off, searching, filtering, sorting, and switching the theme](assets/demo.gif)
+
+Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks never leave the browser: they are kept in localStorage or IndexedDB behind a swappable repository, and there is no backend, account, or analytics. The code is layered: constants, pure utilities, a storage layer, contexts for the app state, hooks for each component's logic, and components styled with plain CSS and design tokens.
 
 ## ✨ Features
 
@@ -23,15 +23,12 @@ Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks n
 
 ## 🧰 Tech Stack
 
-- React
-- React Compiler
+- React (React Compiler)
 - Vite
-- JavaScript (ESM)
-- Plain CSS with design tokens
+- CSS (with design tokens)
 - lucide-react
 - idb
 - localStorage and IndexedDB
-- Inter (self-hosted)
 - ESLint with jsx-a11y
 - Prettier
 - Husky and lint-staged
