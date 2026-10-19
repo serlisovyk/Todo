@@ -1,20 +1,13 @@
 import { useRef } from 'react'
 import { useTodos, useToast } from '@/context'
-import {
-  buildBackup,
-  getBackupFileName,
-  getImportMessage,
-  parseBackup,
-  splitBackupTodos,
-} from '@/utils'
+import { getImportMessage, parseBackup, splitBackupTodos } from '@/utils'
 import {
   BACKUP_MAX_BYTES,
-  BACKUP_MIME_TYPE,
-  BACKUP_URL_LIFETIME,
   NOT_BACKUP_MESSAGE,
   OVERSIZED_BACKUP_MESSAGE,
   UNREADABLE_BACKUP_MESSAGE,
 } from '@/constants'
+import { useBackupDownload } from './use-backup-download.js'
 
 export function useTodoBackup() {
   const { todos, restoreTodos } = useTodos()
@@ -22,25 +15,13 @@ export function useTodoBackup() {
 
   const fileInputRef = useRef(null)
 
+  const downloadBackup = useBackupDownload()
+
   const hasTodos = todos.length > 0
 
   const showError = (message) => showToast({ message, isError: true })
 
-  const handleExport = () => {
-    const exportedAt = new Date()
-    const backup = buildBackup(todos, exportedAt.toISOString())
-
-    const blob = new Blob([JSON.stringify(backup)], { type: BACKUP_MIME_TYPE })
-    const url = URL.createObjectURL(blob)
-
-    const link = document.createElement('a')
-
-    link.href = url
-    link.download = getBackupFileName(exportedAt)
-    link.click()
-
-    setTimeout(() => URL.revokeObjectURL(url), BACKUP_URL_LIFETIME)
-  }
+  const handleExport = () => downloadBackup(todos)
 
   const handleImportClick = () => fileInputRef.current.click()
 
