@@ -4,6 +4,12 @@ import './pill-select.css'
 export function PillSelect(props) {
   const { ref, labelText, name, options, value, onChange, renderMark } = props
 
+  const choices = options.map(({ id, label }) => ({
+    id,
+    label,
+    mark: renderMark(id),
+  }))
+
   return (
     <label className="pill-select" title={labelText}>
       <span className="sr-only">{labelText}</span>
@@ -17,9 +23,9 @@ export function PillSelect(props) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >
-        {options.map(({ id, label }) => (
+        {choices.map(({ id, label, mark }) => (
           <option key={id} value={id} title="">
-            <span className="pill-select-mark">{renderMark(id)}</span>
+            {mark && <span className="pill-select-mark">{mark}</span>}
             {label}
           </option>
         ))}
@@ -28,8 +34,10 @@ export function PillSelect(props) {
       <ChevronDown className="pill-select-chevron" />
 
       <span className="pill-select-sizer" aria-hidden="true">
-        {options.map(({ id, label }) => (
-          <span key={id}>{label}</span>
+        {choices.map(({ id, label, mark }) => (
+          <span key={id} className={mark ? 'is-marked' : undefined}>
+            {label}
+          </span>
         ))}
       </span>
     </label>

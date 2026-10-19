@@ -16,6 +16,10 @@
   cursor: pointer;
   transition: background-color var(--duration-base) var(--ease-out);
 
+  .pill-select-indicator:empty + & {
+    padding-inline-start: var(--space-4);
+  }
+
   @media (hover: hover) {
     &:hover {
       background-color: var(--color-surface-hover);
@@ -108,9 +112,13 @@
     display: flex;
     flex-direction: column;
     height: 0;
-    padding-inline: var(--space-10);
+    padding-inline: var(--space-4) var(--space-10);
     border-inline: 1px solid transparent;
     overflow: hidden;
     visibility: hidden;
+
+    .is-marked {
+      padding-inline-start: var(--space-6);
+    }
   }
 }
