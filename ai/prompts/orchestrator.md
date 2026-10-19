@@ -68,8 +68,8 @@ counts as an approval:
 
 1. Rebase the branch onto the latest `main` (resolve trivial conflicts — usually in the docs; send
    anything non-trivial back to the subagent).
-2. Fast-forward merge into `main`, run the checks from `AGENTS.md` on `main`, use the merged result
-   in the browser, push `main`.
+2. Fast-forward merge into `main`, run the checks from `AGENTS.md` on `main`, check the combined
+   result in the browser as step 13 says, push `main`.
 3. After the push, CI, the read-only production check and `Done` go as step 13 says; comment on the
    issue with the merged commit SHAs and the author's decisions.
 4. Remove the worktree and delete the branch.

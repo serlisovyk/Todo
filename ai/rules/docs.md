@@ -8,6 +8,8 @@ answer **where** (`ai/map.md`), **what must hold** (`ai/rules/`, `ai/skills/`) a
   the code (props, result shapes, formats, constants) or another doc.
 - **No history in current docs.** No task numbers, "since MY-…", measurements or check logs: they
   belong to commits, plans and reports. A rule says what holds now; a decision says why.
+- **No other projects.** A doc never cites or compares with another of the author's projects; a
+  rule or a decision stands on its own reasons.
 - **Name folders, components and classes, not file paths,** where that is enough: paths change,
   names last.
 - **Limits.** `ai/map.md`: at most 150 lines and 12 KB, a list item at most about 150 characters, a

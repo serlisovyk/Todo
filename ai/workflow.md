@@ -136,7 +136,10 @@ git push origin main
 git branch -d my-<n>-<slug>
 ```
 
-- After the push, wait for CI on `main` (GitHub Actions) to go green; a red `main` is fixed
+- After a rebase that brings in another branch's UI work, use the combined result in the
+  browser too: a global layout change in one branch can break a component of the other.
+- After the push, wait for CI on `main` (GitHub Actions) to go green, polling a few minutes
+  apart (the unauthenticated GitHub API allows 60 requests an hour); a red `main` is fixed
   right away with a follow-up commit.
 - `main` deploys to Vercel production on the push: check the live site read-only (open it,
   fetch it) and never touch the Vercel project (decision `vercel-and-link-previews`).
