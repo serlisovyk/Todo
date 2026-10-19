@@ -6,6 +6,7 @@ export {
   splitBackupTodos,
 } from './backup.utils.js'
 export { toMilliseconds } from './css.utils.js'
+export { isRepeatedClick } from './events.utils.js'
 export {
   buildFiltersSearch,
   canResetFilters,

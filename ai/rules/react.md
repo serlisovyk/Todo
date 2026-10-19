@@ -46,6 +46,11 @@ and storage: `ai/rules/architecture.md`.
 - Work that follows a user action runs in the event handler or the form action, not in an effect
   that watches state. A change the focus depends on (a button that comes back, a row that returns)
   is committed with `flushSync` in the handler or the action, and only then focused.
+- A control that changes the list ignores the second click of a double click: the list has moved by then, and the
+  click lands on whatever took its place. A button's handler starts with `if (isRepeatedClick(event)) return`; the
+  keyboard (`detail` 0) and a single click work as before. A checkbox's `onChange` has no `detail`, and WebKit's label
+  forwards its click to the input with `detail` 0, so the label gates the checkbox: `onClickCapture` calls
+  `preventDefault` and `stopPropagation` on a repeated click.
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.

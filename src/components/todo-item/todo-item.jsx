@@ -16,6 +16,7 @@ export function TodoItem({ todo }) {
     titleParts,
     isEditing,
     isToggling,
+    ignoreRepeatedClick,
     handleToggle,
     handleDelete,
     startEditing,
@@ -48,7 +49,7 @@ export function TodoItem({ todo }) {
   return (
     <li ref={rowRef} className="todo-item" data-toggling={isToggling}>
       <div className="todo-item-body">
-        <label className="todo-item-label">
+        <label className="todo-item-label" onClickCapture={ignoreRepeatedClick}>
           <input
             id={getTodoCheckboxId(id)}
             type="checkbox"

@@ -85,6 +85,7 @@ export {
   MILLISECONDS_PER_SECOND,
   REDUCED_MOTION_QUERY,
 } from './css.constants.js'
+export { FIRST_CLICK_DETAIL } from './events.constants.js'
 export {
   BACKUP_APP_NAME,
   BACKUP_FILE_NAME_PREFIX,

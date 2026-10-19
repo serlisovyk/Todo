@@ -5,6 +5,7 @@ import {
   countActiveTodos,
   getTasksClearedMessage,
   getTasksLeftMessage,
+  isRepeatedClick,
 } from '@/utils'
 import { CHECKED_STATUS_SELECTOR, UNDO_LABEL } from '@/constants'
 
@@ -22,13 +23,17 @@ export function useTodoFooter() {
   const hasCompleted = activeCount < todos.length
   const tasksLeftMessage = getTasksLeftMessage(activeCount)
 
-  const handleMarkAllDone = () => {
+  const handleMarkAllDone = (event) => {
+    if (isRepeatedClick(event)) return
+
     flushSync(() => markAll(true))
 
     markAllActiveButtonRef.current.focus()
   }
 
-  const handleMarkAllActive = () => {
+  const handleMarkAllActive = (event) => {
+    if (isRepeatedClick(event)) return
+
     flushSync(() => markAll(false))
 
     markAllDoneButtonRef.current.focus()
@@ -40,7 +45,9 @@ export function useTodoFooter() {
     clearCompletedButtonRef.current?.focus()
   }
 
-  const handleClearCompleted = async () => {
+  const handleClearCompleted = async (event) => {
+    if (isRepeatedClick(event)) return
+
     document.querySelector(CHECKED_STATUS_SELECTOR).focus()
 
     const removed = await clearCompleted()

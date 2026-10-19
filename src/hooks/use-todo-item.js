@@ -1,7 +1,12 @@
 import { useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useTodos, useToast } from '@/context'
-import { getTodoCheckboxId, matchesFilters, splitByQuery } from '@/utils'
+import {
+  getTodoCheckboxId,
+  isRepeatedClick,
+  matchesFilters,
+  splitByQuery,
+} from '@/utils'
 import {
   CHECKED_STATUS_SELECTOR,
   TODO_CHECKBOX_SELECTOR,
@@ -57,6 +62,13 @@ export function useTodoItem(todo) {
     focusTarget.focus()
   }
 
+  const ignoreRepeatedClick = (event) => {
+    if (!isRepeatedClick(event)) return
+
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
   const handleToggle = () => {
     const toggledTodo = { ...todo, completed: !completed }
 
@@ -75,7 +87,9 @@ export function useTodoItem(todo) {
     document.getElementById(getTodoCheckboxId(id))?.focus()
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    if (isRepeatedClick(event)) return
+
     findFocusTarget().focus()
 
     const removed = await removeTodos([id])
@@ -96,6 +110,7 @@ export function useTodoItem(todo) {
     titleParts,
     isEditing,
     isToggling,
+    ignoreRepeatedClick,
     handleToggle,
     handleDelete,
     startEditing,
