@@ -11,8 +11,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `public/` — files served as they are under a stable URL: `fonts/inter.woff2` (Inter, Latin), `theme.js` (the head
   script that sets `data-theme` before the first paint), `favicon.svg`, `og-image.png`, `robots.txt` and `llms.txt`.
 - `assets/` — the README's demo GIF; it is not built, served or imported.
-- `vite.config.js` — the React plugin, the React Compiler through `@rolldown/plugin-babel`, the `@/` alias.
-- `jsconfig.json` — the `@/` alias for editors only.
+- `vite.config.js` — the React plugin, the React Compiler through `@rolldown/plugin-babel`, the `@/` alias;
+  `jsconfig.json` — the alias for editors only.
 - `.env.sample` — the one environment variable, `VITE_STORAGE`: `localstorage` (the default) or `indexeddb`.
 - `eslint.config.js` — flat config: React Hooks, React Refresh, `jsx-a11y`, file names, named exports,
   imports, storage access; also enforces `ai/rules/`.
@@ -24,19 +24,20 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `format:check`, `prepare` (installs the hook); `pnpm-lock.yaml` is the lockfile.
 - `pnpm-workspace.yaml` — pnpm settings: the allowed ESLint peer of `jsx-a11y`.
 - `AGENTS.md` — the entry point for agents; `CLAUDE.md` points to it.
-- `ai/` — agent docs: this map, `workflow.md`, `rules/`, `skills/`, `decisions/`, `prompts/`,
-  `linear-task-template.md`.
-- `ai/superpowers/` — the archive of plans and specs: read only the plan or spec of the feature you change.
+- `ai/` — agent docs: this map, `workflow.md`, `rules/`, `skills/`, `decisions/`, `prompts/`, `linear-task-template.md`;
+  `superpowers/` is the archive of plans and specs: read only the plan or spec of the feature you change.
 - `.claude/worktrees/` — one git worktree per task when tasks run in parallel; ignored by git.
 
 ## Sources (`src/`)
 
-- `main.jsx` — the entry point and the only `createRoot`: imports `App` and `styles/style.css`,
-  renders `App` in `StrictMode`.
-- `components/app/` — `App`, the root component: `ErrorBoundary` around the three providers, the page header,
-  `<main>` and the toast region; `components/index.js` re-exports every component.
-- `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
-  and the theme switch.
+- `main.jsx` — the entry point and the only `createRoot`: renders `App` in `StrictMode`, imports `styles/style.css`.
+- `components/app/` — `App`, the root component: `ErrorBoundary` around the three providers, the header, `<main>`,
+  the footer and the toast region; `components/index.js` re-exports every component.
+- `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`,
+  the theme switch and the repository link.
+- `components/app-footer/` — `AppFooter`: the page `<footer>` outside `<main>`: the author's name and the year.
+- `components/github-link/`, `components/github-icon/` — `GithubLink`: the header's 44px icon link to the
+  repository; `GithubIcon`: the mark `lucide-react` no longer ships.
 - `components/category-dot/` — `CategoryDot`: the 12px dot in a category's colour (the forms and the category pill).
 - `components/error-boundary/` — `ErrorBoundary`, the one class component: after a render error below it, it shows
   `ErrorScreen`.
@@ -48,12 +49,13 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   Reset filters; its logic is `useFiltersToolbar`.
 - `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot, flag or
-  icon, also inside each option of the open list; `ref` reaches the `<select>`.
+  icon, also inside each option of the open list, and may return nothing; `ref` reaches the `<select>`.
 - `components/search-field/` — `SearchField`: the labelled search input and its clear button; its logic is
   `useSearchField`.
 - `components/status-switch/` — `StatusSwitch`: three radio buttons (All, Active, Completed) that set the status filter.
 - `components/text-button/` — `TextButton`: the one text button (the footer, the toast's action, the backup row).
 - `components/theme-switch/` — `ThemeSwitch`: three radio buttons (sun, moon, monitor) that set the theme.
+- `components/title-counter/` — `TitleCounter`: the `N / 200` under a title field near the limit and its own status.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading text, the two empty texts, the
   rows `filterTodos` shows in `sortTodos` order) and one row (checkbox, title with `<mark>` matches, meta, buttons).
@@ -68,13 +70,12 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   the URL query), `useSearchField` (the field and the `/` shortcut), `useToastShortcut` (Ctrl/Cmd+Z runs the
   toast's action), `useBackupDownload` (the backup file's download; private to `hooks/`); barrel `index.js`.
 - `constants/` — a `<domain>.constants.js` per domain: `storage` (keys, version, storage messages), `todos`,
-  `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`; barrel `index.js`.
-- `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task validator; the pure
-  list transforms the context applies; `sortTodos`: the order a sort names; the counter, toast and filter-result
-  messages), `filters.utils.js` (`filterTodos`, and `parseFilters` and `buildFiltersSearch` between the URL query
-  and the filters), `highlight.utils.js` (`splitByQuery`), `theme.utils.js` (`isTheme`, `resolveTheme`),
-  `css.utils.js` (`toMilliseconds`), `backup.utils.js` (the pure side of export and import: the file's object and
-  name, `parseBackup`, `splitBackupTodos`, the summary), `validation.utils.js` (general checks); barrel `index.js`.
+  `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`, `app` (the author, the repository link); barrel `index.js`.
+- `utils/` — one `<domain>.utils.js` each, all pure: `todos` (`sanitizeTodo`, `isValidTitle`: the one task validator;
+  the list transforms the context applies; `sortTodos`; the counter, toast, filter-result and title-counter messages),
+  `filters` (`filterTodos`, `parseFilters` and `buildFiltersSearch` between the URL query and the filters, the category
+  options with their counts), `highlight`, `theme`, `css`, `backup` (the pure side of export and import), `validation`;
+  barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (picks the implementation by `VITE_STORAGE`,
   asks for persistent storage), `ThemeRepository` (the saved theme). The barrel exports the last two.
@@ -89,7 +90,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   durations, easings, focus ring); under reduced motion it zeroes the durations.
 - `styles/colors.css` — `[data-category]` and `[data-priority]` set `--category-color` and
   `--priority-color` from the colour tokens.
-- `styles/base.css` — the Inter face, box sizing, `body`, the focus ring, `.sr-only`.
+- `styles/base.css` — the Inter face, box sizing, `body`, `#root` (a column as tall as the window), the focus ring,
+  `.sr-only`.
 - `styles/animations.css` — the theme's View Transition rules; every `@keyframes` goes here too.
 
 The layout (decisions `structure-and-naming`, `context-folders`). A folder appears with its first file; a folder of

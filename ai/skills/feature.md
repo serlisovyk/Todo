@@ -59,7 +59,9 @@ text; the filter, `splitByQuery` (the plain and `<mark>` parts a row renders, ne
 announcement trim it. `FilterAnnouncer` says the result when the filters change and its text differs from the last one,
 so a new filter needs nothing there. The control: the status stays a radio group on screen; the category and the
 sort are `PillSelect`s in `FiltersToolbar`, on the row under the search field (decision `filter-pills`), their
-options a list in `filters.constants.js` and a `CategoryDot` as the category's `renderMark`. A Reset icon
+options a list in `filters.constants.js` and a `CategoryDot` as the category's `renderMark`; the category's
+labels carry each category's task count (`getCategoryFilterOptions(todos)`: every task, whatever the status and the
+search, decision `category-counts`). A Reset icon
 button shows while `canResetFilters`, applies `RESET_DEFAULTS`, commits it with `flushSync` and focuses the
 category pill through its `ref`, since the button leaves. The sort is no predicate: `sortTodos(todos, sort)`
 orders the shown list in render, completed tasks last under every sort. The footer's counter and buttons
@@ -80,7 +82,9 @@ under reduced motion, where no transition runs), and while it leaves it takes no
 **An icon button** — an `IconButton` with a `lucide-react` icon, a `labelText` (its `title`: the name and
 the tooltip, no `aria-label`) and, for a destructive one, `tone="danger"`. It is 44px and always
 visible (a touch screen has no hover); `ref`, `type` and handlers go to the `<button>`. A button in a
-form that must not count as leaving the field cancels the default of `mousedown` (`TodoEditForm`).
+form that must not count as leaving the field cancels the default of `mousedown` (`TodoEditForm`). An icon that
+is a link (`GithubLink`) is its own component with the same look, named by its `title`; one that opens a new tab
+says so in the `title` and has `target="_blank"` with `rel="noopener noreferrer"`.
 
 **A text button** — a `TextButton`: its children are the label, `ref`, `type` and handlers go to the
 `<button>`. One look everywhere (the footer, the toast's action, the backup row); it has no `className` and no
@@ -99,7 +103,14 @@ same file can be chosen again (decision `backup-export-import`).
 for one option (a `CategoryDot`, a flag with `data-priority`, an icon); the pill shows it for the
 value and the open list shows it in each option where the browser has `base-select`. The text of an
 option always says what its mark says, and the list stays the browser's (decision
-`base-select-pickers`). A `ref` goes to the `<select>`, for a caller that moves the focus to it.
+`base-select-pickers`). A mark is optional: an option whose `renderMark` returns nothing has no mark span,
+and the closed pill, whose indicator is then empty, starts its text at the dot's offset, so "All categories"
+leaves no slot. A `ref` goes to the `<select>`, for a caller that moves the focus to it.
+
+**A limit counter** — a field with a character limit has a `TitleCounter` under it. `getTitleCounterText(length)`
+is empty until `TITLE_COUNTER_THRESHOLD` characters remain, so the element stays in the DOM and the field's
+`aria-describedby` always points at it. Its own `role="status"` says `getTitleCounterMessage(length)`, one text per
+range (near the limit, at it), so it speaks when the range changes and never on each keystroke: no timer, no state.
 
 **An animation** — a colour that changes on hover or selection is a `transition` of that property over
 `--duration-base`, which reduced motion zeroes in `tokens.css`; `@starting-style` for an element that

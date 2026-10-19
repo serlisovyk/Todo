@@ -27,7 +27,8 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
   choice on every load, the Reset icon is there only while one of them is not the default, and it hands
   the focus to the category pill and leaves the status and the query alone, and its appearance moves no
   pill; the search hint shows whole at 320px, and the pills row has no horizontal scroll, with and without
-  Reset.
+  Reset. The category counts are every task of the category, whatever the status and the search, and follow
+  an add, a delete, Undo, an edit, an import and a clear.
 - **Storage**: a reload keeps everything; broken or foreign data gives an empty list without a
   crash and is not overwritten until something changes; blocked or full storage gives a toast,
   not a crash; two tabs stay in sync; both backends behave the same.
@@ -38,7 +39,8 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
   theme on load.
 - **Accessibility in the browser**: every flow by keyboard alone; focus after each action; a
   screen reader hears names, states and each announcement once (the accessibility tree lists no
-  description equal to a name); tooltips on icon buttons, chips and pills, none over an open picker;
+  description equal to a name, a link that opens a new tab says so); tooltips on icon buttons and links, chips and
+  pills, none over an open picker; a live region fed by typing speaks at its thresholds, never per keystroke;
   contrast in both themes, hover and focus included; 320px and 200% zoom without horizontal scroll,
   and 150 to 200% text at 320px; the toast never hides the focused control; a click on a control
   below a form that closes on blur still lands, by mouse and by touch; Escape in an open picker

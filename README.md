@@ -42,19 +42,23 @@ Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks n
 ```text
 src/
   components/
-    app/                The root component: the providers, the header, the page and the toast region
-    app-header/         The logo, the title and the theme switch
+    app/                The root component: the providers, the header, the page, the footer and the toast region
+    app-footer/         The author's name and the year
+    app-header/         The logo, the title, the theme switch and the repository link
     category-dot/       The dot in a category's colour
     error-boundary/     The class that shows the error screen after a render error
     error-screen/       The error screen: the heading, Export backup and Reload
     filter-announcer/   The live region that says what the filters show
     filters-toolbar/    The search field, the Category and Sort pills and Reset
+    github-icon/        The GitHub mark
+    github-link/        The icon link to the repository
     icon-button/        An icon-only button
     pill-select/        A native select drawn as a pill
     search-field/       The labelled search input and its clear button
     status-switch/      The All, Active and Completed radio buttons
     text-button/        The text button of the footer, the toast and the backup row
     theme-switch/       The light, dark and system radio buttons
+    title-counter/      The character counter of a title field near its limit
     toast/              The toast: its message and its action
     toast-region/       The live region that holds the toast
     todo-backup/        Export and import of a JSON backup

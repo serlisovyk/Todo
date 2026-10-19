@@ -80,8 +80,9 @@ name, so they are public.
 
 - Interface texts are English and sentence case (`Add task`, `Clear completed`); one action has one
   name wherever it shows.
-- Icons come from `lucide-react`, imported by name; an icon next to text is decorative, an icon-only
-  button is named by its `title`, which is also its tooltip, and has no `aria-label`. A control named
+- Icons come from `lucide-react`, imported by name, except a brand mark it lacks (`GithubIcon`, a small
+  component of its own, decision `footer-and-repository-link`); an icon next to text is decorative, an
+  icon-only button or link is named by its `title`, which is also its tooltip, and has no `aria-label`. A control named
   by a hidden `<label>` has its `title` on that label, not on the control: a `title` on the control
   or beside an `aria-label` is read a second time as a description (decision `tooltips-as-title`).
 - Text for assistive technology only uses the `.sr-only` class, not `display: none` or `hidden`.
