@@ -70,6 +70,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [The `/` shortcut stays a single-key shortcut that cannot be turned off](2026-10-17-search-shortcut-key.md)
 - [The Undo toast keeps its 5-second limit, a conscious deviation from WCAG 2.2.1](2026-10-18-undo-toast-time-limit.md)
 - [The footer counts and acts on all tasks, not on the filtered list](2026-10-17-footer-acts-on-all-tasks.md)
+- [The second click of a double click is ignored, and a title is cut by `.length`](2026-10-19-repeated-click-and-title-length.md)
 - [The Category pill counts every task of a category, whatever the filters say](2026-10-19-category-counts.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
 - [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
