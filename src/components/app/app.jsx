@@ -1,4 +1,5 @@
 import { AppHeader } from '@/components/app-header'
+import { ErrorBoundary } from '@/components/error-boundary'
 import { FilterAnnouncer } from '@/components/filter-announcer'
 import { FiltersToolbar } from '@/components/filters-toolbar'
 import { StatusSwitch } from '@/components/status-switch'
@@ -12,24 +13,26 @@ import './app.css'
 
 export function App() {
   return (
-    <ToastProvider>
-      <ThemeProvider>
-        <TodosProvider>
-          <AppHeader />
+    <ErrorBoundary>
+      <ToastProvider>
+        <ThemeProvider>
+          <TodosProvider>
+            <AppHeader />
 
-          <main className="app">
-            <TodoForm />
-            <FiltersToolbar />
-            <StatusSwitch />
-            <FilterAnnouncer />
-            <TodoList />
-            <TodoFooter />
-            <TodoBackup />
-          </main>
-        </TodosProvider>
-      </ThemeProvider>
+            <main className="app">
+              <TodoForm />
+              <FiltersToolbar />
+              <StatusSwitch />
+              <FilterAnnouncer />
+              <TodoList />
+              <TodoFooter />
+              <TodoBackup />
+            </main>
+          </TodosProvider>
+        </ThemeProvider>
 
-      <ToastRegion />
-    </ToastProvider>
+        <ToastRegion />
+      </ToastProvider>
+    </ErrorBoundary>
   )
 }

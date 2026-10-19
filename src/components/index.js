@@ -1,6 +1,8 @@
 export { App } from './app'
 export { AppHeader } from './app-header'
 export { CategoryDot } from './category-dot'
+export { ErrorBoundary } from './error-boundary'
+export { ErrorScreen } from './error-screen'
 export { FilterAnnouncer } from './filter-announcer'
 export { FiltersToolbar } from './filters-toolbar'
 export { IconButton } from './icon-button'
