@@ -1,4 +1,5 @@
 export { App } from './app'
+export { AppFooter } from './app-footer'
 export { AppHeader } from './app-header'
 export { CategoryDot } from './category-dot'
 export { ErrorBoundary } from './error-boundary'

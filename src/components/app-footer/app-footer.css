@@ -1,0 +1,7 @@
+.app-footer {
+  margin-top: auto;
+  padding: 0 var(--space-4) var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}

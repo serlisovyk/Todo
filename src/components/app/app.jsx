@@ -1,3 +1,4 @@
+import { AppFooter } from '@/components/app-footer'
 import { AppHeader } from '@/components/app-header'
 import { ErrorBoundary } from '@/components/error-boundary'
 import { FilterAnnouncer } from '@/components/filter-announcer'
@@ -28,6 +29,8 @@ export function App() {
               <TodoFooter />
               <TodoBackup />
             </main>
+
+            <AppFooter />
           </TodosProvider>
         </ThemeProvider>
 

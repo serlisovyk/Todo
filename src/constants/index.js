@@ -1,3 +1,4 @@
+export { AUTHOR_NAME } from './app.constants.js'
 export {
   DATA_STORAGE_KEY,
   DATA_FORMAT_VERSION,
