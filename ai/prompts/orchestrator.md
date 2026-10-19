@@ -20,16 +20,14 @@ Before anything else, read `AGENTS.md`, `ai/workflow.md`, and `ai/map.md`.
   Фундамент → Ядро → Фильтры → Визуал → Хранилища → Аудит → Полировка.
 - The Фундамент milestone and any repo-wide change (build or lint config, file moves, format setup)
   run **one at a time**, never alongside other tasks.
-- Otherwise take up to **2** issues that touch different areas of the code (storage, state,
-  components, styles). Issues that change the same stored format, the same context or the same
-  files do not run in parallel. Use `ai/map.md` and each issue's «Что сделать» to judge overlap;
-  when unsure, take fewer.
+- Otherwise take up to **2** issues that `ai/workflow.md` ("Parallel work") lets run side by
+  side. Use `ai/map.md` and each issue's «Что сделать» to judge overlap; when unsure, take fewer.
 
 ## 2. Ask the author everything up front
 
 - Read every issue of the batch. Collect every decision the author will have to make: «решить в
   плане» items and obvious design forks. Ask them **before** launching, each with options and a
-  recommendation.
+  recommendation, the way `ai/workflow.md` step 1 says.
 - Write the answers into the Linear issue (a «Решения автора (<date>)» section) and into the
   subagent's prompt, so the subagent goes from the plan straight to the code.
 - Show the batch (issue, title, why these fit together) and wait for a go.
@@ -39,36 +37,42 @@ Before anything else, read `AGENTS.md`, `ai/workflow.md`, and `ai/map.md`.
 - One subagent per issue, each in its own git worktree (in Claude Code: the Agent tool with
   `isolation: "worktree"`, `model: "sonnet"`, in the background).
 - The subagent's prompt is `ai/prompts/task.md` with `{ISSUE}` filled in, the author's answers,
-  plus: "You are already in a dedicated worktree — create branch `my-<n>-<slug>` off `main` there
-  and run `pnpm install`."
+  the files it shares with the other task (`ai/workflow.md`, "Parallel work"), plus: "You are
+  already in a dedicated worktree — create branch `my-<n>-<slug>` off `main` there and run
+  `pnpm install`."
 - Give each subagent its own dev-server port (`pnpm dev --port <n>`, `pnpm preview --port <n>`;
   never the author's own server on Vite's default port) and its own headless-browser profile; tell
   it to stop its servers by PID when done.
 
 ## 4. Questions during the work
 
-- Any new question from a subagent goes to the author verbatim. Never answer on the author's
-  behalf, never guess. Send the answer to the **same** subagent so it continues with its context.
+- Any new question from a subagent goes to the author verbatim, asked as in step 2. Never answer
+  on the author's behalf, never guess. Send the answer to the **same** subagent so it continues
+  with its context.
+- A restart of the session loses the subagents, and a subagent cannot be resumed. Start a new one
+  in the same worktree, on the same branch, with the full brief: `ai/prompts/task.md`, the author's
+  answers, and what the branch already holds ("continue on it, do not start over").
 
 ## 5. Review
 
-- When a subagent finishes, give the author a short summary per issue in Russian: what was done,
-  commits, checks, what was checked by hand in the browser, self-review findings, screenshots.
-  Point to the branch for the full diff.
+- When a subagent finishes, first read its whole diff yourself, as `ai/workflow.md` step 10 says,
+  and send every hit back to the same subagent. Then give the author a short summary per issue in
+  Russian: what was done, commits, checks, what was checked by hand in the browser, self-review
+  findings, screenshots. Point to the branch for the full diff.
 - Requested changes go back to the same subagent.
 
 ## 6. Merge — only after explicit approval of that issue
 
-Follow `ai/workflow.md` (step 13) for each approved branch, **one at a time**:
+Follow `ai/workflow.md` (step 13) for each approved branch, **one at a time**; step 11 says what
+counts as an approval:
 
 1. Rebase the branch onto the latest `main` (resolve trivial conflicts — usually in the docs; send
    anything non-trivial back to the subagent).
 2. Fast-forward merge into `main`, run the checks from `AGENTS.md` on `main`, use the merged result
-   in the browser, push `main`, check that CI is green once it exists.
-3. Move the issue to `Done` and comment with the merged commit SHAs and the author's decisions.
+   in the browser, push `main`.
+3. After the push, CI, the read-only production check and `Done` go as step 13 says; comment on the
+   issue with the merged commit SHAs and the author's decisions.
 4. Remove the worktree and delete the branch.
-
-Before merging the next branch of the batch, rebase it onto the updated `main`.
 
 ## 7. Repeat
 

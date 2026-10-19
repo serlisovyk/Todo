@@ -10,7 +10,8 @@ non-negotiable rules; this file is the full flow.
 - Check `ai/decisions/` for anything the task would contradict — especially
   `2026-10-16-rejected-features.md`. If it reverses a decision, say so before starting.
 - If the scope is ambiguous or conflicts with a rule or decision record, ask **before**
-  writing anything.
+  writing anything, and put every question in a plain chat message too, not only in a
+  question tool: a restart of the session loses what only the tool showed.
 
 ## 2. Branch
 
@@ -19,8 +20,7 @@ non-negotiable rules; this file is the full flow.
 - Do not use Linear's `gitBranchName` as-is: it prepends a username and its slug is a
   transliteration of the Russian title. Write your own short English slug.
 - Never commit task work directly on `main`.
-- Running several tasks at once: one `git worktree` per branch under `.claude/worktrees/`
-  (ignored by git), each with its own `pnpm install` — see "Parallel work" below.
+- Several tasks at once: one `git worktree` per branch, see "Parallel work" below.
 
 ## 3. Move the task to In Progress
 
@@ -85,6 +85,8 @@ Only what the change made wrong, within the limits of `ai/rules/docs.md`:
 - Use a code or UI change in `pnpm dev`: desktop (keyboard, mouse) and 320px wide, both
   themes, `prefers-reduced-motion` for anything animated, and a reload for anything stored.
   A green build does not prove a UI change works.
+- If the built-in browser refuses `localhost`, use headless Chrome over the DevTools
+  protocol: the browser check is not skipped.
 - No automated tests exist. Do not add them, and do not report their absence as a gap.
 
 ## 9. Definition of Done gate
@@ -93,13 +95,17 @@ Walk `ai/rules/definition-of-done.md` point by point. Fix what fails before movi
 
 ## 10. Self-review
 
-Run the `review` skill over the diff. Fix what you find, or state plainly why a finding is
-being left alone.
+Run the `review` skill over the diff, then read the whole `git diff main..HEAD` line by line
+against `ai/rules/style.md` and `ai/rules/react.md`. A subagent does both before it reports;
+the orchestrator reads the diff again before the author sees the branch. Fix what you find,
+or state plainly why a finding is being left alone.
 
 ## 11. Author approval — required stop
 
 Nothing is merged and nothing is marked done without the author's explicit approval.
 Hand over the report (step 12) and stop — silence or a neutral reply is not a yes.
+«Продолжай» ("carry on") is a neutral reply, not an approval; an approval names the
+branch, and a yes to one branch does not cover the next.
 Requested changes go back through steps 6–10; fold a small fix into the commit that
 introduced it (`--fixup` + autosquash) rather than always adding a new commit.
 
@@ -130,25 +136,30 @@ git push origin main
 git branch -d my-<n>-<slug>
 ```
 
-- After the push, check that CI is green on `main` (GitHub Actions); a red `main` is fixed
+- After the push, wait for CI on `main` (GitHub Actions) to go green; a red `main` is fixed
   right away with a follow-up commit.
+- `main` deploys to Vercel production on the push: check the live site read-only (open it,
+  fetch it) and never touch the Vercel project (decision `vercel-and-link-previews`).
 - History stays linear: rebase onto `main`, then fast-forward. Never force-push `main`.
 - If the branch was pushed (for a preview), delete it on the remote too
   (`git push origin --delete my-<n>-<slug>`).
 - Remove the worktree if one was used (`git worktree remove <path>`).
-- Move the Linear issue to `Done` and comment with the merged commit SHAs, the author's
-  decisions, what was checked and what was not.
+- Move the Linear issue to `Done` only once CI on `main` is green, and comment with the
+  merged commit SHAs, the author's decisions, what was checked and what was not. While GitHub
+  Actions is degraded, wait: `Done` without a green run only when the author waived the
+  wait, and the comment says so.
 
 ## Parallel work
 
 - One task per worktree: `git worktree add .claude/worktrees/my-<n>-<slug> -b my-<n>-<slug> main`,
   then `pnpm install` inside it. In Claude Code, enter it with `EnterWorktree` (`path`).
 - Run at most two tasks at a time, and only when they touch different areas of the code
-  (storage, state, components, styles). Two tasks that change the same files, the same
-  stored format or the same context never run together.
-- Before a batch starts, the orchestrator asks the author every foreseeable decision and
-  writes the answers into the issues («Решения автора»), so the tasks go from the plan
-  straight to the code (`ai/prompts/orchestrator.md`).
-- Merge one branch at a time, rebasing the next one onto the updated `main` before its merge.
+  (storage, state, components, styles). Two tasks that change the same stored format or the
+  same context never run together.
+- The files both tasks will still touch (usually the docs and `App`) are named up front, in
+  the brief of each, so the branch merged second expects the conflict.
+- A batch is run by the orchestrator (`ai/prompts/orchestrator.md`).
+- Merge one branch at a time; the branch merged second rebases onto the updated `main`
+  before its merge.
 - Repo-wide changes (build or lint config, file moves, the Фундамент milestone) run alone,
   never alongside other branches.

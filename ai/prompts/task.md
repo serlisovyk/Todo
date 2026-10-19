@@ -33,7 +33,8 @@ gate. In particular:
   `ai/rules/docs.md`.
 - Verify: the checks under "Verification" in `AGENTS.md`, and use the change in `pnpm dev` on
   desktop (keyboard, mouse) and at 320px, in both themes, reloading for anything stored.
-- Walk `ai/rules/definition-of-done.md` point by point, then self-review with the `review` skill.
+- Walk `ai/rules/definition-of-done.md` point by point, then self-review as `ai/workflow.md`
+  step 10 says.
 
 Constraints:
 
@@ -43,7 +44,8 @@ Constraints:
 - Stop at the author-approval gate (workflow step 11): do not merge, do not push `main`, do not
   mark the issue `Done`.
 - Never use `--no-verify`.
-- If the scope is ambiguous or conflicts with a rule or decision record, stop and ask — don't guess.
+- If the scope is ambiguous or conflicts with a rule or decision record, stop and ask, the way
+  `ai/workflow.md` step 1 says — don't guess.
 
 Report back at the end, in Russian, as in `ai/workflow.md` step 12:
 
