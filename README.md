@@ -29,7 +29,7 @@ Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks n
 - lucide-react
 - idb
 - localStorage and IndexedDB
-- ESLint with jsx-a11y
+- ESLint
 - Prettier
 - Husky and lint-staged
 - size-limit
