@@ -111,6 +111,9 @@ leaves no slot. A `ref` goes to the `<select>`, for a caller that moves the focu
 is empty until `TITLE_COUNTER_THRESHOLD` characters remain, so the element stays in the DOM and the field's
 `aria-describedby` always points at it. Its own `role="status"` says `getTitleCounterMessage(length)`, one text per
 range (near the limit, at it), so it speaks when the range changes and never on each keystroke: no timer, no state.
+The field's change handler stores `limitTitle(value)`, a cut by `.length` that never leaves half of a surrogate pair,
+so the counter, `isValidTitle` and the stored title count alike in every browser; `maxLength` stays on the field, but
+a browser may count it in visible characters and let more in.
 
 **An animation** — a colour that changes on hover or selection is a `transition` of that property over
 `--duration-base`, which reduced motion zeroes in `tokens.css`; `@starting-style` for an element that

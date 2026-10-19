@@ -29,6 +29,7 @@ export {
   getTitleCounterText,
   getTodoCheckboxId,
   isValidTitle,
+  limitTitle,
   patchTodo,
   replaceTodos,
   sanitizeTodo,

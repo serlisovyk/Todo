@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTodos } from '@/context'
-import { isValidTitle } from '@/utils'
+import { isValidTitle, limitTitle } from '@/utils'
 import {
   CANCEL_EDIT_KEY,
   PICKER_OPTION_SELECTOR,
@@ -61,7 +61,7 @@ export function useTodoEdit(todo, onClose) {
     return savedFields
   }
 
-  const handleTitleChange = (event) => setTitle(event.target.value)
+  const handleTitleChange = (event) => setTitle(limitTitle(event.target.value))
 
   const saveAction = () => {
     const savedFields = saveChanges()

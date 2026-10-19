@@ -72,7 +72,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `constants/` — a `<domain>.constants.js` per domain: `storage` (keys, version, storage messages), `todos`,
   `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`, `events`, `app` (the author, the repository link); barrel `index.js`.
 - `utils/` — one `<domain>.utils.js` each, all pure: `todos` (`sanitizeTodo`, `isValidTitle`: the one task validator;
-  the list transforms the context applies; `sortTodos`; the counter, toast, filter-result and title-counter messages),
+  `limitTitle` (its cut); the list transforms the context applies; `sortTodos`; the counter, toast, filter-result and title-counter messages),
   `filters` (`filterTodos`, `parseFilters` and `buildFiltersSearch` between the URL query and the filters, the category
   options with their counts), `highlight`, `theme`, `css`, `events`, `backup` (the pure side of export and import), `validation`;
   barrel `index.js`.

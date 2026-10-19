@@ -1,6 +1,6 @@
 import { useActionState, useRef, useState } from 'react'
 import { useTodos } from '@/context'
-import { isValidTitle } from '@/utils'
+import { isValidTitle, limitTitle } from '@/utils'
 import {
   DEFAULT_CATEGORY,
   DEFAULT_PRIORITY,
@@ -50,7 +50,7 @@ export function useTodoForm() {
   const messageKey = result.attempt
 
   const handleTitleChange = (event) => {
-    setTitle(event.target.value)
+    setTitle(limitTitle(event.target.value))
     setHasEdited(true)
   }
 

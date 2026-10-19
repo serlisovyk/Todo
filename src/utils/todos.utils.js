@@ -1,5 +1,6 @@
 import {
   CATEGORIES,
+  LONE_HIGH_SURROGATE_PATTERN,
   NO_MATCHES_MESSAGE,
   PLURAL_LOCALE,
   PRIORITIES,
@@ -29,6 +30,15 @@ export function isValidTitle(title) {
   const isWithinLimits = trimmedLength > 0 && trimmedLength <= TITLE_MAX_LENGTH
 
   return isWithinLimits
+}
+
+export function limitTitle(title) {
+  const isWithinLimit = title.length <= TITLE_MAX_LENGTH
+  if (isWithinLimit) return title
+
+  const limited = title.slice(0, TITLE_MAX_LENGTH)
+
+  return limited.replace(LONE_HIGH_SURROGATE_PATTERN, '')
 }
 
 export function getTitleCounterText(length) {
