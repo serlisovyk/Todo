@@ -1,6 +1,7 @@
 import { Flag, Plus } from 'lucide-react'
 import { CategoryDot } from '@/components/category-dot'
 import { PillSelect } from '@/components/pill-select'
+import { TitleCounter } from '@/components/title-counter'
 import { useTodoForm } from '@/hooks'
 import {
   CATEGORIES,
@@ -27,6 +28,8 @@ export function TodoForm() {
   } = useTodoForm()
 
   const errorId = `${TITLE_INPUT_ID}-error`
+  const counterId = `${TITLE_INPUT_ID}-counter`
+  const describedBy = isInvalid ? `${errorId} ${counterId}` : counterId
 
   return (
     <form className="todo-form" action={submitAction} onReset={preventReset}>
@@ -46,7 +49,7 @@ export function TodoForm() {
           maxLength={TITLE_MAX_LENGTH}
           autoComplete="off"
           aria-invalid={isInvalid}
-          aria-describedby={isInvalid ? errorId : undefined}
+          aria-describedby={describedBy}
           onChange={handleTitleChange}
         />
 
@@ -55,6 +58,8 @@ export function TodoForm() {
             {message}
           </p>
         )}
+
+        <TitleCounter id={counterId} length={title.length} />
       </div>
 
       <PillSelect

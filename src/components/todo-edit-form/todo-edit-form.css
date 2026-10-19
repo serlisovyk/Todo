@@ -13,9 +13,13 @@
   }
 }
 
-.todo-edit-form-title {
+.todo-edit-form-field {
   flex: 1 1 100%;
   min-width: 0;
+}
+
+.todo-edit-form-title {
+  width: 100%;
   min-height: var(--touch-target);
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--color-border-control);

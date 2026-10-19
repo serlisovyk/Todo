@@ -16,6 +16,7 @@ export const DEFAULT_CATEGORY = 'work'
 export const DEFAULT_PRIORITY = 'medium'
 
 export const TITLE_MAX_LENGTH = 200
+export const TITLE_COUNTER_THRESHOLD = 20
 export const TITLE_INPUT_ID = 'todo-title'
 export const TODO_CHECKBOX_SELECTOR = 'input[type="checkbox"]'
 export const CANCEL_EDIT_KEY = 'Escape'

@@ -6,6 +6,7 @@ import {
   SORT_OLDEST,
   SORT_PRIORITY,
   TASK_NOUNS,
+  TITLE_COUNTER_THRESHOLD,
   TITLE_MAX_LENGTH,
 } from '@/constants'
 import { isIsoDate, isKnownId, isPlainObject } from './validation.utils.js'
@@ -28,6 +29,27 @@ export function isValidTitle(title) {
   const isWithinLimits = trimmedLength > 0 && trimmedLength <= TITLE_MAX_LENGTH
 
   return isWithinLimits
+}
+
+export function getTitleCounterText(length) {
+  const remaining = TITLE_MAX_LENGTH - length
+
+  const isCounterShown = remaining <= TITLE_COUNTER_THRESHOLD
+  if (!isCounterShown) return ''
+
+  return `${length} / ${TITLE_MAX_LENGTH}`
+}
+
+export function getTitleCounterMessage(length) {
+  const remaining = TITLE_MAX_LENGTH - length
+
+  const isAtLimit = remaining <= 0
+  if (isAtLimit) return `Character limit of ${TITLE_MAX_LENGTH} reached`
+
+  const isNearLimit = remaining <= TITLE_COUNTER_THRESHOLD
+  if (isNearLimit) return `${TITLE_COUNTER_THRESHOLD} or fewer characters left`
+
+  return ''
 }
 
 export function sanitizeTodo(value) {

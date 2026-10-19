@@ -24,6 +24,8 @@ export {
   getTasksClearedMessage,
   getTasksLeftMessage,
   getTasksShownMessage,
+  getTitleCounterMessage,
+  getTitleCounterText,
   getTodoCheckboxId,
   isValidTitle,
   patchTodo,

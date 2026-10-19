@@ -3,6 +3,7 @@ import { Check, Flag, X } from 'lucide-react'
 import { CategoryDot } from '@/components/category-dot'
 import { IconButton } from '@/components/icon-button'
 import { PillSelect } from '@/components/pill-select'
+import { TitleCounter } from '@/components/title-counter'
 import { useTodoEdit } from '@/hooks'
 import { CATEGORIES, PRIORITIES, TITLE_MAX_LENGTH } from '@/constants'
 import './todo-edit-form.css'
@@ -24,22 +25,29 @@ export function TodoEditForm({ todo, onClose }) {
 
   const titleId = useId()
 
+  const counterId = `${titleId}-counter`
+
   return (
     <form className="todo-edit-form" action={saveAction} onBlur={handleBlur}>
-      <label className="sr-only" htmlFor={titleId}>
-        Task title
-      </label>
+      <div className="todo-edit-form-field">
+        <label className="sr-only" htmlFor={titleId}>
+          Task title
+        </label>
 
-      <input
-        ref={titleInputRef}
-        id={titleId}
-        className="todo-edit-form-title"
-        type="text"
-        value={title}
-        maxLength={TITLE_MAX_LENGTH}
-        autoComplete="off"
-        onChange={handleTitleChange}
-      />
+        <input
+          ref={titleInputRef}
+          id={titleId}
+          className="todo-edit-form-title"
+          type="text"
+          value={title}
+          maxLength={TITLE_MAX_LENGTH}
+          autoComplete="off"
+          aria-describedby={counterId}
+          onChange={handleTitleChange}
+        />
+
+        <TitleCounter id={counterId} length={title.length} />
+      </div>
 
       <PillSelect
         labelText="Category"
