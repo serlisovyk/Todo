@@ -35,7 +35,9 @@ Data flows one way: constants → storage → context → hooks → components. 
   synchronous `read()` and `save(theme)`. A missing, unknown or unreadable value reads as `system`;
   a refused `save` throws a readable `Error`, which the theme context shows as a toast.
 - `createRepository()` picks the implementation from `import.meta.env.VITE_STORAGE`; nothing
-  else knows which one runs.
+  else knows which one runs. Besides the todos provider, the error screen's hook (`useErrorScreen`)
+  calls it, in its click handler and only to read: the context may be what failed (decision
+  `error-boundary`). No other hook or component imports `storage/`.
 - Stored data is checked when read: a broken task costs only itself, unreadable or unknown data
   never stops the app, and nothing is written until something changes.
 - A store that cannot be opened at all (a blocked IndexedDB) rejects `list()` with a readable
@@ -63,5 +65,7 @@ Data flows one way: constants → storage → context → hooks → components. 
   at runtime, such as the centre of the theme circle, goes through the Web Animations API.
 - No app state on `window`, no global event bus, no singletons.
 - No router: the only "route" state is the filter query string.
+- A render error never leaves a blank page: `ErrorBoundary` is the outermost element of `App`, above the
+  providers, and the `ErrorScreen` it shows reads no context (decision `error-boundary`).
 - Do not rename existing CSS classes only for cosmetic reasons; class names are part of the
   component's styling contract.

@@ -45,6 +45,8 @@ src/
     app/                The root component: the providers, the header, the page and the toast region
     app-header/         The logo, the title and the theme switch
     category-dot/       The dot in a category's colour
+    error-boundary/     The class that shows the error screen after a render error
+    error-screen/       The error screen: the heading, Export backup and Reload
     filter-announcer/   The live region that says what the filters show
     filters-toolbar/    The search field, the Category and Sort pills and Reset
     icon-button/        An icon-only button

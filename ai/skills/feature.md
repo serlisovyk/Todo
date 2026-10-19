@@ -87,8 +87,9 @@ form that must not count as leaving the field cancels the default of `mousedown`
 variants, and a layout need, such as the toast keeping its action at the end, is the container's CSS.
 
 **A file in or out** — the pure parts (the object written, the file name, the whole-file check, the split into
-new, present and broken tasks, the summary) are in `backup.utils.js`; the `Blob` and `<a download>`, the
-`<input type="file" hidden>` and the flow are one hook, driven by real buttons (`useTodoBackup`). An import
+new, present and broken tasks, the summary) are in `backup.utils.js`; the `Blob` and `<a download>` are
+`useBackupDownload`, which the error screen's export shares; the `<input type="file" hidden>` and the import
+flow are one hook, driven by real buttons (`useTodoBackup`). An import
 rejects a file by `file.size` before reading it, checks the whole file, then writes only the new valid tasks
 with `restoreTodos`, which says whether the write held: a refused write shows the storage error toast and no
 summary. Every failure is an error toast and changes nothing; the input is cleared after each choice, so the

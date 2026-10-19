@@ -33,11 +33,15 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 
 - `main.jsx` — the entry point and the only `createRoot`: imports `App` and `styles/style.css`,
   renders `App` in `StrictMode`.
-- `components/app/` — `App`, the root component: the three providers around the page header, `<main>` and the
-  toast region; `components/index.js` re-exports every component.
+- `components/app/` — `App`, the root component: `ErrorBoundary` around the three providers, the page header,
+  `<main>` and the toast region; `components/index.js` re-exports every component.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`
   and the theme switch.
 - `components/category-dot/` — `CategoryDot`: the 12px dot in a category's colour (the forms and the category pill).
+- `components/error-boundary/` — `ErrorBoundary`, the one class component: after a render error below it, it shows
+  `ErrorScreen`.
+- `components/error-screen/` — `ErrorScreen`: the heading, Export backup (the tasks read straight from the
+  repository) and Reload; its logic is `useErrorScreen`.
 - `components/filter-announcer/` — `FilterAnnouncer`: the persistent visually hidden live region above the list;
   it says what the filters show; its logic is `useFilterAnnouncement`.
 - `components/filters-toolbar/` — `FiltersToolbar`: the search field and, under it, the Category and Sort pills and
@@ -60,17 +64,11 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `components/todo-edit-form/` — `TodoEditForm`: a row's edit form (title, category, priority, Save and Cancel).
 - `components/toast-region/`, `components/toast/` — `ToastRegion`: the always-present `role="status"`
   region; `Toast`: the message (with an error icon) and its action button.
-- `hooks/` — `useFilters` (the filters in the URL query), `useFiltersToolbar` (the pills and Reset),
-  `useSearchField` (the field and the `/` shortcut), `useFilterAnnouncement` (the filter result message), `useTodoForm`, `useTodoItem`, `useTodoEdit`, `useTodoFooter`, `useTodoBackup`, `useToastTimer`,
-  `useToastExit`, `useToastShortcut` (Ctrl/Cmd+Z runs the toast's action): each component's logic; barrel `index.js`.
-- `constants/` — `storage.constants.js` (keys, names, version, storage error messages),
-  `todos.constants.js` (categories, priorities, defaults, limits, the form's, the row's and the
-  `useTodos` messages), `filters.constants.js` (the statuses, category options and sorts with their URL
-  parameters, the search keys, the highlight's regexp), `keyboard.constants.js` (the selectors the shortcuts
-  and the edit form test), `toast.constants.js` (the duration, the shortcut, a message), `backup.constants.js` (the
-  backup file's name, type and size limit, the messages), `theme.constants.js` (the themes with their icons,
-  `todo:theme`, media queries, CSS variables), `css.constants.js` (the time units, the reduced-motion query);
-  barrel `index.js`.
+- `hooks/` — each component's logic as `use<Component>`, and the browser-API hooks: `useFilters` (the filters in
+  the URL query), `useSearchField` (the field and the `/` shortcut), `useToastShortcut` (Ctrl/Cmd+Z runs the
+  toast's action), `useBackupDownload` (the backup file's download; private to `hooks/`); barrel `index.js`.
+- `constants/` — a `<domain>.constants.js` per domain: `storage` (keys, version, storage messages), `todos`,
+  `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`; barrel `index.js`.
 - `utils/` — `todos.utils.js` (`sanitizeTodo`, `sanitizeTodos`, `isValidTitle`: the one task validator; the pure
   list transforms the context applies; `sortTodos`: the order a sort names; the counter, toast and filter-result
   messages), `filters.utils.js` (`filterTodos`, and `parseFilters` and `buildFiltersSearch` between the URL query

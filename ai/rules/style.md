@@ -38,12 +38,14 @@ style standard plus this project's naming (decision `structure-and-naming`).
 
 ## Classes
 
-Only `storage/` uses classes. A class file holds only its imports and the class: its messages come
-from `constants/`, and a helper is a private method, never a function at module level. The one
-exception is a helper shared by the subclasses: `#private` methods are not inherited, so it is an
-ordinary method of the base class (decision `shared-repository-helpers`). State is in private
-fields (`#items`), handlers are ordinary methods; an arrow-function field only for a function that
-is both added and removed as a listener. One style per class.
+Only `storage/` and the `ErrorBoundary` component use classes (decision `error-boundary`). A class
+file holds only its imports and the class: its messages come from `constants/`, and a helper is a
+private method, never a function at module level. The one exception is a helper shared by the
+subclasses: `#private` methods are not inherited, so it is an ordinary method of the base class
+(decision `shared-repository-helpers`). State is in private fields (`#items`), handlers are
+ordinary methods; an arrow-function field only for a function that is both added and removed as a
+listener. One style per class. React reads a boundary's `state` and `getDerivedStateFromError` by
+name, so they are public.
 
 ## Files, names and imports
 

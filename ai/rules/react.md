@@ -5,7 +5,8 @@ and storage: `ai/rules/architecture.md`.
 
 ## Components
 
-- Function components only. One component per file, in its own folder next to its stylesheet:
+- Function components only, except `ErrorBoundary`: React catches a render error only in a class
+  (decision `error-boundary`). One component per file, in its own folder next to its stylesheet:
   `components/todo-item/todo-item.jsx` exports `TodoItem` and imports `./todo-item.css`.
 - A component file holds only its imports and the component, and so does a provider file: constants,
   maps and lookup tables go to `constants/`, pure helpers to `utils/`, logic to a hook.
