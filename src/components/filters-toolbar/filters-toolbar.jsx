@@ -4,7 +4,7 @@ import { IconButton } from '@/components/icon-button'
 import { PillSelect } from '@/components/pill-select'
 import { SearchField } from '@/components/search-field'
 import { useFiltersToolbar } from '@/hooks'
-import { CATEGORY_ALL, CATEGORY_FILTERS, SORTS } from '@/constants'
+import { CATEGORY_ALL, SORTS } from '@/constants'
 import './filters-toolbar.css'
 
 export function FiltersToolbar() {
@@ -12,6 +12,7 @@ export function FiltersToolbar() {
     categorySelectRef,
     category,
     sort,
+    categoryOptions,
     canReset,
     handleCategoryChange,
     handleSortChange,
@@ -26,7 +27,7 @@ export function FiltersToolbar() {
         <PillSelect
           ref={categorySelectRef}
           labelText="Category"
-          options={CATEGORY_FILTERS}
+          options={categoryOptions}
           value={category}
           onChange={handleCategoryChange}
           renderMark={(categoryId) =>

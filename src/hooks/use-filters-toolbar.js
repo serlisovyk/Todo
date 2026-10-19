@@ -1,16 +1,20 @@
 import { useRef } from 'react'
 import { flushSync } from 'react-dom'
-import { canResetFilters } from '@/utils'
+import { useTodos } from '@/context'
+import { canResetFilters, getCategoryFilterOptions } from '@/utils'
 import { RESET_DEFAULTS } from '@/constants'
 import { useFilters } from './use-filters.js'
 
 export function useFiltersToolbar() {
+  const { todos } = useTodos()
+
   const { filters, changeFilters } = useFilters()
 
   const categorySelectRef = useRef(null)
 
   const { category, sort } = filters
 
+  const categoryOptions = getCategoryFilterOptions(todos)
   const canReset = canResetFilters(filters)
 
   const handleCategoryChange = (categoryId) =>
@@ -28,6 +32,7 @@ export function useFiltersToolbar() {
     categorySelectRef,
     category,
     sort,
+    categoryOptions,
     canReset,
     handleCategoryChange,
     handleSortChange,

@@ -10,6 +10,7 @@ export {
   buildFiltersSearch,
   canResetFilters,
   filterTodos,
+  getCategoryFilterOptions,
   getFiltersKey,
   matchesFilters,
   parseFilters,

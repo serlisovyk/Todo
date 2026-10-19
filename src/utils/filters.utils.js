@@ -52,6 +52,23 @@ export function filterTodos(todos, filters) {
   return filtered
 }
 
+function countTodosInCategory(todos, category) {
+  const inCategory = todos.filter((todo) => matchesCategory(todo, category))
+
+  return inCategory.length
+}
+
+export function getCategoryFilterOptions(todos) {
+  const options = CATEGORY_FILTERS.map(({ id, label }) => {
+    const count = countTodosInCategory(todos, id)
+    const countedLabel = `${label} (${count})`
+
+    return { id, label: countedLabel }
+  })
+
+  return options
+}
+
 export function canResetFilters(filters) {
   const isCategoryChosen = filters.category !== DEFAULT_CATEGORY_FILTER
   const isSortChosen = filters.sort !== DEFAULT_SORT
