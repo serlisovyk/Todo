@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "Todo app built with React and Vite.",
+  "description": "Accessible todo app with categories, priorities, search, and filters, built with React, React Compiler, Vite, JavaScript, and plain CSS.",
   "author": "Serhii Lisovyk",
   "type": "module",
   "scripts": {
