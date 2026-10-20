@@ -77,7 +77,8 @@ before the focus moves is committed with `flushSync` first. An action toast also
 outside text fields (`useToastShortcut`, in `Toast`), and its button names the keys in
 `aria-keyshortcuts`. A toast enters with `@starting-style` and leaves through `useToastExit`: the
 timer and the button set `is-leaving`, CSS moves it away and `transitionend` removes it (at once
-under reduced motion, where no transition runs), and while it leaves it takes no input.
+under reduced motion, where no transition runs), and while it leaves it takes no input. Its exit also arms a document
+click listener that cancels the repeated clicks that follow, since the toast is gone before a double click ends.
 
 **An icon button** — an `IconButton` with a `lucide-react` icon, a `labelText` (its `title`: the name and
 the tooltip, no `aria-label`) and, for a destructive one, `tone="danger"`. It is 44px and always

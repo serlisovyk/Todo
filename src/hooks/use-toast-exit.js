@@ -1,10 +1,23 @@
 import { useState } from 'react'
+import { isRepeatedClick } from '@/utils'
 import { REDUCED_MOTION_QUERY } from '@/constants'
 
 export function useToastExit(onRemove) {
   const [isLeaving, setIsLeaving] = useState(false)
 
+  const swallowRepeatedClicks = (event) => {
+    if (!isRepeatedClick(event)) {
+      document.removeEventListener('click', swallowRepeatedClicks, { capture: true })
+      return
+    }
+
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
   const dismiss = () => {
+    document.addEventListener('click', swallowRepeatedClicks, { capture: true })
+
     const isMotionReduced = window.matchMedia(REDUCED_MOTION_QUERY).matches
     if (isMotionReduced) {
       onRemove()

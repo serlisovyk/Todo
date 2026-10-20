@@ -50,7 +50,9 @@ and storage: `ai/rules/architecture.md`.
   click lands on whatever took its place. A button's handler starts with `if (isRepeatedClick(event)) return`; the
   keyboard (`detail` 0) and a single click work as before. A checkbox's `onChange` has no `detail`, and WebKit's label
   forwards its click to the input with `detail` 0, so the label gates the checkbox: `onClickCapture` calls
-  `preventDefault` and `stopPropagation` on a repeated click.
+  `preventDefault` and `stopPropagation` on a repeated click. A control that leaves on click has no handler left to
+  guard, so the toast's exit (`useToastExit`) arms a capture-phase `click` listener on the document that cancels
+  repeated clicks until the first fresh one: the fade is shorter than a double click and absent under reduced motion.
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.

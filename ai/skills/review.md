@@ -16,8 +16,9 @@ Walk the diff against `ai/rules/definition-of-done.md` and the rules of the area
 
 - **Tasks**: add, edit (Enter, the Save button or leaving the field saves, `Escape` or the Cancel
   button cancels and never saves, an empty title keeps the old one), toggle, delete and Undo (back at
-  the same place), clear completed and Undo, mark all (both ways); a double click on a delete button, a checkbox or a
-  footer button acts once, a keyboard press and a single click as before. Completed tasks stay at the bottom
+  the same place), clear completed and Undo, mark all (both ways); a double click on a delete button, a checkbox, a
+  footer button or Undo acts once and presses nothing under the toast, a keyboard press and a single click as before.
+  Completed tasks stay at the bottom
   under every sort; the counter is the active tasks out of all, whatever the filters; a button that
   hides when used hands the focus on.
 - **Filters and search**: status, category, sort and query combine; a reload restores them from
