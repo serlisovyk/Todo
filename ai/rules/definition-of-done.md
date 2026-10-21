@@ -13,6 +13,8 @@ for approval.
   version — and the app still starts; nothing is written at start.
 - Shared values come from `constants/`; colours, spacing, radii, font sizes and durations from
   the tokens.
+- A change to the font, `public/`, the page metadata or the bundle follows
+  `ai/rules/assets-performance.md`; a size budget is raised only on purpose.
 - No comments, no inline styles, no app state on `window`.
 - Stale code, styles and constants left behind by the change are removed.
 - Nothing from `ai/rules/scope.md` or `ai/decisions/2026-10-16-rejected-features.md` slipped in.

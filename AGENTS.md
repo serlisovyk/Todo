@@ -19,8 +19,9 @@ clean, practical, accessible, and proportional to the project size.
 - `ai/map.md` — where files and folders live, the storage keys, what the project
   deliberately does **not** have. Read it before exploring the code from scratch.
 - The rules of the area you touch, in `ai/rules/`: `architecture.md` and `react.md` for
-  code, `style.md` for JavaScript, JSX and CSS, `scope.md` for what not to add without an
-  explicit request.
+  code, `style.md` for JavaScript, JSX and CSS, `assets-performance.md` for the font,
+  `public/`, the page metadata and the size budgets, `scope.md` for what not to add without
+  an explicit request.
 - `ai/rules/definition-of-done.md` — the gate before a change is handed over;
   `ai/rules/docs.md` — one fact one home, size limits, no history in docs.
 - `ai/superpowers/` is the archive of past plans and specs: read only the plan or spec of

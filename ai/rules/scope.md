@@ -12,9 +12,11 @@ template.
 - A UI kit or utility CSS framework, CSS Modules, CSS-in-JS, a CSS preprocessor
 - A toast, date, form or validation library
 - A backend, an HTTP API, a mock server (MSW, json-server)
-- Authentication, analytics, third-party runtime scripts, a font CDN
-- A service worker or PWA manifest, i18n
+- Authentication, analytics
+- A service worker or PWA, i18n
 - Windows contrast themes (`forced-colors`) are not tuned: out of scope by the author's decision
+
+Third-party scripts, a font CDN, a sitemap and a web app manifest: `ai/rules/assets-performance.md`.
 
 ## Dependencies
 

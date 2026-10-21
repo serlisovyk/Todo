@@ -12,7 +12,8 @@ Self-review pass before handing over any non-trivial change, per `ai/workflow.md
 ## Checklist
 
 Walk the diff against `ai/rules/definition-of-done.md` and the rules of the areas it touches
-(`architecture`, `react`, `style`, `scope`). Then check what the rules do not cover:
+(`architecture`, `react`, `style`, `scope`, and `assets-performance` for the font, `public/`, the metadata or a budget).
+Then check what the rules do not cover:
 
 - **Tasks**: add, edit (Enter, the Save button or leaving the field saves, `Escape` or the Cancel
   button cancels and never saves, an empty title keeps the old one), toggle, delete and Undo (back at

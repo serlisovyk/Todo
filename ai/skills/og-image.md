@@ -48,14 +48,14 @@ Remake it when the palette, the list card (`todo-list`, `todo-item`, `icon-butto
    const isDark = (x, y) => y / height + x / width < 1
    ```
 
-   The size is exactly 1200×630 and the file under 200 KB. Sample the page colour about 14px either side of the
+   The size is exactly 1200×630 and the file within the limit of `ai/rules/assets-performance.md`. Sample the page colour about 14px either side of the
    diagonal, clear of the card, at x = 40, 90 and 150: above it `14,14,17`, below it `244,244,246`. Scan for pixels that
    differ from the page colour in the logo's corner and around the name: every corner of the logo's bounding box has
    `isDark` true, every corner of the name's has it false.
 
-5. If the words of the scene changed, change `og:image:alt` and `twitter:image:alt` in `index.html` to match.
+5. If the words of the scene changed, update the card's alt texts in `index.html` (`ai/rules/assets-performance.md`).
 
 The same scene rendered with `--window-size=1280,640` into another file is the 1280×640 GitHub social preview.
 
-`public/favicon.svg` is written by hand. An SVG icon cannot read the page's custom properties, so its two stroke
-colours are literals that must equal `--color-accent` on `:root` and on `:root[data-theme='dark']` in `tokens.css`.
+`public/favicon.svg` is written by hand: when `--color-accent` changes, change its two stroke colours to match
+(`ai/rules/assets-performance.md`).
