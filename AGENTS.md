@@ -88,7 +88,9 @@ If a change materially reshapes a pattern, update the matching skill in the same
 ## Project Defaults
 
 - Package manager: `pnpm`, never npm or yarn; keep `pnpm-lock.yaml`, no other lockfile, and
-  do not edit the lockfile by hand unless there is no safer option.
+  do not edit the lockfile by hand unless there is no safer option. `packageManager` and
+  `engines` in `package.json` pin pnpm and Node; CI takes pnpm from there, and the lockfile
+  records it too, so a bump of `packageManager` is an install that updates the lockfile.
 - Stack: React 19 with the React Compiler (`babel-plugin-react-compiler` through
   `@rolldown/plugin-babel`), Vite 8, JavaScript ESM (`.js`, `.jsx`), plain CSS per component
   with design tokens.

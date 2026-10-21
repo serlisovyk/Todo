@@ -4,6 +4,10 @@
   "description": "Accessible todo app with categories, priorities, search, and filters, built with React, React Compiler, Vite, JavaScript, and plain CSS.",
   "author": "Serhii Lisovyk",
   "type": "module",
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
