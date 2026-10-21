@@ -95,7 +95,9 @@ export class IndexedDbRepository extends TodoRepository {
         },
       })
 
-      return await this.#databasePromise
+      const database = await this.#databasePromise
+
+      return database
     } catch (error) {
       this.#databasePromise = null
 
