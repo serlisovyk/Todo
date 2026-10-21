@@ -12,6 +12,8 @@ export {
   canResetFilters,
   filterTodos,
   getCategoryFilterOptions,
+  getEmptyListMessage,
+  getFilterResultMessage,
   getFiltersKey,
   getStatusFilterOptions,
   matchesFilters,

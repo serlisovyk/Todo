@@ -46,7 +46,14 @@ export const FILTERS_CHANGE_EVENT = 'todo:filters'
 export const SEARCH_SHORTCUT_KEY = '/'
 export const CLEAR_SEARCH_KEY = 'Escape'
 
-export const NO_MATCHES_MESSAGE = 'No tasks match your filters'
+export const NO_MATCHES_MESSAGE = 'No tasks match your filters.'
+export const ALL_DONE_MESSAGE = 'All tasks are done.'
+export const NO_COMPLETED_MESSAGE = 'No completed tasks yet.'
+
+export const EMPTY_STATUS_MESSAGES = {
+  [STATUS_ACTIVE]: ALL_DONE_MESSAGE,
+  [STATUS_COMPLETED]: NO_COMPLETED_MESSAGE,
+}
 
 export const REGEXP_SPECIAL_CHARACTERS = /[.*+?^${}()|[\]\\]/g
 export const REGEXP_ESCAPE_REPLACEMENT = '\\$&'

@@ -6,6 +6,8 @@ import {
   DEFAULT_QUERY,
   DEFAULT_SORT,
   DEFAULT_STATUS,
+  EMPTY_STATUS_MESSAGES,
+  NO_MATCHES_MESSAGE,
   QUERY_PARAM,
   SORT_PARAM,
   SORTS,
@@ -14,6 +16,7 @@ import {
   STATUS_PARAM,
   STATUSES,
 } from '@/constants'
+import { getTasksShownMessage } from './todos.utils.js'
 import { isKnownId } from './validation.utils.js'
 
 function matchesStatus(todo, status) {
@@ -69,6 +72,27 @@ export function getCategoryFilterOptions(todos) {
 
 export function getStatusFilterOptions(todos) {
   return getCountedOptions(todos, STATUSES, matchesStatus)
+}
+
+export function getEmptyListMessage(todos, filters) {
+  const hasStatusTodos = todos.some((todo) => matchesStatus(todo, filters.status))
+  if (hasStatusTodos) return NO_MATCHES_MESSAGE
+
+  const statusMessage = EMPTY_STATUS_MESSAGES[filters.status] ?? NO_MATCHES_MESSAGE
+
+  return statusMessage
+}
+
+export function getFilterResultMessage(todos, filters) {
+  const hasTodos = todos.length > 0
+  if (!hasTodos) return ''
+
+  const visibleCount = filterTodos(todos, filters).length
+
+  const isEmptyResult = visibleCount === 0
+  if (isEmptyResult) return getEmptyListMessage(todos, filters)
+
+  return getTasksShownMessage(visibleCount)
 }
 
 export function canResetFilters(filters) {

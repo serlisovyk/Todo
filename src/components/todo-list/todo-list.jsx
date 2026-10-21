@@ -1,7 +1,7 @@
 import { TodoItem } from '@/components/todo-item'
 import { useTodos } from '@/context'
 import { useFilters } from '@/hooks'
-import { filterTodos, sortTodos } from '@/utils'
+import { filterTodos, getEmptyListMessage, sortTodos } from '@/utils'
 import './todo-list.css'
 
 export function TodoList() {
@@ -22,7 +22,9 @@ export function TodoList() {
 
   const hasVisible = visibleTodos.length > 0
   if (!hasVisible) {
-    return <p className="todo-list-message">No tasks match your filters.</p>
+    const emptyMessage = getEmptyListMessage(todos, filters)
+
+    return <p className="todo-list-message">{emptyMessage}</p>
   }
 
   const sortedTodos = sortTodos(visibleTodos, filters.sort)

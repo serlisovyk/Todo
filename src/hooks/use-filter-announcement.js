@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTodos } from '@/context'
-import { filterTodos, getFiltersKey, getTasksShownMessage } from '@/utils'
+import { getFilterResultMessage, getFiltersKey } from '@/utils'
 import { useFilters } from './use-filters.js'
 
 export function useFilterAnnouncement() {
@@ -15,9 +15,7 @@ export function useFilterAnnouncement() {
   })
 
   const filtersKey = getFiltersKey(filters)
-  const hasTodos = todos.length > 0
-  const visibleCount = filterTodos(todos, filters).length
-  const message = hasTodos ? getTasksShownMessage(visibleCount) : ''
+  const message = getFilterResultMessage(todos, filters)
 
   const hasFiltersChanged = announcement.filtersKey !== filtersKey
   if (hasFiltersChanged) {

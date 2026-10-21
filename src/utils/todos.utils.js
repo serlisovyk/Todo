@@ -1,7 +1,6 @@
 import {
   CATEGORIES,
   LONE_HIGH_SURROGATE_PATTERN,
-  NO_MATCHES_MESSAGE,
   PLURAL_LOCALE,
   PRIORITIES,
   SORT_OLDEST,
@@ -210,8 +209,6 @@ export function getTasksClearedMessage(count) {
 }
 
 export function getTasksShownMessage(count) {
-  if (count === 0) return NO_MATCHES_MESSAGE
-
   const taskCount = formatTaskCount(count)
 
   return `${taskCount} shown`
