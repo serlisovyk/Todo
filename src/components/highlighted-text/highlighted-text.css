@@ -1,0 +1,4 @@
+.highlighted-text-mark {
+  background-color: var(--color-highlight);
+  color: var(--color-on-highlight);
+}

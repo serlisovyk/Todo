@@ -1,12 +1,7 @@
 import { useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useTodos, useToast } from '@/context'
-import {
-  getTodoCheckboxId,
-  isRepeatedClick,
-  matchesFilters,
-  splitByQuery,
-} from '@/utils'
+import { getTodoCheckboxId, isRepeatedClick, matchesFilters } from '@/utils'
 import {
   CHECKED_STATUS_SELECTOR,
   TODO_CHECKBOX_SELECTOR,
@@ -16,7 +11,7 @@ import {
 import { useFilters } from './use-filters.js'
 
 export function useTodoItem(todo) {
-  const { id, title, completed } = todo
+  const { id, completed } = todo
 
   const { toggleTodo, removeTodos, restoreTodos } = useTodos()
   const { showToast } = useToast()
@@ -29,7 +24,7 @@ export function useTodoItem(todo) {
   const [isEditing, setIsEditing] = useState(false)
   const [isToggling, setIsToggling] = useState(false)
 
-  const titleParts = splitByQuery(title, filters.query)
+  const { query } = filters
 
   const startEditing = () => setIsEditing(true)
 
@@ -107,7 +102,7 @@ export function useTodoItem(todo) {
   return {
     rowRef,
     editButtonRef,
-    titleParts,
+    query,
     isEditing,
     isToggling,
     ignoreRepeatedClick,

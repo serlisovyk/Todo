@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Check, Flag, Pencil, Trash2 } from 'lucide-react'
+import { HighlightedText } from '@/components/highlighted-text'
 import { IconButton } from '@/components/icon-button'
 import { TodoEditForm } from '@/components/todo-edit-form'
 import { useTodoItem } from '@/hooks'
@@ -13,7 +14,7 @@ export function TodoItem({ todo }) {
   const {
     rowRef,
     editButtonRef,
-    titleParts,
+    query,
     isEditing,
     isToggling,
     ignoreRepeatedClick,
@@ -36,16 +37,6 @@ export function TodoItem({ todo }) {
   const category = CATEGORIES.find((candidate) => candidate.id === categoryId)
   const priority = PRIORITIES.find((candidate) => candidate.id === priorityId)
 
-  const titleNodes = titleParts.map(({ start, text, isMatch }) =>
-    isMatch ? (
-      <mark key={start} className="todo-item-mark">
-        {text}
-      </mark>
-    ) : (
-      text
-    ),
-  )
-
   return (
     <li ref={rowRef} className="todo-item" data-toggling={isToggling}>
       <div className="todo-item-body">
@@ -61,7 +52,9 @@ export function TodoItem({ todo }) {
 
           <Check className="todo-item-check" aria-hidden="true" />
 
-          <span className="todo-item-title">{titleNodes}</span>
+          <span className="todo-item-title">
+            <HighlightedText text={title} query={query} />
+          </span>
         </label>
 
         <div className="todo-item-meta" id={metaId}>

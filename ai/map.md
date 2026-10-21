@@ -32,7 +32,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 
 - `main.jsx` — the entry point and the only `createRoot`: renders `App` in `StrictMode`, imports `styles/style.css`.
 - `components/app/` — `App`, the root component: `ErrorBoundary` around the three providers, the header, `<main>`,
-  the footer and the toast region; `components/index.js` re-exports every component.
+  the footer and the toast region.
 - `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`,
   the theme switch and the repository link.
 - `components/app-footer/` — `AppFooter`: the page `<footer>` outside `<main>`: the author's name and the year.
@@ -47,6 +47,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   it says what the filters show; its logic is `useFilterAnnouncement`.
 - `components/filters-toolbar/` — `FiltersToolbar`: the search field and, under it, the Category and Sort pills and
   Reset filters; its logic is `useFiltersToolbar`.
+- `components/highlighted-text/` — `HighlightedText`: a text with the matches of a query in `<mark>`.
 - `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot, flag or
   icon, also inside each option of the open list, and may return nothing; `ref` reaches the `<select>`.

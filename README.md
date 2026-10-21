@@ -52,6 +52,7 @@ src/
     filters-toolbar/    The search field, the Category and Sort pills and Reset
     github-icon/        The GitHub mark
     github-link/        The icon link to the repository
+    highlighted-text/   A text with the matches of the search query marked
     icon-button/        An icon-only button
     pill-select/        A native select drawn as a pill
     search-field/       The labelled search input and its clear button

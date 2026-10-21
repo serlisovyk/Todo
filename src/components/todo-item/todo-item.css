@@ -145,11 +145,6 @@
   }
 }
 
-.todo-item-mark {
-  background-color: var(--color-highlight);
-  color: var(--color-on-highlight);
-}
-
 .todo-item-meta {
   display: flex;
   flex-wrap: wrap;
