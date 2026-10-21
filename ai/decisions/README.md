@@ -16,7 +16,8 @@ something that was deliberately rejected.
 
 - `accepted` — in force and built.
 - `accepted (not implemented)` — agreed now, built by a later task; that task sets it to `accepted`.
-- `superseded by <file>` — replaced by a newer record.
+- `superseded by <file>` — replaced by a newer record; its line in the index moves to the
+  Superseded group.
 
 ## Changing a decision
 
@@ -40,11 +41,14 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 
 ## Records
 
+The first three groups are the records in force, by topic; the last one lists the superseded records, each with
+the record that replaced it.
+
 ### Project and process
 
 - [React 19 and Vite in plain JavaScript, no TypeScript](2026-10-16-react-and-javascript.md)
 - [No automated tests](2026-10-16-no-automated-tests.md)
-- [pnpm is the package manager](2026-10-16-pnpm.md)
+- [`packageManager` and `engines` pin pnpm and Node, and CI takes pnpm from `package.json`](2026-10-21-package-manager-and-engines.md)
 - [Merge locally into `main`, no pull requests](2026-10-16-local-merge-without-pr.md)
 - [Vercel deploys with no `vercel.json`; the link preview is a render of the app's list](2026-10-18-vercel-and-link-previews.md)
 - [Bundle size budgets: JavaScript 90 kB, CSS 8 kB (gzip)](2026-10-17-js-budget-90-kb.md)
@@ -87,3 +91,17 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [The theme head script is the one storage read outside `storage/`](2026-10-17-theme-head-script.md)
 - [The list moves with CSS only: `@starting-style` for a new task, transitions for a checked one](2026-10-18-list-motion-without-view-transitions.md)
 - [Accessibility and SEO: WCAG 2.2 AA, Lighthouse 100](2026-10-16-accessibility-and-seo.md)
+
+### Superseded
+
+Read the replacement, not these: it restates what stays in force.
+
+- [pnpm is the package manager](2026-10-16-pnpm.md) → [`package-manager-and-engines`](2026-10-21-package-manager-and-engines.md)
+- [Bundle size budgets: JavaScript 80 kB, CSS 8 kB (gzip)](2026-10-16-bundle-size-budgets.md) → [`js-budget-90-kb`](2026-10-17-js-budget-90-kb.md)
+- [Storage behind a `TodoRepository` base class: localStorage by default, IndexedDB by env](2026-10-16-repository-storage.md) → [`repository-storage-restore`](2026-10-17-repository-storage-restore.md)
+- [Backup by JSON export and import, merged by id](2026-10-16-export-and-import.md) → [`backup-export-import`](2026-10-17-backup-export-import.md)
+- [Native `<select>`s for fixed pickers, the colour drawn beside them](2026-10-17-native-selects.md) → [`base-select-pickers`](2026-10-17-base-select-pickers.md)
+- [Deployed on Vercel through its Git integration](2026-10-16-vercel-deploy.md) → [`vercel-and-link-previews`](2026-10-18-vercel-and-link-previews.md)
+- [Filters in a panel and in the URL; search highlights matches](2026-10-16-filters-and-search.md) → [`filter-pills`](2026-10-18-filter-pills.md)
+- [The Filters panel starts closed, Reset covers the category and the sort, completed tasks stay last](2026-10-18-filters-panel-behavior.md) → [`filter-pills`](2026-10-18-filter-pills.md)
+- [List animations are a progressive enhancement](2026-10-16-list-animations.md) → [`list-motion-without-view-transitions`](2026-10-18-list-motion-without-view-transitions.md)
