@@ -46,7 +46,8 @@ a filter, a toast, an animation, the stored format.
 
 ## Recipes
 
-**A task field** — the validator accepts it (a default for older data), `todo-form` sets it,
+**A task field** — the validator accepts it (a default for older data), `useTodoFields` holds it for
+both forms (`INITIAL_FORM_FIELDS` is the add form's start), `todo-form` and `todo-edit-form` set it,
 `todo-item` shows it. Export and import need nothing extra: they use the same validator
 (decision `backup-export-import`).
 

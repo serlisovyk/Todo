@@ -1,22 +1,28 @@
-import { useActionState, useRef, useState } from 'react'
+import { useActionState, useState } from 'react'
 import { useTodos } from '@/context'
-import { isValidTitle, limitTitle } from '@/utils'
+import { isValidTitle } from '@/utils'
 import {
-  DEFAULT_CATEGORY,
-  DEFAULT_PRIORITY,
   EMPTY_TITLE_MESSAGE,
+  INITIAL_FORM_FIELDS,
   INITIAL_FORM_RESULT,
   TODO_ADDED_MESSAGE,
 } from '@/constants'
+import { useTodoFields } from './use-todo-fields.js'
 
 export function useTodoForm() {
   const { addTodo } = useTodos()
 
-  const titleInputRef = useRef(null)
+  const {
+    titleInputRef,
+    title,
+    category,
+    priority,
+    setTitle,
+    setCategory,
+    setPriority,
+    handleTitleChange: updateTitle,
+  } = useTodoFields(INITIAL_FORM_FIELDS)
 
-  const [title, setTitle] = useState('')
-  const [category, setCategory] = useState(DEFAULT_CATEGORY)
-  const [priority, setPriority] = useState(DEFAULT_PRIORITY)
   const [hasEdited, setHasEdited] = useState(false)
 
   const submitTodo = async (previous, formData) => {
@@ -50,7 +56,7 @@ export function useTodoForm() {
   const messageKey = result.attempt
 
   const handleTitleChange = (event) => {
-    setTitle(limitTitle(event.target.value))
+    updateTitle(event)
     setHasEdited(true)
   }
 

@@ -69,7 +69,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   region; `Toast`: the message (with an error icon) and its action button.
 - `hooks/` — each component's logic as `use<Component>`, and the browser-API hooks: `useFilters` (the filters in
   the URL query), `useSearchField` (the field and the `/` shortcut), `useToastShortcut` (Ctrl/Cmd+Z runs the
-  toast's action), `useBackupDownload` (the backup file's download; private to `hooks/`); barrel `index.js`.
+  toast's action), `useTodoFields` (the fields of both forms) and `useBackupDownload` (the backup file's download),
+  both private to `hooks/`; barrel `index.js`.
 - `constants/` — a `<domain>.constants.js` per domain: `storage` (keys, version, storage messages), `todos`,
   `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`, `events`, `app` (the author, the repository link); barrel `index.js`.
 - `utils/` — one `<domain>.utils.js` each, all pure: `todos` (`sanitizeTodo`, `isValidTitle`: the one task validator;

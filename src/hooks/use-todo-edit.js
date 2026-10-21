@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useTodos } from '@/context'
-import { isValidTitle, limitTitle } from '@/utils'
+import { isValidTitle } from '@/utils'
 import {
   CANCEL_EDIT_KEY,
   PICKER_OPTION_SELECTOR,
   PRESSED_SELECTOR,
 } from '@/constants'
+import { useTodoFields } from './use-todo-fields.js'
 
 export function useTodoEdit(todo, onClose) {
   const {
@@ -17,16 +18,20 @@ export function useTodoEdit(todo, onClose) {
 
   const { updateTodo } = useTodos()
 
-  const titleInputRef = useRef(null)
-
-  const [title, setTitle] = useState(savedTitle)
-  const [category, setCategory] = useState(savedCategory)
-  const [priority, setPriority] = useState(savedPriority)
+  const {
+    titleInputRef,
+    title,
+    category,
+    priority,
+    setCategory,
+    setPriority,
+    handleTitleChange,
+  } = useTodoFields(todo)
 
   useEffect(() => {
     titleInputRef.current.focus()
     titleInputRef.current.select()
-  }, [])
+  }, [titleInputRef])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -60,8 +65,6 @@ export function useTodoEdit(todo, onClose) {
 
     return savedFields
   }
-
-  const handleTitleChange = (event) => setTitle(limitTitle(event.target.value))
 
   const saveAction = () => {
     const savedFields = saveChanges()

@@ -15,6 +15,12 @@ export const PRIORITIES = [
 export const DEFAULT_CATEGORY = 'work'
 export const DEFAULT_PRIORITY = 'medium'
 
+export const INITIAL_FORM_FIELDS = {
+  title: '',
+  category: DEFAULT_CATEGORY,
+  priority: DEFAULT_PRIORITY,
+}
+
 export const TITLE_MAX_LENGTH = 200
 export const TITLE_COUNTER_THRESHOLD = 20
 export const LONE_HIGH_SURROGATE_PATTERN = /[\uD800-\uDBFF]$/
