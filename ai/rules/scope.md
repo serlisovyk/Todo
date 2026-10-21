@@ -14,6 +14,7 @@ template.
 - A backend, an HTTP API, a mock server (MSW, json-server)
 - Authentication, analytics
 - A service worker or PWA, i18n
+- A `LICENSE` file
 - Windows contrast themes (`forced-colors`) are not tuned: out of scope by the author's decision
 
 Third-party scripts, a font CDN, a sitemap and a web app manifest: `ai/rules/assets-performance.md`.
