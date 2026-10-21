@@ -110,6 +110,8 @@ name, so they are public.
 - **Colours only through tokens** in `styles/tokens.css`: the light value on `:root`, the dark one
   on `:root[data-theme='dark']`. `#`, `rgb(`, `hsl(` appear nowhere else; a new colour gets both
   values and a contrast check in both themes.
+- The two `theme-color` metas in `index.html` are literals equal to `--color-page` of each
+  theme: HTML cannot read CSS, so a change of `--color-page` changes them too.
 - Colour tokens are named by role, never by hue: `--color-surface`, `--color-text-muted`,
   `--color-category-work`, `--color-danger` (an error message and an invalid field). A field or a
   checkbox is outlined with `--color-border-control`; `--color-border` is for decorative dividers

@@ -26,6 +26,8 @@ What holds for the font, `public/`, the page metadata and the size of the build.
   `twitter:image`. `llms.txt` names the same address, and a new domain changes all of them.
 - `og:image:width` and `og:image:height` are the pixel size of the file, and `og:image:alt` says what the card shows.
 - `twitter:*` repeats `og:*` and changes with it: title, description, image and alt.
+- The two `theme-color` metas are literals equal to `--color-page` on `:root` and on `:root[data-theme='dark']` in
+  `tokens.css`, because HTML cannot read CSS: a change of `--color-page` changes them too.
 - The card is under 200 kB and outside the size budgets: `.size-limit.json` does not measure it.
 - The metadata is true: it names only what the app does today, and `description`, `og:description` and
   `twitter:description` are one text. A change to what the app does or looks like updates them, `llms.txt` and the card.
