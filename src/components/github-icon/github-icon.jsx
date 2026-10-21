@@ -1,7 +1,7 @@
-export function GithubIcon(props) {
+export function GithubIcon({ className }) {
   return (
     <svg
-      {...props}
+      className={className}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
