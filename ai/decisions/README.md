@@ -55,8 +55,10 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 ### Code structure, state and storage
 
 - [Flat folders by role, kebab-case files with role suffixes, barrels and `@/`](2026-10-16-structure-and-naming.md)
+- [A barrel re-exports a module of more than four names with `export *`](2026-10-21-barrels-export-star.md)
 - [A context is a folder: object, provider and hook; only the last two are public](2026-10-17-context-folders.md)
 - [App state in Context and custom hooks on `useState`](2026-10-16-state-in-context-and-hooks.md)
+- [Work is ordered by events and refs, not by timers and DOM walks; the edit form closes on the next click](2026-10-21-events-and-refs-not-timers.md)
 - [Storage errors are shown as toasts by the provider that raises them](2026-10-17-errors-as-toasts.md)
 - [Storage behind a `TodoRepository` base class, with `restore` for Undo](2026-10-17-repository-storage-restore.md)
 - [Helpers shared by repositories are ordinary methods of the base class](2026-10-17-shared-repository-helpers.md)
