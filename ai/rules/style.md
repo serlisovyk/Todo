@@ -60,11 +60,13 @@ name, so they are public.
 - Every folder of JavaScript modules has an `index.js` that re-exports its public names, named
   exports only — a top-level folder (`components/`, `utils/`) and every folder inside it
   (`components/todo-item/`). It appears with the folder's first file, never as an empty
-  placeholder. `components/index.js` re-exports each component folder (`./todo-item`), and the
-  folder's `index.js` re-exports its file (`./todo-item.jsx`); `context/index.js` re-exports each
-  context folder (`./todos`), which exports only its provider and its hook. `styles/` has no
-  `index.js`: a new global stylesheet is added to `styles/style.css`, the one stylesheet
-  `main.jsx` imports.
+  placeholder. A barrel line re-exports one module: by name up to four names, with
+  `export * from './todos.utils.js'` above four, so a name added to a big module needs no barrel
+  edit and a module that grows past four changes its line. `components/index.js` re-exports each
+  component folder (`./todo-item`), and the folder's `index.js` re-exports its file
+  (`./todo-item.jsx`); `context/index.js` re-exports each context folder (`./todos`), which exports
+  only its provider and its hook. `styles/` has no `index.js`: a new global stylesheet is added to
+  `styles/style.css`, the one stylesheet `main.jsx` imports.
 - `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
   and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
   is imported directly (`./todo-item.jsx`), never through its own `index.js`.

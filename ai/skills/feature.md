@@ -15,7 +15,8 @@ a filter, a toast, an animation, the stored format.
 1. Read `ai/map.md` and the rules (`architecture`, `react`, `style`); do not rediscover the code.
 2. Split the feature across the layers before writing code:
    - **Constants** — every new shared value (a storage key, a list of options, a limit, a
-     duration JS needs) in the matching `*.constants.js`, re-exported from `constants/index.js`.
+     duration JS needs) in the matching `*.constants.js`; the barrel's line for a file of more than
+     four names is `export *`, so a name added there needs no edit (`ai/rules/style.md`).
    - **Utils** — the logic as pure functions in a `*.utils.js`: filtering, sorting, validating,
      splitting text, the list change an action applies. No React, no DOM, no storage.
    - **Storage** — only when the stored data or the repository changes: `ai/skills/storage.md`.
