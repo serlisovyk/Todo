@@ -120,7 +120,7 @@ name, so they are public.
   `--font-weight-*`), line heights, durations and easings (`--duration-*`, `--ease-*`) and sizes
   (`--touch-target`, `--content-max-width`) come from the token scales; no other literal for them.
 - Text uses the two weight tokens only (400 and 500) and inherits the font from `body`.
-- Every `@keyframes` and every `::view-transition-*` rule lives in `styles/animations.css`.
+- Every `@keyframes` and every `::view-transition-*` rule lives in `styles/base.css`.
 - Reduced motion is handled once, in `tokens.css`, by zeroing the `--duration-*` tokens; components
   never add their own `prefers-reduced-motion` block; every duration comes from a token; JS that waits
   for a transition or starts a View Transition checks the query itself.

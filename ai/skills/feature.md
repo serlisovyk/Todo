@@ -38,8 +38,8 @@ a filter, a toast, an animation, the stored format.
    - **Files** — a new folder gets its `index.js` with its first file; every new public name is
      re-exported there, and other folders import it through `@/<folder>`.
    - **Styles** — colours, sizes and durations from the tokens (`tokens.css` zeroes the durations
-     under reduced motion, a component adds no block of its own), keyframes in `animations.css`; a
-     category or priority colour through `data-category` / `data-priority`.
+     under reduced motion, a component adds no block of its own), every `@keyframes` in `base.css`;
+     a category or priority colour through `data-category` / `data-priority`.
 3. Providers are wired in one place, inside `App`; nothing else calls `createRoot`.
 4. Verify per `ai/rules/definition-of-done.md`: use the feature on desktop and at 320px, in both
    themes, and reload for anything stored.

@@ -79,7 +79,7 @@ src/
     indexed-db.repository.js      The IndexedDB implementation
     create-repository.js          Picks the implementation by VITE_STORAGE
     theme.repository.js           The saved theme
-  styles/               Design tokens, colour mapping, base styles and animations
+  styles/               Design tokens, colour mapping and base styles
   utils/                Pure functions: filtering, sorting, validation, highlighting, backup
   main.jsx              The entry point
 public/                 Files served as they are: the font, the theme script, the favicon, the link preview image, robots.txt, llms.txt
