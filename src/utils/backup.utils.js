@@ -7,16 +7,9 @@ import {
   EMPTY_BACKUP_MESSAGE,
   NOTHING_NEW_PREFIX,
 } from '@/constants'
+import { parseJson } from './json.utils.js'
 import { formatTaskCount, sanitizeTodos } from './todos.utils.js'
 import { isPlainObject } from './validation.utils.js'
-
-function parseJson(text) {
-  try {
-    return JSON.parse(text)
-  } catch {
-    return null
-  }
-}
 
 export function buildBackup(todos, exportedAt) {
   return { app: BACKUP_APP_NAME, version: DATA_FORMAT_VERSION, exportedAt, todos }

@@ -75,7 +75,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   `limitTitle` (its cut); the list transforms the context applies; `sortTodos`; the counter, toast, filter-result and title-counter messages),
   `filters` (`filterTodos`, `parseFilters` and `buildFiltersSearch` between the URL query and the filters, the category
   and status options with their counts, the empty-list message), `highlight`, `theme`, `css`, `events`,
-  `backup` (the pure side of export and import), `validation`; barrel `index.js`.
+  `json`, `backup` (the pure side of export and import), `validation`; barrel `index.js`.
 - `storage/` — `TodoRepository` (the contract and the helpers its implementations share),
   `LocalStorageRepository`, `IndexedDbRepository`, `createRepository` (picks the implementation by `VITE_STORAGE`,
   asks for persistent storage), `ThemeRepository` (the saved theme). The barrel exports the last two.
