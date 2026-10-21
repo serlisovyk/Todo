@@ -76,7 +76,8 @@ adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no a
 the one live region, the toast goes after `TOAST_DURATION` and waits while hovered or focused. An
 undoable action keeps what it removed and `restoreTodos` puts it back at the same position: the
 callback runs seconds later, so it must not read state from its own closure. The focus moves before
-the row goes (to the next task, else the previous one, else the checked status radio) and after Undo (to the restored one); a change that must be on screen
+the row goes (to the next task, else the previous one, else the checked status radio) and after Undo
+(to the restored one), both through the checkbox refs `TodoList` keeps (`ai/rules/react.md`); a change that must be on screen
 before the focus moves is committed with `flushSync` first. An action toast also answers Ctrl/Cmd+Z
 outside text fields (`useToastShortcut`, in `Toast`), and its button names the keys in
 `aria-keyshortcuts`. A toast enters with `@starting-style` and leaves through `useToastExit`: the

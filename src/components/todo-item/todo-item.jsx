@@ -4,31 +4,30 @@ import { HighlightedText } from '@/components/highlighted-text'
 import { IconButton } from '@/components/icon-button'
 import { TodoEditForm } from '@/components/todo-edit-form'
 import { useTodoItem } from '@/hooks'
-import { getTodoCheckboxId } from '@/utils'
 import { CATEGORIES, PRIORITIES } from '@/constants'
 import './todo-item.css'
 
-export function TodoItem({ todo }) {
-  const { id, title, completed, category: categoryId, priority: priorityId } = todo
+export function TodoItem({ todo, neighborId, checkboxesRef }) {
+  const { title, completed, category: categoryId, priority: priorityId } = todo
 
   const {
-    rowRef,
     editButtonRef,
     query,
     isEditing,
     isToggling,
+    registerCheckbox,
     ignoreRepeatedClick,
     handleToggle,
     handleDelete,
     startEditing,
     stopEditing,
-  } = useTodoItem(todo)
+  } = useTodoItem(todo, neighborId, checkboxesRef)
 
   const metaId = useId()
 
   if (isEditing) {
     return (
-      <li ref={rowRef} className="todo-item">
+      <li className="todo-item">
         <TodoEditForm todo={todo} onClose={stopEditing} />
       </li>
     )
@@ -38,11 +37,11 @@ export function TodoItem({ todo }) {
   const priority = PRIORITIES.find((candidate) => candidate.id === priorityId)
 
   return (
-    <li ref={rowRef} className="todo-item" data-toggling={isToggling}>
+    <li className="todo-item" data-toggling={isToggling}>
       <div className="todo-item-body">
         <label className="todo-item-label" onClickCapture={ignoreRepeatedClick}>
           <input
-            id={getTodoCheckboxId(id)}
+            ref={registerCheckbox}
             type="checkbox"
             className="todo-item-checkbox"
             checked={completed}

@@ -18,10 +18,6 @@ export function formatTaskCount(count) {
   return `${count} ${noun}`
 }
 
-export function getTodoCheckboxId(todoId) {
-  return `todo-checkbox-${todoId}`
-}
-
 export function isValidTitle(title) {
   if (typeof title !== 'string') return false
 

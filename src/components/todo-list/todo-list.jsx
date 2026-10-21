@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { TodoItem } from '@/components/todo-item'
 import { useTodos } from '@/context'
 import { useFilters } from '@/hooks'
@@ -8,6 +9,8 @@ export function TodoList() {
   const { todos, isLoading } = useTodos()
 
   const { filters } = useFilters()
+
+  const checkboxesRef = useRef(new Map())
 
   if (isLoading) return <p className="todo-list-message">Loading tasks…</p>
 
@@ -28,7 +31,19 @@ export function TodoList() {
   }
 
   const sortedTodos = sortTodos(visibleTodos, filters.sort)
-  const items = sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+
+  const items = sortedTodos.map((todo, index) => {
+    const neighbor = sortedTodos[index + 1] ?? sortedTodos[index - 1]
+
+    return (
+      <TodoItem
+        key={todo.id}
+        todo={todo}
+        neighborId={neighbor?.id}
+        checkboxesRef={checkboxesRef}
+      />
+    )
+  })
 
   return <ul className="todo-list">{items}</ul>
 }

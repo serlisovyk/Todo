@@ -81,6 +81,9 @@ and storage: `ai/rules/architecture.md`.
 - After an action, focus lands somewhere meaningful: after adding — the input; after deleting —
   the next task, else the previous one, else the checked status radio (a text field would keep
   Ctrl/Cmd+Z for its own undo); after editing — the edit button.
+- The task to focus is found through refs, never by walking the DOM: `TodoList` keeps a `Map` ref from
+  a task id to its checkbox and hands each row its neighbour's id; a row registers its checkbox
+  through a ref callback, so a row in edit mode has none. Only the status radio is a DOM query.
 - A change a screen-reader user must hear goes through one polite live region (`role="status"`),
   never a second region for the same event and never `assertive`. A message that can repeat is a
   node keyed by the attempt inside the region, so the second one is announced again. The tasks-left

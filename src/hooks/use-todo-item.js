@@ -1,16 +1,15 @@
 import { useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { useTodos, useToast } from '@/context'
-import { getTodoCheckboxId, isRepeatedClick, matchesFilters } from '@/utils'
+import { isRepeatedClick, matchesFilters } from '@/utils'
 import {
   CHECKED_STATUS_SELECTOR,
-  TODO_CHECKBOX_SELECTOR,
   TODO_DELETED_MESSAGE,
   UNDO_LABEL,
 } from '@/constants'
 import { useFilters } from './use-filters.js'
 
-export function useTodoItem(todo) {
+export function useTodoItem(todo, neighborId, checkboxesRef) {
   const { id, completed } = todo
 
   const { toggleTodo, removeTodos, restoreTodos } = useTodos()
@@ -18,7 +17,6 @@ export function useTodoItem(todo) {
 
   const { filters } = useFilters()
 
-  const rowRef = useRef(null)
   const editButtonRef = useRef(null)
 
   const [isEditing, setIsEditing] = useState(false)
@@ -26,15 +24,19 @@ export function useTodoItem(todo) {
 
   const { query } = filters
 
+  const registerCheckbox = (checkbox) => {
+    checkboxesRef.current.set(id, checkbox)
+
+    return () => checkboxesRef.current.delete(id)
+  }
+
   const startEditing = () => setIsEditing(true)
 
   const findFocusTarget = () => {
-    const row = rowRef.current
-    const neighbor = row.nextElementSibling ?? row.previousElementSibling
-    const checkbox = neighbor?.querySelector(TODO_CHECKBOX_SELECTOR)
-
+    const neighborCheckbox = checkboxesRef.current.get(neighborId)
     const statusInput = document.querySelector(CHECKED_STATUS_SELECTOR)
-    const focusTarget = checkbox ?? statusInput
+
+    const focusTarget = neighborCheckbox ?? statusInput
 
     return focusTarget
   }
@@ -79,7 +81,7 @@ export function useTodoItem(todo) {
   const undoDelete = (removed) => {
     flushSync(() => restoreTodos(removed))
 
-    document.getElementById(getTodoCheckboxId(id))?.focus()
+    checkboxesRef.current.get(id)?.focus()
   }
 
   const handleDelete = async (event) => {
@@ -100,11 +102,11 @@ export function useTodoItem(todo) {
   }
 
   return {
-    rowRef,
     editButtonRef,
     query,
     isEditing,
     isToggling,
+    registerCheckbox,
     ignoreRepeatedClick,
     handleToggle,
     handleDelete,
