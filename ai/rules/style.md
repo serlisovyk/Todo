@@ -50,7 +50,7 @@ name, so they are public.
 ## Files, names and imports
 
 - Files and folders are kebab-case. A file that is not a component, or is a provider, carries
-  its role as a suffix: `categories.constants.js`, `todos.utils.js`, `todos.context.js`,
+  its role as a suffix: `filters.constants.js`, `todos.utils.js`, `todos.context.js`,
   `todos.provider.jsx`, `local-storage.repository.js`.
 - A component has no suffix: `components/theme-switch/theme-switch.jsx` + `theme-switch.css`.
 - A hook is `use-<name>.js`; one over a context, or used only by its provider, sits in that
@@ -68,7 +68,7 @@ name, so they are public.
   only its provider and its hook. `styles/` has no `index.js`: a new global stylesheet is added to
   `styles/style.css`, the one stylesheet `main.jsx` imports.
 - `@/` is `src/` (Vite alias, `jsconfig.json` for editors). Imports across folders go through it
-  and the folder's barrel: `import { TodoItem } from '@/components'`. Inside one folder a sibling
+  and the folder's barrel: `import { useTodos } from '@/context'`. Inside one folder a sibling
   is imported directly (`./todo-item.jsx`), never through its own `index.js`.
 - **Import order:** packages, then `@/` modules with `@/constants` last, then `./` siblings, then
   the stylesheet.
@@ -97,7 +97,8 @@ name, so they are public.
 - Plain CSS with native nesting; no preprocessor, CSS Modules, CSS-in-JS or utility framework.
 - A component's stylesheet sits next to it and is imported by it. Class names start with the
   component's name (`.todo-item`, `.todo-item-title`); a state is an attribute the markup already
-  has (`[aria-expanded='true']`, `:checked`) or an `is-*` class.
+  has (`[aria-invalid='true']`, `:checked`) or an `is-*` class; one only a script knows is a
+  `data-*` attribute (`data-toggling`, `data-tone`).
 - States and children nest inside their rule (`&:hover`, `&:focus-visible`); a media query sits
   inside the selector it changes, as a strict range without `=`: `@media (width < 480px)`,
   `@media (width > 768px)`.

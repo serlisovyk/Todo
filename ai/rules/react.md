@@ -11,12 +11,12 @@ and storage: `ai/rules/architecture.md`.
 - A component file holds only its imports and the component, and so does a provider file: constants,
   maps and lookup tables go to `constants/`, pure helpers to `utils/`, logic to a hook.
 - Named exports only, no default exports.
-- Props are plain data and callbacks named `on<Action>` (`onToggle`, `onDelete`); a prop that draws
+- Props are plain data and callbacks named `on<Action>` (`onChange`, `onClose`); a prop that draws
   one item of a list is a function named `render<Thing>` (`renderMark`). A component that needs app
   state calls the hook instead of receiving it through several levels of props.
 - Up to three props are destructured in the signature. A component with four or more takes `props`
   and destructures it in the first statement of its body, followed by a blank line:
-  `const { labelText, name, options, value } = props`.
+  `const { ref, labelText, name, options, value, onChange, renderMark } = props`.
 - List keys are stable ids (`todo.id`), never an array index.
 - A piece that renders markup is a component of its own, in its own folder, even when one component
   is its only user: one component per file, no exception.

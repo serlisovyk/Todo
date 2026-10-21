@@ -17,7 +17,7 @@ for approval.
   `ai/rules/assets-performance.md`; a size budget is raised only on purpose.
 - No comments, no inline styles, no app state on `window`.
 - Stale code, styles and constants left behind by the change are removed.
-- Nothing from `ai/rules/scope.md` or `ai/decisions/2026-10-16-rejected-features.md` slipped in.
+- Nothing from `ai/rules/scope.md` or the rejected ideas it names slipped in.
 
 ## Accessibility
 

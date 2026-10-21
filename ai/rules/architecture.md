@@ -25,8 +25,9 @@ Data flows one way: constants → storage → context → hooks → components. 
   in `<head>` that sets `data-theme` before React starts (decision `theme-head-script`). Its key
   and values are literals that must equal `THEME_STORAGE_KEY` and the theme constants.
 - `TodoRepository` is the contract: `list()`, `create(input)`, `update(id, patch)`,
-  `remove(ids)`, `restore(todos)`, `subscribe(onExternalChange)`, all asynchronous. `restore` writes
-  tasks back unchanged, for Undo and for import. An implementation extends the class (decision
+  `remove(ids)` and `restore(todos)`, all asynchronous, and `subscribe(onExternalChange)`, which
+  returns the function that stops the listening. `restore` writes tasks back unchanged, for Undo
+  and for import. An implementation extends the class (decision
   `repository-storage-restore`). Besides the contract the base class holds the helpers the
   implementations share: checking a task, building a new one, applying a patch (`requireValidTodo`,
   `buildTodo`, `applyPatch`); an implementation calls them and never repeats that logic (decision
