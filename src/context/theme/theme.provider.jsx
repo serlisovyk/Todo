@@ -29,7 +29,9 @@ export function ThemeProvider({ children }) {
 
     const pageColor = getComputedStyle(root).getPropertyValue(PAGE_COLOR_VARIABLE)
 
-    document.querySelector(THEME_COLOR_META_SELECTOR).content = pageColor.trim()
+    document.querySelectorAll(THEME_COLOR_META_SELECTOR).forEach((meta) => {
+      meta.content = pageColor.trim()
+    })
   }, [resolvedTheme])
 
   const changeTheme = (nextTheme, origin) => {
