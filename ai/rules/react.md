@@ -53,6 +53,10 @@ and storage: `ai/rules/architecture.md`.
   `preventDefault` and `stopPropagation` on a repeated click. A control that leaves on click has no handler left to
   guard, so the toast's exit (`useToastExit`) arms a capture-phase `click` listener on the document that cancels
   repeated clicks until the first fresh one: the fade is shorter than a double click and absent under reduced motion.
+- No `setTimeout` to wait out a turn. A form that closes when the focus leaves it must not move the page under a
+  button that is still down: if a mouse button is down (`useMousePressed`, from `mousedown` and `mouseup`, not
+  from the pointer events or `:active`) it closes on the next `click` on the document, once, after the clicked
+  control has acted; otherwise at once (decision `events-and-refs-not-timers`).
 - Forms use `<form action>`; `useActionState` when the form shows a pending or error state. React
   resets the form after every action, and a reset puts a `<select>` back on its first option while its
   state keeps the old value: a form that keeps its fields holds them in state and cancels `onReset`.

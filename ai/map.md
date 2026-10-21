@@ -31,23 +31,21 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 ## Sources (`src/`)
 
 - `main.jsx` — the entry point and the only `createRoot`: renders `App` in `StrictMode`, imports `styles/style.css`.
-- `components/app/` — `App`, the root component: `ErrorBoundary` around the three providers, the header, `<main>`,
-  the footer and the toast region.
-- `components/app-header/` — `AppHeader`: the page `<header>`, a banner outside `<main>`, with the logo, the `<h1>`,
-  the theme switch and the repository link.
+- `components/app/` — `App`, the root: `ErrorBoundary` around the three providers, header, `<main>`, footer, toast region.
+- `components/app-header/` — `AppHeader`: the page `<header>` outside `<main>`: the logo, the `<h1>`, the theme
+  switch and the repository link.
 - `components/app-footer/` — `AppFooter`: the page `<footer>` outside `<main>`: the author's name and the year.
 - `components/github-link/`, `components/github-icon/` — `GithubLink`: the header's 44px icon link to the
   repository; `GithubIcon`: the mark `lucide-react` no longer ships.
 - `components/category-dot/` — `CategoryDot`: the 12px dot in a category's colour (the forms and the category pill).
-- `components/error-boundary/` — `ErrorBoundary`, the one class component: after a render error below it, it shows
-  `ErrorScreen`.
+- `components/error-boundary/` — `ErrorBoundary`, the one class component: after a render error below it shows `ErrorScreen`.
 - `components/error-screen/` — `ErrorScreen`: the heading, Export backup (the tasks read straight from the
   repository) and Reload; its logic is `useErrorScreen`.
-- `components/filter-announcer/` — `FilterAnnouncer`: the persistent visually hidden live region above the list;
-  it says what the filters show; its logic is `useFilterAnnouncement`.
+- `components/filter-announcer/` — `FilterAnnouncer`: the visually hidden live region above the list that says
+  what the filters show; its logic is `useFilterAnnouncement`.
 - `components/filters-toolbar/` — `FiltersToolbar`: the search field and, under it, the Category and Sort pills and
   Reset filters; its logic is `useFiltersToolbar`.
-- `components/highlighted-text/` — `HighlightedText`: a text with the matches of a query in `<mark>`.
+- `components/highlighted-text/` — `HighlightedText`: a text with its query matches in `<mark>`.
 - `components/icon-button/` — `IconButton`: a 44px icon-only button named by its `title`.
 - `components/pill-select/` — `PillSelect`: a native `<select>` in a pill; `renderMark` draws its dot, flag or
   icon, also inside each option of the open list, and may return nothing; `ref` reaches the `<select>`.
@@ -59,7 +57,7 @@ Update it when a file, folder, storage key or script is added, renamed or remove
 - `components/title-counter/` — `TitleCounter`: the `N / 200` under a title field near the limit and its own status.
 - `components/todo-form/` — `TodoForm`: the markup of the add-task form; its logic is `useTodoForm`.
 - `components/todo-list/`, `components/todo-item/` — the tasks area (the loading and empty texts, the
-  rows `filterTodos` shows in `sortTodos` order) and one row (checkbox, title with `<mark>` matches, meta, buttons).
+  rows `filterTodos` shows in `sortTodos` order) and one row (checkbox, title, meta, buttons).
 - `components/todo-footer/` — `TodoFooter`: under the list, the tasks-left counter, the mark-all buttons and
   Clear completed; its logic is `useTodoFooter`.
 - `components/todo-backup/` — `TodoBackup`: the "Backup" group at the end of `<main>`: Export (while tasks exist),
@@ -69,8 +67,8 @@ Update it when a file, folder, storage key or script is added, renamed or remove
   region; `Toast`: the message (with an error icon) and its action button.
 - `hooks/` — each component's logic as `use<Component>`, and the browser-API hooks: `useFilters` (the filters in
   the URL query), `useSearchField` (the field and the `/` shortcut), `useToastShortcut` (Ctrl/Cmd+Z runs the
-  toast's action), `useTodoFields` (the fields of both forms) and `useBackupDownload` (the backup file's download),
-  both private to `hooks/`; barrel `index.js`.
+  toast's action); private to `hooks/`: `useTodoFields` (the fields of both forms), `useMousePressed` (a held mouse
+  button), `useBackupDownload` (the backup file's download); barrel `index.js`.
 - `constants/` — a `<domain>.constants.js` per domain: `storage` (keys, version, storage messages), `todos`,
   `filters`, `keyboard`, `toast`, `backup`, `theme`, `css`, `events`, `app` (the author, the repository link); barrel `index.js`.
 - `utils/` — one `<domain>.utils.js` each, all pure: `todos` (`sanitizeTodo`, `isValidTitle`: the one task validator;

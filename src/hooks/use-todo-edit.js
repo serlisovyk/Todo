@@ -1,11 +1,8 @@
 import { useEffect } from 'react'
 import { useTodos } from '@/context'
 import { isValidTitle } from '@/utils'
-import {
-  CANCEL_EDIT_KEY,
-  PICKER_OPTION_SELECTOR,
-  PRESSED_SELECTOR,
-} from '@/constants'
+import { CANCEL_EDIT_KEY, PICKER_OPTION_SELECTOR } from '@/constants'
+import { useMousePressed } from './use-mouse-pressed.js'
 import { useTodoFields } from './use-todo-fields.js'
 
 export function useTodoEdit(todo, onClose) {
@@ -17,6 +14,8 @@ export function useTodoEdit(todo, onClose) {
   } = todo
 
   const { updateTodo } = useTodos()
+
+  const isMousePressedRef = useMousePressed()
 
   const {
     titleInputRef,
@@ -76,8 +75,7 @@ export function useTodoEdit(todo, onClose) {
 
   const keepFocus = (event) => event.preventDefault()
 
-  const closeAfterClick = () =>
-    setTimeout(() => onClose({ shouldFocusEditButton: false }))
+  const closeForm = () => onClose({ shouldFocusEditButton: false })
 
   const handleBlur = (event) => {
     const isStillInside = event.currentTarget.contains(event.relatedTarget)
@@ -85,13 +83,13 @@ export function useTodoEdit(todo, onClose) {
 
     saveChanges()
 
-    const isPointerPressed = document.querySelector(PRESSED_SELECTOR) !== null
-    if (!isPointerPressed) {
-      closeAfterClick()
+    const isPressed = isMousePressedRef.current
+    if (!isPressed) {
+      closeForm()
       return
     }
 
-    document.addEventListener('mouseup', closeAfterClick, { once: true })
+    document.addEventListener('click', closeForm, { once: true })
   }
 
   return {
