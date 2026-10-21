@@ -52,21 +52,23 @@ export function filterTodos(todos, filters) {
   return filtered
 }
 
-function countTodosInCategory(todos, category) {
-  const inCategory = todos.filter((todo) => matchesCategory(todo, category))
-
-  return inCategory.length
-}
-
-export function getCategoryFilterOptions(todos) {
-  const options = CATEGORY_FILTERS.map(({ id, label }) => {
-    const count = countTodosInCategory(todos, id)
-    const countedLabel = `${label} (${count})`
+function getCountedOptions(todos, options, matchesOption) {
+  const countedOptions = options.map(({ id, label }) => {
+    const matching = todos.filter((todo) => matchesOption(todo, id))
+    const countedLabel = `${label} (${matching.length})`
 
     return { id, label: countedLabel }
   })
 
-  return options
+  return countedOptions
+}
+
+export function getCategoryFilterOptions(todos) {
+  return getCountedOptions(todos, CATEGORY_FILTERS, matchesCategory)
+}
+
+export function getStatusFilterOptions(todos) {
+  return getCountedOptions(todos, STATUSES, matchesStatus)
 }
 
 export function canResetFilters(filters) {

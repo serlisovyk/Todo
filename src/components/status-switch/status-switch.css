@@ -41,9 +41,11 @@
 .status-switch-label {
   grid-area: 1 / 1;
   min-width: var(--touch-target);
+  padding-inline: var(--space-1);
   color: var(--color-text-muted);
   text-align: center;
   font-weight: var(--font-weight-medium);
+  white-space: nowrap;
   pointer-events: none;
   transition: color var(--duration-base) var(--ease-out);
 

@@ -1,9 +1,15 @@
+import { useTodos } from '@/context'
 import { useFilters } from '@/hooks'
-import { STATUS_INPUT_NAME, STATUSES } from '@/constants'
+import { getStatusFilterOptions } from '@/utils'
+import { STATUS_INPUT_NAME } from '@/constants'
 import './status-switch.css'
 
 export function StatusSwitch() {
+  const { todos } = useTodos()
+
   const { filters, changeFilters } = useFilters()
+
+  const statusOptions = getStatusFilterOptions(todos)
 
   const handleChange = (event) => changeFilters({ status: event.target.value })
 
@@ -11,7 +17,7 @@ export function StatusSwitch() {
     <fieldset className="status-switch">
       <legend className="sr-only">Filter by status</legend>
 
-      {STATUSES.map(({ id, label }) => (
+      {statusOptions.map(({ id, label }) => (
         <label key={id} className="status-switch-option">
           <input
             className="status-switch-input"

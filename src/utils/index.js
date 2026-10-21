@@ -13,6 +13,7 @@ export {
   filterTodos,
   getCategoryFilterOptions,
   getFiltersKey,
+  getStatusFilterOptions,
   matchesFilters,
   parseFilters,
 } from './filters.utils.js'
