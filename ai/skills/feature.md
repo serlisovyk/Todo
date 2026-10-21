@@ -65,7 +65,9 @@ search, decision `category-counts`). A Reset icon
 button shows while `canResetFilters`, applies `RESET_DEFAULTS`, commits it with `flushSync` and focuses the
 category pill through its `ref`, since the button leaves. The sort is no predicate: `sortTodos(todos, sort)`
 orders the shown list in render, completed tasks last under every sort. The footer's counter and buttons
-ignore the filters (decision `footer-acts-on-all-tasks`).
+ignore the filters (decision `footer-acts-on-all-tasks`). The status labels carry counts the same way
+(`getStatusFilterOptions`), and an empty list says why through `getEmptyListMessage`, which the card and the
+announcer share (decision `status-counts-and-empty-states`).
 
 **A toast** — `const { showToast } = useToast()`, then `showToast({ message })`; an undoable action
 adds `actionLabel` and `onAction`, an error `isError: true` (a danger icon, no action). One toast at a time, a new one replaces the old; `ToastRegion` is

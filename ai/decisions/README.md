@@ -72,6 +72,7 @@ anything `ai/rules/` and `ai/map.md` already cover. Do not create noise records.
 - [The footer counts and acts on all tasks, not on the filtered list](2026-10-17-footer-acts-on-all-tasks.md)
 - [The second click of a double click is ignored, and a title is cut by `.length`](2026-10-19-repeated-click-and-title-length.md)
 - [The Category pill counts every task of a category, whatever the filters say](2026-10-19-category-counts.md)
+- [The status switch counts every task, and an empty list names a status only when that status is empty](2026-10-21-status-counts-and-empty-states.md)
 - [Plain CSS per component with design tokens, palette "Ink and indigo"](2026-10-16-plain-css-and-tokens.md)
 - [Design tokens: semantic names, two borders, category and priority shades per theme](2026-10-16-design-tokens.md)
 - [`lucide-react` icons, self-hosted Inter, an own toast](2026-10-16-ui-dependencies.md)

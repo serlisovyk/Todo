@@ -13,7 +13,7 @@ Todo is a one-page app built with React 19 and Vite in plain JavaScript. Tasks n
 - Add, edit, complete, and delete tasks, with Undo for a deletion
 - A category (Work, Personal, Study, Shopping, Health) and a priority (Low, Medium, High) on every task
 - Search with highlighted matches, focused with the `/` key
-- Filters by status and category, and sorting by newest, oldest, or priority, kept in the URL
+- Filters by status and category with task counts, and sorting by newest, oldest, or priority, kept in the URL
 - A tasks-left counter, mark all as done or active, and Clear completed
 - Light, dark, or system theme, with a circle-reveal transition
 - Tasks saved in localStorage or IndexedDB and kept in sync across browser tabs
