@@ -23,11 +23,11 @@ Then check what the rules do not cover:
   under every sort; the counter is the active tasks out of all, whatever the filters; a button that
   hides when used hands the focus on.
 - **Filters and search**: status, category, sort and query combine; a reload restores them from
-  the URL; unknown values in the URL are ignored; the empty list says which case it is ("No tasks
-  yet", "All tasks are done" when the Active count is 0, "No completed tasks yet" when the Completed count is 0, else
-  "No tasks match your filters"), and the live region says the same; the highlight marks every match and special characters
-  are plain text; a row that an edit hides hands the focus on; the live region says the result only
-  when its text changes, so typing that keeps the count is quiet. The category and sort pills show the
+  the URL; unknown values in the URL are ignored; the empty list says which case it is (no tasks
+  yet, the Active or Completed status holds none, or nothing matches), and the live region says the
+  same; the highlight marks every match and special characters are plain text; a row that an edit
+  hides hands the focus on; the live region says the result only when its text changes, so typing
+  that keeps the count is quiet. The category and sort pills show the
   choice on every load, the Reset icon is there only while one of them is not the default, and it hands
   the focus to the category pill and leaves the status and the query alone, and its appearance moves no
   pill; the search hint shows whole at 320px, and the pills row has no horizontal scroll, with and without
@@ -36,6 +36,9 @@ Then check what the rules do not cover:
 - **Storage**: a reload keeps everything; broken or foreign data gives an empty list without a
   crash and is not overwritten until something changes; blocked or full storage gives a toast,
   not a crash; two tabs stay in sync; both backends behave the same.
+- **Errors**: a render error shows the error screen, never a blank page: the focus is on its heading,
+  Export backup downloads the stored tasks even if a context failed, Reload reloads; a storage error
+  is a toast, not a crash.
 - **Backup**: an exported file imports back with nothing duplicated and nothing of the present tasks
   changed; a foreign, broken, oversized or wrong-version file changes nothing and says why; a refused
   write leaves no half-written import; a file from one backend imports into the other.
@@ -43,8 +46,8 @@ Then check what the rules do not cover:
   theme on load.
 - **Accessibility in the browser**: every flow by keyboard alone; focus after each action; a
   screen reader hears names, states and each announcement once (the accessibility tree lists no
-  description equal to a name, a link that opens a new tab says so); tooltips on icon buttons and links, chips and
-  pills, none over an open picker; a live region fed by typing speaks at its thresholds, never per keystroke;
+  description equal to a name, a link that opens a new tab says so); tooltips on icon buttons, links, theme
+  buttons and pills, none over an open picker; a live region fed by typing speaks at its thresholds, never per keystroke;
   contrast in both themes, hover and focus included; 320px and 200% zoom without horizontal scroll,
   and 150 to 200% text at 320px; the toast never hides the focused control; a click on a control
   below a form that closes on blur still lands, by mouse and by touch; Escape in an open picker

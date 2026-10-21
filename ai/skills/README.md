@@ -7,7 +7,7 @@ docs are listed in `AGENTS.md`.
 
 - [feature](feature.md) — how a feature flows through constants, utils, storage, context, hooks,
   components and styles; recipes for a task field, a filter, a toast, an icon button, a
-  text button, a file in or out, an animation.
+  text button, a file in or out, a picker, a limit counter, an animation.
 - [storage](storage.md) — adding a repository implementation and changing the stored format:
   the validator, the version bump, the migration table.
 - [review](review.md) — self-review of a diff: regressions, scope creep, accessibility, docs drift.

@@ -40,19 +40,20 @@ a filter, a toast, an animation, the stored format.
    - **Styles** — colours, sizes and durations from the tokens (`tokens.css` zeroes the durations
      under reduced motion, a component adds no block of its own), every `@keyframes` in `base.css`;
      a category or priority colour through `data-category` / `data-priority`.
-3. Providers are wired in one place, inside `App`; nothing else calls `createRoot`.
+3. Providers are wired in one place, inside `App` and under its `ErrorBoundary`; nothing else calls
+   `createRoot`.
 4. Verify per `ai/rules/definition-of-done.md`: use the feature on desktop and at 320px, in both
    themes, and reload for anything stored.
 
 ## Recipes
 
 **A task field** — the validator accepts it (a default for older data), `useTodoFields` holds it for
-both forms (`INITIAL_FORM_FIELDS` is the add form's start), `todo-form` and `todo-edit-form` set it,
-`todo-item` shows it. Export and import need nothing extra: they use the same validator
-(decision `backup-export-import`).
+both forms (`INITIAL_FORM_FIELDS` is the add form's start), `useTodoForm` submits it and `useTodoEdit`
+saves it, `TodoForm` and `TodoEditForm` set it, `TodoItem` shows it. Export and import need nothing
+extra: they use the same validator (decision `backup-export-import`).
 
 **A filter** — its allowed values and default in `filters.constants.js`; the URL query is its state:
-`use-filters` reads it with `useSyncExternalStore` and `changeFilters(patch)` writes it with
+`useFilters` reads it with `useSyncExternalStore` and `changeFilters(patch)` writes it with
 `history.replaceState` (a default is not written, an unknown value is ignored), so every component
 sees the same filters. A new one is a line in `parseFilters` and `buildFiltersSearch` and a
 predicate in `matchesFilters`, all pure in `filters.utils.js`; the shown list is derived in render
@@ -85,7 +86,7 @@ timer and the button set `is-leaving`, CSS moves it away and `transitionend` rem
 under reduced motion, where no transition runs), and while it leaves it takes no input. Its exit also arms a document
 click listener that cancels the repeated clicks that follow, since the toast is gone before a double click ends.
 
-**An icon button** — an `IconButton` with a `lucide-react` icon, a `labelText` (its `title`: the name and
+**An icon button** — an `IconButton` with a `lucide-react` component as its `Icon`, a `labelText` (its `title`: the name and
 the tooltip, no `aria-label`) and, for a destructive one, `tone="danger"`. It is 44px and always
 visible (a touch screen has no hover); `ref`, `type` and handlers go to the `<button>`. A button in a
 form that must not count as leaving the field cancels the default of `mousedown` (`TodoEditForm`). An icon that
@@ -93,7 +94,7 @@ is a link (`GithubLink`) is its own component with the same look, named by its `
 says so in the `title` and has `target="_blank"` with `rel="noopener noreferrer"`.
 
 **A text button** — a `TextButton`: its children are the label, `ref`, `type` and handlers go to the
-`<button>`. One look everywhere (the footer, the toast's action, the backup row); it has no `className` and no
+`<button>`. One look everywhere (the footer, the toast's action, the backup row, the error screen); it has no `className` and no
 variants, and a layout need, such as the toast keeping its action at the end, is the container's CSS.
 
 **A file in or out** — the pure parts (the object written, the file name, the whole-file check, the split into
@@ -117,7 +118,7 @@ leaves no slot. A `ref` goes to the `<select>`, for a caller that moves the focu
 is empty until `TITLE_COUNTER_THRESHOLD` characters remain, so the element stays in the DOM and the field's
 `aria-describedby` always points at it. Its own `role="status"` says `getTitleCounterMessage(length)`, one text per
 range (near the limit, at it), so it speaks when the range changes and never on each keystroke: no timer, no state.
-The field's change handler stores `limitTitle(value)`, a cut by `.length` that never leaves half of a surrogate pair,
+The field's change handler stores `limitTitle(value)` (`useTodoFields`), a cut by `.length` that never leaves half of a surrogate pair,
 so the counter, `isValidTitle` and the stored title count alike in every browser; `maxLength` stays on the field, but
 a browser may count it in visible characters and let more in.
 
