@@ -15,7 +15,7 @@ import { TodoRepository } from './todo.repository.js'
 
 export class IndexedDbRepository extends TodoRepository {
   #channel = new BroadcastChannel(BROADCAST_CHANNEL_NAME)
-  #databasePromise = null
+  #databasePromise
 
   async list() {
     const database = await this.#open()
@@ -99,7 +99,7 @@ export class IndexedDbRepository extends TodoRepository {
 
       return database
     } catch (error) {
-      this.#databasePromise = null
+      this.#databasePromise = undefined
 
       throw new Error(OPEN_ERROR_MESSAGE, { cause: error })
     }
